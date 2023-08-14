@@ -1,0 +1,66 @@
+[
+    {
+        "motherboard_id": 1,
+        "manufacturer": "Asus",
+        "platform": "Intel®",
+        "manufacturer_category": "TUF",
+        "commercial_name": "TUF GAMING Z690-PLUS",
+        "socket": 1700,
+        "socket_standard": "FCLGA1700",
+        "chipset": "Intel® Z690",
+        "form_factor": "ATX",
+        "price": 209.99,
+        "processor_generations": [
+            12,
+            13
+        ],
+        "memory": {
+            "ddr3_capable": false,
+            "ddr4_capable": false,
+            "ddr5_capable": true,
+            "dd3_max_memory": 0,
+            "dd4_max_memory": 0,
+            "dd5_max_memory": 192,
+            "dd3_speeds": [],
+            "dd4_speeds": [],
+            "dd5_speeds": [
+                "6000(OC)",
+                "5800(OC)",
+                "5600(OC)",
+                "5400(OC)",
+                "5200(OC)",
+                "5000(OC)",
+                "4800"
+            ],
+            "dd3_type": "",
+            "dd4_type": "",
+            "dd5_type": "Non-ECC, Un-buffered Memory"
+        },
+        "video_and_pcie": {
+            "display_port_qty": 1,
+            "hdmi_port_qty": 1,
+            "pcie_5_x16_slot": 1,
+            "pcie_3_x16_slot": 1,
+            "pcie_3_x4_slot": 1,
+            "pcie_3_x1_slot": 2
+        },
+        "storage": {
+            "m2_slots": 4,
+            "sata_6gbs_ports": 4
+        },
+        "network": {
+            "ports": 1,
+            "speed": "2.5 Gb/s"
+        },
+        "audio": {
+            "has_audio": true,
+            "channels": "7.1 Surround Sound"
+        },
+        "power_consumption": {
+            "base_power": "54 W",
+            "max_power": "287 W"
+        },
+        "windows_11_compatible": true,
+        "link": "https://www.asus.com/motherboards-components/motherboards/tuf-gaming/tuf-gaming-z690-plus/"
+    }
+]

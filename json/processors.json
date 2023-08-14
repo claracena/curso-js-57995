@@ -1,0 +1,42 @@
+[
+    {
+        "procesador_id": 1,
+        "manufacturer": "Intel®",
+        "number": "i9-13900K",
+        "commercial_name": "Core i9 13900K 5.8 Ghz",
+        "clock_speed": "5.8 Ghz",
+        "series_name": "Raptor Lake",
+        "socket": 1700,
+        "socket_standard": "FCLGA1700",
+        "cooler_included": false,
+        "price": 599.00,
+        "architecture": "64-bit",
+        "cores": 24,
+        "performance_cores": 8,
+        "efficient_cores": 16,
+        "total_threads": 32,
+        "cache_size": "36 MB Intel® Smart Cache",
+        "total_l2_cache": "32 MB",
+        "power_consumption": {
+            "base_power": "125 W",
+            "max_power": "253 W"
+        },
+        "max_memory_capacity": "128 GB",
+        "ddr3_capable": false,
+        "ddr4_capable": true,
+        "ddr5_capable": true,
+        "max_speed_dd3": 0,
+        "max_speed_dd4": 3200,
+        "max_speed_dd5": 5600,
+        "memory_channels": 2,
+        "includes_graphics": true,
+        "included_graphics": "Intel® UHD Graphics 770",
+        "max_res_hdmi": "4096 x 2160 @ 60Hz",
+        "max_res_dp": "7680 x 4320 @ 60Hz",
+        "link": "https://www.intel.la/content/www/xl/es/products/sku/230496/intel-core-i913900k-processor-36m-cache-up-to-5-80-ghz/specifications.html"
+    }
+]
+
+
+
+
