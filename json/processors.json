@@ -1,6 +1,6 @@
 [
     {
-        "procesador_id": 1,
+        "processor_id": 1,
         "manufacturer": "Intel®",
         "number": "i9-13900K",
         "commercial_name": "Core i9 13900K 5.8 Ghz",
