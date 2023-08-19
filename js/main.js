@@ -1,25 +1,28 @@
-// async function fetchDataAsync(url) {
-//     const response = await fetch(url.json());
-    // const resp = await JSON.parse(response);
-    // console.log(await response.json());
-    // document.write(await response.json());
-    // console.log(JSON.parse(response));
-    // return await response;
-    // console.log(Object.keys(response).map(function(_) { return j[_]; }));
-// }
+const apiEndpoint = "https://claracena.github.io/curso-js-57995/json/processors.json";
+const display = document.querySelector("#display-data");
 
-// fetchDataAsync(
-//     "https://claracena.github.io/curso-js-57995/json/processors.json"
-// );
+const getData = async () => {
+    const res = await fetch(apiEndpoint);
+    const data = await res.json();
+    console.log(data);
+    return data;
+}
 
-// let resp = fetchDataAsync('https://claracena.github.io/curso-js-57995/json/processors.json');
+const displayProcessorInfo = async () => {
+    const payload = await getData();
 
-// console.log(resp);
-// document.write(resp);
+    let dataDisplay = payload.map((object) => {
+        const { number, commercial_name } = object;
 
-let url = "https://claracena.github.io/curso-js-57995/json/processors.json"
-fetch(url)
-  .then(res => res.json())
-  .then(out =>
-    console.log('Checkout this JSON! ', JSON.parse(out)))
-  .catch(err => { throw err });
+        return `
+        <div class="container">
+        <p>N&uacute;mero: ${number}</p>
+        <p>Nombre: ${commercial_name}</p>
+        </div>
+        `
+    }).join("");
+
+    display.innerHTML = dataDisplay;
+}
+
+displayProcessorInfo();

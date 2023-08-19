@@ -5,7 +5,6 @@
         "platform": "Intel®",
         "manufacturer_category": "TUF",
         "commercial_name": "TUF GAMING Z690-PLUS",
-        "socket": 1700,
         "socket_standard": "FCLGA1700",
         "chipset": "Intel® Z690",
         "form_factor": "ATX",
@@ -14,28 +13,6 @@
             12,
             13
         ],
-        "memory": {
-            "ddr3_capable": false,
-            "ddr4_capable": false,
-            "ddr5_capable": true,
-            "dd3_max_memory": 0,
-            "dd4_max_memory": 0,
-            "dd5_max_memory": 192,
-            "dd3_speeds": [],
-            "dd4_speeds": [],
-            "dd5_speeds": [
-                "6000(OC)",
-                "5800(OC)",
-                "5600(OC)",
-                "5400(OC)",
-                "5200(OC)",
-                "5000(OC)",
-                "4800"
-            ],
-            "dd3_type": "",
-            "dd4_type": "",
-            "dd5_type": "Non-ECC, Un-buffered Memory"
-        },
         "video_and_pcie": {
             "display_port_qty": 1,
             "hdmi_port_qty": 1,
@@ -50,7 +27,9 @@
         },
         "network": {
             "ports": 1,
-            "speed": "2.5 Gb/s"
+            "speed": "2.5 Gb/s",
+            "wireless": false,
+            "bluetooth": false
         },
         "audio": {
             "has_audio": true,
@@ -60,7 +39,193 @@
             "base_power": "54 W",
             "max_power": "287 W"
         },
+        "compatibility": {
+            "socket": 1700,
+            "memory_type": {
+                "ddr3_capable": false,
+                "ddr4_capable": false,
+                "ddr5_capable": true
+            },
+            "memory_max": {
+                "dd3_max_memory": 0,
+                "dd4_max_memory": 0,
+                "dd5_max_memory": 192
+            },
+            "memory_speeds": {
+                "dd3_speeds": [],
+                "dd4_speeds": [],
+                "dd5_speeds": [
+                    "6000(OC)",
+                    "5800(OC)",
+                    "5600(OC)",
+                    "5400(OC)",
+                    "5200(OC)",
+                    "5000(OC)",
+                    "4800"
+                ]
+            },
+            "memory_class": {
+                "dd3_class": "",
+                "dd4_class": "",
+                "dd5_class": "Non-ECC, Un-buffered Memory"
+            }
+        },
         "windows_11_compatible": true,
         "link": "https://www.asus.com/motherboards-components/motherboards/tuf-gaming/tuf-gaming-z690-plus/"
+    },
+    {
+        "motherboard_id": 2,
+        "manufacturer": "MSI",
+        "platform": "Intel®",
+        "manufacturer_category": "MAG",
+        "commercial_name": "MAG B760M MORTAR WIFI DDR4",
+        "socket_standard": "FCLGA1700",
+        "chipset": "Intel® B760",
+        "form_factor": "mATX",
+        "price": 290.00,
+        "processor_generations": [
+            12,
+            13
+        ],
+        "video_and_pcie": {
+            "display_port_qty": 1,
+            "hdmi_port_qty": 1,
+            "pcie_5_x16_slot": 1,
+            "pcie_3_x16_slot": 2,
+            "pcie_3_x4_slot": 1,
+            "pcie_3_x1_slot": 1
+        },
+        "storage": {
+            "m2_slots": 2,
+            "sata_6gbs_ports": 4
+        },
+        "network": {
+            "ports": 1,
+            "speed": "2.5 Gb/s",
+            "wireless": true,
+            "bluetooth": true
+        },
+        "audio": {
+            "has_audio": true,
+            "channels": "7.1 Surround Sound"
+        },
+        "power_consumption": {
+            "base_power": "62 W",
+            "max_power": "365 W"
+        },
+        "compatibility": {
+            "socket": 1700,
+            "memory_type": {
+                "ddr3_capable": false,
+                "ddr4_capable": false,
+                "ddr5_capable": true
+            },
+            "memory_max": {
+                "dd3_max_memory": 0,
+                "dd4_max_memory": 128,
+                "dd5_max_memory": 0
+            },
+            "memory_speeds": {
+                "dd3_speeds": [],
+                "dd4_speeds": [
+                    "5333(OC)",
+                    "5200(OC)",
+                    "5066(OC)",
+                    "5000(OC)",
+                    "4800(OC)",
+                    "4600(OC)",
+                    "4400(OC)",
+                    "4266(OC)",
+                    "4200(OC)",
+                    "4000(OC)",
+                    "3800(OC)",
+                    "3733(OC)",
+                    "3600(OC)",
+                    "3466(OC)",
+                    "3400(OC)",
+                    "3333(OC)",
+                    "3200(JEDEC)",
+                    "2933(JEDEC)",
+                    "2666(JEDEC)",
+                    "2400(JEDEC)",
+                    "2133(JEDEC)"
+                ],
+                "dd5_speeds": []
+            },
+            "memory_class": {
+                "dd3_class": "",
+                "dd4_class": "Non-ECC, Un-buffered Memory",
+                "dd5_class": ""
+            }
+        },
+        "windows_11_compatible": true,
+        "link": "https://www.msi.com/Motherboard/MAG-B760M-MORTAR-WIFI-DDR4"
+    },
+    {
+        "motherboard_id": 3,
+        "manufacturer": "MSI",
+        "platform": "Intel®",
+        "manufacturer_category": "MAG",
+        "commercial_name": "MAG B460M MORTAR WIFI",
+        "socket_standard": "LGA1200",
+        "chipset": "Intel® B460",
+        "form_factor": "mATX",
+        "price": 110.00,
+        "processor_generations": [
+            10
+        ],
+        "video_and_pcie": {
+            "display_port_qty": 1,
+            "hdmi_port_qty": 1,
+            "pcie_5_x16_slot": 0,
+            "pcie_3_x16_slot": 2,
+            "pcie_3_x4_slot": 0,
+            "pcie_3_x1_slot": 1
+        },
+        "storage": {
+            "m2_slots": 2,
+            "sata_6gbs_ports": 6
+        },
+        "network": {
+            "ports": 1,
+            "speed": "2.5 Gb/s",
+            "wireless": true,
+            "bluetooth": true
+        },
+        "audio": {
+            "has_audio": true,
+            "channels": "7.1-Channel High Definition Audio"
+        },
+        "power_consumption": {
+            "base_power": "59 W",
+            "max_power": "435 W"
+        },
+        "compatibility": {
+            "socket": 1200,
+            "memory_type": {
+                "ddr3_capable": false,
+                "ddr4_capable": false,
+                "ddr5_capable": true
+            },
+            "memory_max": {
+                "dd3_max_memory": 0,
+                "dd4_max_memory": 128,
+                "dd5_max_memory": 0
+            },
+            "memory_speeds": {
+                "dd3_speeds": [],
+                "dd4_speeds": [
+                    "2666"
+                ],
+                "dd5_speeds": []
+            },
+            "memory_class": {
+                "dd3_class": "",
+                "dd4_class": "Non-ECC, Un-buffered Memory",
+                "dd5_class": ""
+            }
+        },
+        "windows_11_compatible": false,
+        "link": "https://www.msi.com/Motherboard/MAG-B460M-MORTAR-WIFI"
     }
 ]

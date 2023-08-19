@@ -4,9 +4,8 @@
         "manufacturer": "Intel®",
         "number": "i9-13900K",
         "commercial_name": "Core i9 13900K 5.8 Ghz",
-        "clock_speed": "5.8 Ghz",
+        "clock_speed": "5.8",
         "series_name": "Raptor Lake",
-        "socket": 1700,
         "socket_standard": "FCLGA1700",
         "cooler_included": false,
         "price": 599.00,
@@ -21,22 +20,109 @@
             "base_power": "125 W",
             "max_power": "253 W"
         },
-        "max_memory_capacity": "128 GB",
-        "ddr3_capable": false,
-        "ddr4_capable": true,
-        "ddr5_capable": true,
-        "max_speed_dd3": 0,
-        "max_speed_dd4": 3200,
-        "max_speed_dd5": 5600,
-        "memory_channels": 2,
-        "includes_graphics": true,
+        "compatibility": {
+            "socket": 1700,
+            "max_memory_capacity": "128 GB",
+            "memory_type": {
+                "ddr3_capable": false,
+                "ddr4_capable": true,
+                "ddr5_capable": true
+            },
+            "memory_speed": {
+                "max_speed_dd3": 0,
+                "max_speed_dd4": 3200,
+                "max_speed_dd5": 5600
+            },
+            "memory_channels": 2,
+            "includes_graphics": true
+        },
         "included_graphics": "Intel® UHD Graphics 770",
         "max_res_hdmi": "4096 x 2160 @ 60Hz",
         "max_res_dp": "7680 x 4320 @ 60Hz",
         "link": "https://www.intel.la/content/www/xl/es/products/sku/230496/intel-core-i913900k-processor-36m-cache-up-to-5-80-ghz/specifications.html"
+    },
+    {
+        "processor_id": 2,
+        "manufacturer": "Intel®",
+        "number": "i3-10105",
+        "commercial_name": "Core i3 10105 4.4 Ghz",
+        "clock_speed": "4.4",
+        "series_name": "Comet Lake",
+        "socket_standard": "FCLGA1200",
+        "cooler_included": false,
+        "price": 144.00,
+        "architecture": "64-bit",
+        "cores": 4,
+        "performance_cores": 0,
+        "efficient_cores": 0,
+        "total_threads": 8,
+        "cache_size": "6 MB Intel® Smart Cache",
+        "total_l2_cache": "0",
+        "power_consumption": {
+            "base_power": "65 W",
+            "max_power": "65 W"
+        },
+        "compatibility": {
+            "socket": 1200,
+            "max_memory_capacity": "128 GB",
+            "memory_type": {
+                "ddr3_capable": false,
+                "ddr4_capable": true,
+                "ddr5_capable": false
+            },
+            "memory_speed": {
+                "max_speed_dd3": 0,
+                "max_speed_dd4": 2666,
+                "max_speed_dd5": 0
+            },
+            "memory_channels": 2,
+            "includes_graphics": true
+        },
+        "included_graphics": "Intel® UHD Graphics 630",
+        "max_res_hdmi": "4096 x 2160 @ 30Hz",
+        "max_res_dp": "4096 x 2304 @ 60Hz",
+        "link": "https://www.intel.com/content/www/us/en/products/sku/201894/intel-core-i310105-processor-6m-cache-up-to-4-40-ghz/specifications.html"
+    },
+    {
+        "processor_id": 3,
+        "manufacturer": "AMD",
+        "number": "9 7900X",
+        "commercial_name": "Amd Ryzen 9 7900X",
+        "clock_speed": "5.6",
+        "series_name": "Ryzen™ 9",
+        "socket_standard": "AM5",
+        "cooler_included": false,
+        "price": 399.00,
+        "architecture": "64-bit",
+        "cores": 12,
+        "performance_cores": 0,
+        "efficient_cores": 0,
+        "total_threads": 24,
+        "cache_size": "64 MB",
+        "total_l2_cache": "12 MB",
+        "power_consumption": {
+            "base_power": "170 W",
+            "max_power": "230 W"
+        },
+        "compatibility": {
+            "socket": "AM5",
+            "max_memory_capacity": "128 GB",
+            "memory_type": {
+                "ddr3_capable": false,
+                "ddr4_capable": false,
+                "ddr5_capable": true
+            },
+            "memory_speed": {
+                "max_speed_dd3": 0,
+                "max_speed_dd4": 0,
+                "max_speed_dd5": 6400
+            },
+            "memory_channels": 2,
+            "includes_graphics": true
+        },
+        "included_graphics": "AMD Radeon™ Graphics",
+        "max_res_hdmi": "",
+        "max_res_dp": "",
+        "link": "https://www.amd.com/en/products/cpu/amd-ryzen-9-7900x"
     }
 ]
-
-
-
-
