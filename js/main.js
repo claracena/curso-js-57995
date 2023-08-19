@@ -1,4 +1,5 @@
 const apiEndpoint = "https://claracena.github.io/curso-js-57995/json/processors.json";
+// const apiEndpoint = "https://claracena.github.io/curso-js-57995/json/motherboards.json";
 const display = document.querySelector("#display-data");
 
 const getData = async () => {
@@ -12,15 +13,15 @@ const displayProcessorInfo = async () => {
     const payload = await getData();
 
     let dataDisplay = payload.map((object) => {
-        const { number, commercial_name } = object;
+        const { manufacturer, commercial_name } = object;
 
         return `
         <div class="container">
-        <p>N&uacute;mero: ${number}</p>
+        <p>Fabricante: ${manufacturer}</p>
         <p>Nombre: ${commercial_name}</p>
         </div>
         `
-    }).join("");
+    }).join("<hr>");
 
     display.innerHTML = dataDisplay;
 }
