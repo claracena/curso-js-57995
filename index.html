@@ -1,20 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Practica Curso JavaScript 57995</title>
-    <link rel="stylesheet" href="./css/style.css">
-</head>
-<body>
-    <header>
+<html lang="en" class="h-100" data-bs-theme="auto">
+    <head>
+        <script src="./js/color-modes.js"></script>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Practica Curso JavaScript 57995</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+            crossorigin="anonymous" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+        <link rel="stylesheet" href="./css/style.css" />
+        <meta name="theme-color" content="#712cf9" />
+    </head>
+    <body class="d-flex flex-column h-100">
+        <header>
+            <!-- Fixed navbar -->
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Armado de PC</a>
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarCollapse"
+                        aria-controls="navbarCollapse"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Reiniciar</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Begin page content -->
+        <main class="flex-shrink-0">
+            <div class="container">
+                <h1 class="mt-5">Gu&iacute;a para armar su PC</h1>
+                <p class="lead">
+                    Utilice el siguiente asistente para seleccionar los
+                    componentes de su PC ideal. El asistente lo guiar&aacute; en
+                    la selecci&oacute;n de
+                    <code
+                        >Proceador &gt; Motherboard &gt; Memoria &gt; Disco &gt;
+                        Placa de Video &gt; Fuente</code
+                    >
+                </p>
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <i class="bi bi-1-circle-fill"></i>
+                                    Proceador
+                                </h5>
+                                <p class="card-text">
+                                    Seleccione el cpu
+                                </p>
+                                <select class="form-select" name="processor" id="processor_select" aria-label="Processor selection">
+                                    <option selected>Realice una selecci&oacute;n</option>
+                                  </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer mt-auto py-3 bg-body-tertiary">
+            <div class="container">
+                <span class="text-body-secondary"
+                    >Copyright &copy; 2023 C&eacute;sar Aracena - Todos los
+                    Derechos Reservados</span
+                >
+            </div>
+        </footer>
+        <!-- <header>
         <main>
             <h1>T&iacute;tulo</h1>
             <select name="processor" id="processor_select">
                 <option value="0">-- Select --</option>
             </select>
         </main>
-    </header>
-    <script src="./js/main.js"></script>
-</body>
+    </header> -->
+        <script src="./js/main.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous"></script>
+    </body>
 </html>
