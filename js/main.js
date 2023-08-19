@@ -16,9 +16,9 @@
 
 // Endpoints fijos para obtener los productos que se utilizaran en la pagina
 const apiEndpointProcessors =
-    "https://claracena.github.io/curso-js-57995/json/processors.json";
+    "https://javascript.cesararacena.com/json/processors.json";
 const apiEndpointMotherboards =
-    "https://claracena.github.io/curso-js-57995/json/motherboards.json";
+    "https://javascript.cesararacena.com/json/motherboards.json";
 
 // Funcion asincronica para bajar y procesar el JSON con
 // informacion de los procesadores
