@@ -90,7 +90,7 @@ function updateTotalPrice() {
         "</div>" +
         "</div>" +
         '<div class="d-flex">' +
-        '<div class="p-2 flex-fill">IVA</div>' +
+        '<div class="p-2 flex-fill">IVA (' + parseFloat((taxPct * 100) - 100).toFixed(2) + '%)</div>' +
         '<div class="p-2 flex-fill text-end">' +
         "$" +
         taxAlone.toFixed(2) +
