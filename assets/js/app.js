@@ -24,6 +24,7 @@ let processorPrice = 0;
 let motherboardPrice = 0;
 let totalPrice = 0;
 let totalWattage = 0;
+let memoryAllowed = [];
 
 // Reset de visualizaciones al cargar la pagina por primera vez
 window.onload = function () {
@@ -35,7 +36,8 @@ window.onload = function () {
         "Sub-Total" +
         "</div>" +
         '<div class="p-2 flex-fill text-end">' +
-        "$" + 0.00.toFixed(2) +
+        "$" +
+        (0.0).toFixed(2) +
         "</div>" +
         "</div>";
 };
@@ -72,7 +74,8 @@ function updateTotalPrice() {
         "Sub-Total" +
         "</div>" +
         '<div class="p-2 flex-fill text-end">' +
-        "$" + totalPrice.toFixed(2) +
+        "$" +
+        totalPrice.toFixed(2) +
         "</div>" +
         "</div>";
 }
@@ -288,6 +291,18 @@ selectionBoxMotherboards.onchange = function (e) {
         // Agregamos el consumo de potencia maximo al total de consumo
         totalWattage = dataFilteredMotherboards[selectedMotherboard - 1]["power_consumption"]["max_power"];
 
+        // Armamos la frase con los tipos de memoria
+        memoryAllowed = [];
+        if (dataFilteredMotherboards[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr3_capable"] == true) {
+            memoryAllowed.push("DDR3(" + dataFilteredMotherboards[selectedMotherboard - 1]["compatibility"]["memory_max"]["dd3_max_memory"] + ") ")
+        };
+        if (dataFilteredMotherboards[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr4_capable"] == true) {
+            memoryAllowed.push("DDR4(" + dataFilteredMotherboards[selectedMotherboard - 1]["compatibility"]["memory_max"]["dd4_max_memory"] + ") ")
+        };
+        if (dataFilteredMotherboards[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr5_capable"] == true) {
+            memoryAllowed.push("DDR5(" + dataFilteredMotherboards[selectedMotherboard - 1]["compatibility"]["memory_max"]["dd5_max_memory"] + ") ")
+        };
+
         document.getElementById("motherboard_select_info").innerHTML =
             '<div class="col-xs-12 col-md-6" id="motherboard_select_socket">Socket: ' +
             dataFilteredMotherboards[selectedMotherboard - 1]["socket_standard"] +
@@ -302,6 +317,16 @@ selectionBoxMotherboards.onchange = function (e) {
             (dataFilteredMotherboards[selectedMotherboard - 1]["storage"]["m2_slots"] > 0
                 ? "Si (" + dataFilteredMotherboards[selectedMotherboard - 1]["storage"]["m2_slots"] + ")"
                 : "No") +
+            "</div>" +
+            '<div class="col-xs-12 col-md-6" id="motherboard_storage_m2">Red: ' +
+            (dataFilteredMotherboards[selectedMotherboard - 1]["network"]["ports"] > 0
+                ? dataFilteredMotherboards[selectedMotherboard - 1]["network"]["ports"] +
+                  " x " +
+                  dataFilteredMotherboards[selectedMotherboard - 1]["network"]["speed"]
+                : "No") +
+            "</div>" +
+            '<div class="col-xs-12 col-md-6" id="motherboard_storage_m2">Memoria: ' +
+            memoryAllowed +
             "</div>";
 
         updateInfoBox();

@@ -47,14 +47,14 @@
                 "ddr5_capable": true
             },
             "memory_max": {
-                "dd3_max_memory": 0,
-                "dd4_max_memory": 0,
-                "dd5_max_memory": 192
+                "ddr3_max_memory": 0,
+                "ddr4_max_memory": 0,
+                "ddr5_max_memory": 192
             },
             "memory_speeds": {
-                "dd3_speeds": [],
-                "dd4_speeds": [],
-                "dd5_speeds": [
+                "ddr3_speeds": [],
+                "ddr4_speeds": [],
+                "ddr5_speeds": [
                     "6000(OC)",
                     "5800(OC)",
                     "5600(OC)",
@@ -65,9 +65,9 @@
                 ]
             },
             "memory_class": {
-                "dd3_class": "",
-                "dd4_class": "",
-                "dd5_class": "Non-ECC, Un-buffered Memory"
+                "ddr3_class": "",
+                "ddr4_class": "",
+                "ddr5_class": "Non-ECC, Un-buffered Memory"
             }
         },
         "windows_11_compatible": true,
@@ -121,13 +121,13 @@
                 "ddr5_capable": true
             },
             "memory_max": {
-                "dd3_max_memory": 0,
-                "dd4_max_memory": 128,
-                "dd5_max_memory": 0
+                "ddr3_max_memory": 0,
+                "ddr4_max_memory": 128,
+                "ddr5_max_memory": 0
             },
             "memory_speeds": {
-                "dd3_speeds": [],
-                "dd4_speeds": [
+                "ddr3_speeds": [],
+                "ddr4_speeds": [
                     "5333(OC)",
                     "5200(OC)",
                     "5066(OC)",
@@ -150,12 +150,12 @@
                     "2400(JEDEC)",
                     "2133(JEDEC)"
                 ],
-                "dd5_speeds": []
+                "ddr5_speeds": []
             },
             "memory_class": {
-                "dd3_class": "",
-                "dd4_class": "Non-ECC, Un-buffered Memory",
-                "dd5_class": ""
+                "ddr3_class": "",
+                "ddr4_class": "Non-ECC, Un-buffered Memory",
+                "ddr5_class": ""
             }
         },
         "windows_11_compatible": true,
@@ -208,21 +208,21 @@
                 "ddr5_capable": true
             },
             "memory_max": {
-                "dd3_max_memory": 0,
-                "dd4_max_memory": 128,
-                "dd5_max_memory": 0
+                "ddr3_max_memory": 0,
+                "ddr4_max_memory": 128,
+                "ddr5_max_memory": 0
             },
             "memory_speeds": {
-                "dd3_speeds": [],
-                "dd4_speeds": [
+                "ddr3_speeds": [],
+                "ddr4_speeds": [
                     "2666"
                 ],
-                "dd5_speeds": []
+                "ddr5_speeds": []
             },
             "memory_class": {
-                "dd3_class": "",
-                "dd4_class": "Non-ECC, Un-buffered Memory",
-                "dd5_class": ""
+                "ddr3_class": "",
+                "ddr4_class": "Non-ECC, Un-buffered Memory",
+                "ddr5_class": ""
             }
         },
         "windows_11_compatible": false,
