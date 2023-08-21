@@ -2,11 +2,11 @@
     {
         "motherboard_id": 1,
         "manufacturer": "Asus",
-        "platform": "Intel®",
+        "platform": "Intel",
         "manufacturer_category": "TUF",
         "commercial_name": "TUF GAMING Z690-PLUS",
         "socket_standard": "FCLGA1700",
-        "chipset": "Intel® Z690",
+        "chipset": "Intel Z690",
         "form_factor": "ATX",
         "price": 209.99,
         "processor_generations": [
@@ -76,11 +76,11 @@
     {
         "motherboard_id": 2,
         "manufacturer": "MSI",
-        "platform": "Intel®",
+        "platform": "Intel",
         "manufacturer_category": "MAG",
         "commercial_name": "MAG B760M MORTAR WIFI DDR4",
         "socket_standard": "FCLGA1700",
-        "chipset": "Intel® B760",
+        "chipset": "Intel B760",
         "form_factor": "mATX",
         "price": 290.00,
         "processor_generations": [
@@ -164,11 +164,11 @@
     {
         "motherboard_id": 3,
         "manufacturer": "MSI",
-        "platform": "Intel®",
+        "platform": "Intel",
         "manufacturer_category": "MAG",
         "commercial_name": "MAG B460M MORTAR WIFI",
         "socket_standard": "LGA1200",
-        "chipset": "Intel® B460",
+        "chipset": "Intel B460",
         "form_factor": "mATX",
         "price": 110.00,
         "processor_generations": [

@@ -2,29 +2,35 @@ const apiEndpointProcessors = "https://javascript.cesararacena.com/json/processo
 const apiEndpointMotherboards = "https://javascript.cesararacena.com/json/motherboards.json";
 
 let dataSelectedProcessor = {};
+let dataSelectedMotherboard = {};
 
 const selectionBoxProcessors = document.getElementById("processor_select");
+const selectionBoxMotherboards = document.getElementById("motherboard_select");
 
 const infoBoxProcessors = document.getElementById("processor_select_info");
-const infoBoxPrice = document.getElementById("total_price");
+const infoBoxMotherboards = document.getElementById("motherboard_select_info");
 
+const infoBoxPrice = document.getElementById("total_price");
 const infoBox = document.getElementById("information_box");
 
 let processorInfoBox = "";
-let totalPrice = 0;
+let motherboardInfoBox = "";
 let processorPrice = 0;
+let motherboardPrice = 0;
+let totalPrice = 0;
 
 window.onload = function () {
     infoBoxProcessors.style.display = "none";
+    infoBoxMotherboards.style.display = "none";
     infoBoxPrice.innerHTML = "$" + totalPrice.toFixed(2);
 };
 
 function updateInfoBox() {
-    infoBox.innerHTML = processorInfoBox;
+    infoBox.innerHTML = processorInfoBox + "</br>" + motherboardInfoBox;
 }
 
 function updateTotalPrice() {
-    totalPrice = processorPrice;
+    totalPrice = processorPrice + motherboardPrice;
     infoBoxPrice.innerHTML = "$" + totalPrice.toFixed(2);
 }
 
@@ -55,6 +61,28 @@ fetchData(apiEndpointProcessors)
     })
     .catch((reason) => console.log("Msg: " + reason));
 
+fetchData(apiEndpointMotherboards)
+    .then((data) => {
+        dataSelectedMotherboard = data;
+        selectionBoxMotherboards.removeAttribute("disabled");
+        for (let i = 0; i < data.length; i += 1) {
+            selectionBoxMotherboards.innerHTML =
+                selectionBoxMotherboards.innerHTML +
+                '<option value="' +
+                data[i]["motherboard_id"] +
+                '">' +
+                data[i]["platform"] +
+                " " +
+                // data[i]["manufacturer_category"] +
+                // " " +
+                data[i]["commercial_name"] +
+                " " +
+                data[i]["chipset"] +
+                "</option>";
+        }
+    })
+    .catch((reason) => console.log("Msg: " + reason));
+
 selectionBoxProcessors.onchange = function (e) {
     let selectedProcessor = this.selectedIndex;
     if (selectedProcessor == 0) {
@@ -77,38 +105,48 @@ selectionBoxProcessors.onchange = function (e) {
             " " +
             dataSelectedProcessor[selectedProcessor - 1]["clock_speed"] +
             " Ghz" +
-            '</div>' +
+            "</div>" +
             '<div class="p-2 flex-fill text-end">$' +
             dataSelectedProcessor[selectedProcessor - 1]["price"] +
-            '</div>' +
-            '</div>';
+            "</div>" +
+            "</div>";
         processorPrice = dataSelectedProcessor[selectedProcessor - 1]["price"];
         document.getElementById("processor_select_info").innerHTML =
             '<div class="col-xs-12 col-md-6" id="processor_select_socket">Socket: ' +
             dataSelectedProcessor[selectedProcessor - 1]["socket_standard"] +
-            '</div>' +
+            "</div>" +
             '<div class="col-xs-12 col-md-6" id="processor_select_series">Serie: ' +
             dataSelectedProcessor[selectedProcessor - 1]["series_name"] +
-            '</div>' +
+            "</div>" +
             '<div class="col-xs-12 col-md-6" id="processor_select_cores">Cores: ' +
             dataSelectedProcessor[selectedProcessor - 1]["cores"] +
-            '</div>' +
+            "</div>" +
             '<div class="col-xs-12 col-md-6" id="processor_select_threads">Threads: ' +
             dataSelectedProcessor[selectedProcessor - 1]["total_threads"] +
-            '</div>' +
+            "</div>" +
             '<div class="col-xs-12 col-md-6" id="processor_select_ddr_01">DDR4: ' +
-            (dataSelectedProcessor[selectedProcessor - 1]["compatibility"]["memory_type"]["ddr4_capable"] ? "Si - " + dataSelectedProcessor[selectedProcessor - 1]["compatibility"]["memory_speed"]["max_speed_dd4"] : 'No') +
-            '</div>' +
+            (dataSelectedProcessor[selectedProcessor - 1]["compatibility"]["memory_type"]["ddr4_capable"]
+                ? "Si - " + dataSelectedProcessor[selectedProcessor - 1]["compatibility"]["memory_speed"]["max_speed_dd4"]
+                : "No") +
+            "</div>" +
             '<div class="col-xs-12 col-md-6" id="processor_select_ddr_01">DDR5: ' +
-            (dataSelectedProcessor[selectedProcessor - 1]["compatibility"]["memory_type"]["ddr5_capable"] ? "Si - " + dataSelectedProcessor[selectedProcessor - 1]["compatibility"]["memory_speed"]["max_speed_dd5"] : 'No') +
-            '</div>' +
+            (dataSelectedProcessor[selectedProcessor - 1]["compatibility"]["memory_type"]["ddr5_capable"]
+                ? "Si - " + dataSelectedProcessor[selectedProcessor - 1]["compatibility"]["memory_speed"]["max_speed_dd5"]
+                : "No") +
+            "</div>" +
             '<div class="col-xs-12 col-md-6" id="processor_select_graphics">Gr&aacute;ficos: ' +
-            (dataSelectedProcessor[selectedProcessor - 1]["included_graphics"] ? "Si" : 'No') +
-            '</div>' +
+            (dataSelectedProcessor[selectedProcessor - 1]["included_graphics"] ? "Si" : "No") +
+            "</div>" +
             '<div class="col-xs-12 col-md-6" id="processor_select_price">Precio: ' +
             dataSelectedProcessor[selectedProcessor - 1]["price"].toFixed(2) +
-            '</div>';
+            "</div>";
         updateInfoBox();
         updateTotalPrice();
     }
+};
+
+selectionBoxMotherboards.onchange = function (e) {
+    let selectedMotherboard = this.selectedIndex;
+    motherboardPrice = dataSelectedProcessor[selectedMotherboard - 1]["price"];
+    updateTotalPrice();
 };
