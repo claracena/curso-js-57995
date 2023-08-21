@@ -167,7 +167,7 @@
         "platform": "Intel",
         "manufacturer_category": "MAG",
         "commercial_name": "MAG B460M MORTAR WIFI",
-        "socket_standard": "LGA1200",
+        "socket_standard": "FCLGA1200",
         "chipset": "Intel B460",
         "form_factor": "mATX",
         "price": 110.00,

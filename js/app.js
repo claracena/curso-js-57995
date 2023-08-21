@@ -19,6 +19,9 @@ let processorPrice = 0;
 let motherboardPrice = 0;
 let totalPrice = 0;
 
+let selectedProcessor = 0;
+let selectedMotherboard = 0;
+
 window.onload = function () {
     infoBoxProcessors.style.display = "none";
     infoBoxMotherboards.style.display = "none";
@@ -26,7 +29,7 @@ window.onload = function () {
 };
 
 function updateInfoBox() {
-    infoBox.innerHTML = processorInfoBox + "</br>" + motherboardInfoBox;
+    infoBox.innerHTML = processorInfoBox + motherboardInfoBox;
 }
 
 function updateTotalPrice() {
@@ -61,38 +64,74 @@ fetchData(apiEndpointProcessors)
     })
     .catch((reason) => console.log("Msg: " + reason));
 
-fetchData(apiEndpointMotherboards)
-    .then((data) => {
-        dataSelectedMotherboard = data;
-        selectionBoxMotherboards.removeAttribute("disabled");
-        for (let i = 0; i < data.length; i += 1) {
-            selectionBoxMotherboards.innerHTML =
-                selectionBoxMotherboards.innerHTML +
-                '<option value="' +
-                data[i]["motherboard_id"] +
-                '">' +
-                data[i]["platform"] +
-                " " +
-                // data[i]["manufacturer_category"] +
-                // " " +
-                data[i]["commercial_name"] +
-                " " +
-                data[i]["chipset"] +
-                "</option>";
-        }
-    })
-    .catch((reason) => console.log("Msg: " + reason));
+// if (selectedProcessor != 0) {
+//     fetchData(apiEndpointMotherboards)
+//         .then((data) => {
+//             dataSelectedMotherboard = data;
+//             selectionBoxMotherboards.removeAttribute("disabled");
+//             for (let i = 0; i < data.length; i += 1) {
+//                 selectionBoxMotherboards.innerHTML =
+//                     selectionBoxMotherboards.innerHTML +
+//                     '<option value="' +
+//                     data[i]["motherboard_id"] +
+//                     '">' +
+//                     data[i]["platform"] +
+//                     " " +
+//                     // data[i]["manufacturer_category"] +
+//                     // " " +
+//                     data[i]["commercial_name"] +
+//                     " " +
+//                     data[i]["chipset"] +
+//                     "</option>";
+//             }
+//         })
+//         .catch((reason) => console.log("Msg: " + reason));
+// }
 
 selectionBoxProcessors.onchange = function (e) {
-    let selectedProcessor = this.selectedIndex;
+    selectedProcessor = this.selectedIndex;
+
     if (selectedProcessor == 0) {
         infoBoxProcessors.style.visibility = "hidden";
         infoBoxProcessors.style.display = "none";
         processorInfoBox = "";
         processorPrice = 0;
+
+        if (!selectionBoxMotherboards.disabled) {
+            selectionBoxMotherboards.setAttribute("disabled", "");
+            selectionBoxMotherboards.value = 0;
+            motherboardPrice = 0;
+        }
+
         updateInfoBox();
         updateTotalPrice();
     } else {
+        fetchData(apiEndpointMotherboards)
+            .then((data) => {
+                dataSelectedMotherboard = data;
+                selectionBoxMotherboards.innerHTML = '<option value="0" selected>Realice una selecci&oacute;n</option>';
+                if (selectionBoxMotherboards.disabled) {
+                    selectionBoxMotherboards.removeAttribute("disabled");
+                }
+                for (let i = 0; i < data.length; i += 1) {
+                    console.log(dataSelectedProcessor[selectedProcessor - 1]["socket_standard"]);
+                    if (dataSelectedProcessor[selectedProcessor - 1]["socket_standard"] == data[i]["socket_standard"]) {
+                        selectionBoxMotherboards.innerHTML =
+                            selectionBoxMotherboards.innerHTML +
+                            '<option value="' +
+                            data[i]["motherboard_id"] +
+                            '">' +
+                            data[i]["manufacturer"] +
+                            " " +
+                            data[i]["commercial_name"] +
+                            " " +
+                            data[i]["chipset"] +
+                            "</option>";
+                    }
+                }
+            })
+            .catch((reason) => console.log("Msg: " + reason));
+
         infoBoxProcessors.style.display = "flex";
         infoBoxProcessors.style.visibility = "visible";
         processorInfoBox =
@@ -107,7 +146,7 @@ selectionBoxProcessors.onchange = function (e) {
             " Ghz" +
             "</div>" +
             '<div class="p-2 flex-fill text-end">$' +
-            dataSelectedProcessor[selectedProcessor - 1]["price"] +
+            dataSelectedProcessor[selectedProcessor - 1]["price"].toFixed(2) +
             "</div>" +
             "</div>";
         processorPrice = dataSelectedProcessor[selectedProcessor - 1]["price"];
@@ -137,7 +176,7 @@ selectionBoxProcessors.onchange = function (e) {
             '<div class="col-xs-12 col-md-6" id="processor_select_graphics">Gr&aacute;ficos: ' +
             (dataSelectedProcessor[selectedProcessor - 1]["included_graphics"] ? "Si" : "No") +
             "</div>" +
-            '<div class="col-xs-12 col-md-6" id="processor_select_price">Precio: ' +
+            '<div class="col-xs-12 col-md-6" id="processor_select_price">Precio: $' +
             dataSelectedProcessor[selectedProcessor - 1]["price"].toFixed(2) +
             "</div>";
         updateInfoBox();
@@ -146,7 +185,56 @@ selectionBoxProcessors.onchange = function (e) {
 };
 
 selectionBoxMotherboards.onchange = function (e) {
-    let selectedMotherboard = this.selectedIndex;
-    motherboardPrice = dataSelectedProcessor[selectedMotherboard - 1]["price"];
-    updateTotalPrice();
+    selectedMotherboard = this.selectedIndex;
+    if (selectedMotherboard == 0) {
+        infoBoxMotherboards.style.visibility = "hidden";
+        infoBoxMotherboards.style.display = "none";
+        motherboardInfoBox = "";
+        motherboardPrice = 0;
+
+        if (!selectionBoxMotherboards.disabled && selectedProcessor == 0) {
+            selectionBoxMotherboards.setAttribute("disabled", "");
+            selectionBoxMotherboards.value = 0;
+            motherboardPrice = 0;
+        }
+
+        updateInfoBox();
+        updateTotalPrice();
+    } else {
+        infoBoxMotherboards.style.display = "flex";
+        infoBoxMotherboards.style.visibility = "visible";
+        motherboardInfoBox =
+            '<div class="d-flex">' +
+            '<div class="p-2 flex-fill">' +
+            "Motherboard: " +
+            dataSelectedMotherboard[selectedMotherboard - 1]["manufacturer"] +
+            " " +
+            dataSelectedMotherboard[selectedMotherboard - 1]["commercial_name"] +
+            " " +
+            dataSelectedMotherboard[selectedMotherboard - 1]["chipset"] +
+            "</div>" +
+            '<div class="p-2 flex-fill text-end">$' +
+            dataSelectedMotherboard[selectedMotherboard - 1]["price"].toFixed(2) +
+            "</div>" +
+            "</div>";
+        motherboardPrice = dataSelectedMotherboard[selectedMotherboard - 1]["price"];
+        document.getElementById("motherboard_select_info").innerHTML =
+            '<div class="col-xs-12 col-md-6" id="motherboard_select_socket">Socket: ' +
+            dataSelectedMotherboard[selectedMotherboard - 1]["socket_standard"] +
+            "</div>" +
+            '<div class="col-xs-12 col-md-6" id="motherboard_platform">Plataforma: ' +
+            dataSelectedMotherboard[selectedMotherboard - 1]["platform"] +
+            "</div>" +
+            '<div class="col-xs-12 col-md-6" id="motherboard_form_factor">Form Factor: ' +
+            dataSelectedMotherboard[selectedMotherboard - 1]["form_factor"] +
+            "</div>" +
+            '<div class="col-xs-12 col-md-6" id="motherboard_storage_m2">Soporta M.2: ' +
+            (dataSelectedMotherboard[selectedMotherboard - 1]["storage"]["m2_slots"] > 0
+                ? "Si (" + dataSelectedMotherboard[selectedMotherboard - 1]["storage"]["m2_slots"] + ")"
+                : "No") +
+            "</div>";
+
+        updateInfoBox();
+        updateTotalPrice();
+    }
 };
