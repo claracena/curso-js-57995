@@ -80,3 +80,13 @@ a.navbar-brand {
 .bd-mode-toggle {
     z-index: 1500;
 }
+
+.card {
+    background-color: #2f3336;
+}
+
+@media only screen and (max-width: 767px){
+    .information_box {
+        margin-top: 5px !important;
+    }
+}
