@@ -5,6 +5,7 @@ const apiEndpointMotherboards = "https://javascript.cesararacena.com/json/mother
 // Constantes que almacenan las direcciones del DOM a actualizar
 const selectionBoxProcessors = document.getElementById("processor_select");
 const selectionBoxMotherboards = document.getElementById("motherboard_select");
+const selectionBoxCountry = document.getElementById("select_pais");
 const infoBoxProcessors = document.getElementById("processor_select_info");
 const infoBoxMotherboards = document.getElementById("motherboard_select_info");
 const infoBoxPrice = document.getElementById("total_price");
@@ -14,6 +15,7 @@ const infoBox = document.getElementById("information_box");
 let dataSelectedProcessor = {};
 let dataSelectedMotherboard = {};
 let dataFilteredMotherboards = [];
+let memoryAllowed = [];
 
 // Variables para almacenar valores que cambian con cada cambio de seleccion
 let selectedProcessor = 0;
@@ -24,7 +26,10 @@ let processorPrice = 0;
 let motherboardPrice = 0;
 let totalPrice = 0;
 let totalWattage = 0;
-let memoryAllowed = [];
+let selectedCountry = "";
+let taxPct = 1;
+let taxAlone = 0;
+let total = 0;
 
 // Reset de visualizaciones al cargar la pagina por primera vez
 window.onload = function () {
@@ -66,16 +71,36 @@ function updateInfoBox() {
 // Funcion para actualizar el precio total en el detalle
 function updateTotalPrice() {
     totalPrice = processorPrice + motherboardPrice;
-    // infoBoxPrice.innerHTML = "$" + totalPrice.toFixed(2);
+
+    if (totalPrice <= 0) {
+        taxAlone = 0;
+        total = totalPrice;
+    } else {
+        taxAlone = (totalPrice * taxPct) - totalPrice;
+        total = totalPrice * taxPct;
+    }
+
     infoBoxPrice.innerHTML =
         "<hr>" +
         '<div class="d-flex">' +
-        '<div class="p-2 flex-fill">' +
-        "Sub-Total" +
-        "</div>" +
+        '<div class="p-2 flex-fill">Sub-Total</div>' +
         '<div class="p-2 flex-fill text-end">' +
         "$" +
         totalPrice.toFixed(2) +
+        "</div>" +
+        "</div>" +
+        '<div class="d-flex">' +
+        '<div class="p-2 flex-fill">IVA</div>' +
+        '<div class="p-2 flex-fill text-end">' +
+        "$" +
+        taxAlone.toFixed(2) +
+        "</div>" +
+        "</div>" +
+        '<div class="d-flex">' +
+        '<div class="p-2 flex-fill">TOTAL</div>' +
+        '<div class="p-2 flex-fill text-end">' +
+        "$" +
+        total.toFixed(2) +
         "</div>" +
         "</div>";
 }
@@ -298,14 +323,14 @@ selectionBoxMotherboards.onchange = function (e) {
         // Armamos la frase con los tipos de memoria
         memoryAllowed = [];
         if (dataFilteredMotherboards[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr3_capable"] == true) {
-            memoryAllowed.push("DDR3(" + dataFilteredMotherboards[selectedMotherboard - 1]["compatibility"]["memory_max"]["ddr3_max_memory"] + ") ")
-        };
+            memoryAllowed.push("DDR3(" + dataFilteredMotherboards[selectedMotherboard - 1]["compatibility"]["memory_max"]["ddr3_max_memory"] + ") ");
+        }
         if (dataFilteredMotherboards[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr4_capable"] == true) {
-            memoryAllowed.push("DDR4(" + dataFilteredMotherboards[selectedMotherboard - 1]["compatibility"]["memory_max"]["ddr4_max_memory"] + ") ")
-        };
+            memoryAllowed.push("DDR4(" + dataFilteredMotherboards[selectedMotherboard - 1]["compatibility"]["memory_max"]["ddr4_max_memory"] + ") ");
+        }
         if (dataFilteredMotherboards[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr5_capable"] == true) {
-            memoryAllowed.push("DDR5(" + dataFilteredMotherboards[selectedMotherboard - 1]["compatibility"]["memory_max"]["ddr5_max_memory"] + ") ")
-        };
+            memoryAllowed.push("DDR5(" + dataFilteredMotherboards[selectedMotherboard - 1]["compatibility"]["memory_max"]["ddr5_max_memory"] + ") ");
+        }
 
         document.getElementById("motherboard_select_info").innerHTML =
             '<div class="col-xs-12 col-md-6" id="motherboard_select_socket">Socket: ' +
@@ -333,17 +358,55 @@ selectionBoxMotherboards.onchange = function (e) {
             memoryAllowed +
             "</div>" +
             '<div class="col-xs-12 col-md-6" id="motherboard_storage_m2">WiFi: ' +
-            (dataFilteredMotherboards[selectedMotherboard - 1]["network"]["wireless"] > true
-                ? "Si"
-                : "No") +
+            (dataFilteredMotherboards[selectedMotherboard - 1]["network"]["wireless"] > true ? "Si" : "No") +
             "</div>" +
             '<div class="col-xs-12 col-md-6" id="motherboard_storage_m2">Audio: ' +
             (dataFilteredMotherboards[selectedMotherboard - 1]["audio"]["has_audio"] = true
                 ? "Si (" + dataFilteredMotherboards[selectedMotherboard - 1]["audio"]["channels"] + ")"
                 : "No") +
-            "</div>" ;
+            "</div>";
 
         updateInfoBox();
         updateTotalPrice();
     }
+};
+
+// Escuchamos el cambio de seleccion de pais para ajustar el IVA
+selectionBoxCountry.onchange = function (e) {
+    selectedCountry = this.value;
+
+    if (selectedCountry != '') {
+        switch (selectedCountry) {
+            case "Argentina":
+                taxPct = 1.105;
+                break;
+            case "Bolivia":
+                taxPct = 1.13;
+                break;
+            case "Chile":
+                taxPct = 1.19;
+                break;
+            case "Colombia":
+                taxPct = 1.19;
+                break;
+            case "Ecuador":
+                taxPct = 1.12;
+                break;
+            case "Mexico":
+                taxPct = 1.16;
+                break;
+            case "Paraguay":
+                taxPct = 1.05;
+                break;
+            case "Uruguay":
+                taxPct = 1.1;
+                break;
+            default:
+                taxPct = 1.21;
+        }
+    } else {
+        taxPct = 1;
+    }
+
+    updateTotalPrice();
 };
