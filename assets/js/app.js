@@ -378,7 +378,7 @@ selectionBoxCountry.onchange = function (e) {
     if (selectedCountry != '') {
         switch (selectedCountry) {
             case "Argentina":
-                taxPct = 1.105;
+                taxPct = 1.21;
                 break;
             case "Bolivia":
                 taxPct = 1.13;
