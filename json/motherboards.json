@@ -117,8 +117,8 @@
             "socket": 1700,
             "memory_type": {
                 "ddr3_capable": false,
-                "ddr4_capable": false,
-                "ddr5_capable": true
+                "ddr4_capable": true,
+                "ddr5_capable": false
             },
             "memory_max": {
                 "ddr3_max_memory": 0,
