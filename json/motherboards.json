@@ -33,7 +33,7 @@
         },
         "audio": {
             "has_audio": true,
-            "channels": "7.1 Surround Sound"
+            "channels": "7.1 Surround"
         },
         "power_consumption": {
             "base_power": "54 W",
@@ -107,7 +107,7 @@
         },
         "audio": {
             "has_audio": true,
-            "channels": "7.1 Surround Sound"
+            "channels": "7.1 Surround"
         },
         "power_consumption": {
             "base_power": "62 W",
@@ -194,7 +194,7 @@
         },
         "audio": {
             "has_audio": true,
-            "channels": "7.1-Channel High Definition Audio"
+            "channels": "7.1-Channel HD"
         },
         "power_consumption": {
             "base_power": "59 W",

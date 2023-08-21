@@ -200,6 +200,8 @@ selectionBoxProcessors.onchange = function (e) {
             " " +
             dataSelectedProcessor[selectedProcessor - 1]["clock_speed"] +
             " Ghz" +
+            " " +
+            '<a href="dataSelectedProcessor[selectedProcessor - 1]["link"]" target="_blank"><i class="bi bi-box-arrow-up-right"></i></a>' +
             "</div>" +
             '<div class="p-2 flex-fill text-end">$' +
             dataSelectedProcessor[selectedProcessor - 1]["price"].toFixed(2) +
@@ -281,6 +283,8 @@ selectionBoxMotherboards.onchange = function (e) {
             dataFilteredMotherboards[selectedMotherboard - 1]["commercial_name"] +
             " " +
             dataFilteredMotherboards[selectedMotherboard - 1]["chipset"] +
+            " " +
+            '<a href="dataFilteredMotherboards[selectedMotherboard - 1]["link"]" target="_blank"><i class="bi bi-box-arrow-up-right"></i></a>' +
             "</div>" +
             '<div class="p-2 flex-fill text-end">$' +
             dataFilteredMotherboards[selectedMotherboard - 1]["price"].toFixed(2) +
@@ -327,7 +331,17 @@ selectionBoxMotherboards.onchange = function (e) {
             "</div>" +
             '<div class="col-xs-12 col-md-6" id="motherboard_storage_m2">Memoria: ' +
             memoryAllowed +
-            "</div>";
+            "</div>" +
+            '<div class="col-xs-12 col-md-6" id="motherboard_storage_m2">WiFi: ' +
+            (dataFilteredMotherboards[selectedMotherboard - 1]["network"]["wireless"] > true
+                ? "Si"
+                : "No") +
+            "</div>" +
+            '<div class="col-xs-12 col-md-6" id="motherboard_storage_m2">Audio: ' +
+            (dataFilteredMotherboards[selectedMotherboard - 1]["audio"]["has_audio"] = true
+                ? "Si (" + dataFilteredMotherboards[selectedMotherboard - 1]["audio"]["channels"] + ")"
+                : "No") +
+            "</div>" ;
 
         updateInfoBox();
         updateTotalPrice();
