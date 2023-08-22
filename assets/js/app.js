@@ -102,7 +102,8 @@ function updateTotalPrice() {
         "$" +
         total.toFixed(2) +
         "</div>" +
-        "</div>";
+        "</div>" +
+        "<hr>";
 }
 
 // Funcion general para traer datos de un endpoint
