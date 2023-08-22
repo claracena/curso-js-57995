@@ -72,7 +72,7 @@ function updateInfoBox() {
     infoBox.innerHTML = processorInfoBox + motherboardInfoBox + showWattage();
 }
 
-// Funcion para actualizar el precio total en el detalle
+// Funcion para actualizar los valores en el detalle
 function updateTotalPrice() {
     totalPrice = processorPrice + motherboardPrice;
 
@@ -94,14 +94,15 @@ function updateTotalPrice() {
         "</div>" +
         "</div>" +
         '<div class="d-flex">' +
-        '<div class="p-2 flex-fill">IVA (' + parseFloat((taxPct * 100) - 100).toFixed(2) + '%)</div>' +
+        // '<div class="p-2 flex-fill">IVA (' + parseFloat((taxPct * 100) - 100).toFixed(2) + '%)</div>' +
+        '<div class="p-2 flex-fill">IVA</div>' +
         '<div class="p-2 flex-fill text-end">' +
         "$" +
         taxAlone.toFixed(2) +
         "</div>" +
         "</div>" +
         '<div class="d-flex">' +
-        '<div class="p-2 flex-fill">TOTAL</div>' +
+        '<div class="p-2 flex-fill">TOTAL (estimado en U$D' + (taxAlone > 0 ? " en su pa&iacute;s" : "") + ')</div>' +
         '<div class="p-2 flex-fill text-end">' +
         "$" +
         total.toFixed(2) +
