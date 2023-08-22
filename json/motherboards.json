@@ -289,7 +289,7 @@
             "memory_class": {
                 "ddr3_class": "",
                 "ddr4_class": "",
-                "ddr5_class": "ECC, Buffered Memory"
+                "ddr5_class": "Non-ECC, Un-buffered Memory"
             }
         },
         "windows_11_compatible": true,
@@ -350,16 +350,24 @@
                 "ddr3_speeds": [],
                 "ddr4_speeds": [],
                 "ddr5_speeds": [
-                    6666
+                    "6400+(OC)",
+                    "6200(OC)",
+                    "6000(OC)",
+                    "5800(OC)/",
+                    "5600(OC)",
+                    "5400(OC)",
+                    "5200",
+                    "5000",
+                    "4800"
                 ]
             },
             "memory_class": {
                 "ddr3_class": "",
                 "ddr4_class": "",
-                "ddr5_class": "ECC, Buffered Memory"
+                "ddr5_class": "Non-ECC, Un-buffered Memory"
             }
         },
         "windows_11_compatible": true,
-        "link": "https://www.gigabyte.com/ar/Motherboard/X670-AORUS-ELITE-AX-rev-10/sp#sp"
+        "link": "https://rog.asus.com/motherboards/rog-strix/rog-strix-x670e-e-gaming-wifi-model/spec/"
     }
 ]
