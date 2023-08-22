@@ -331,8 +331,8 @@
             "channels": "7.1 Surround"
         },
         "power_consumption": {
-            "base_power": "62 W",
-            "max_power": "230 W"
+            "base_power": "59 W",
+            "max_power": "243 W"
         },
         "compatibility": {
             "socket": "AM5",
