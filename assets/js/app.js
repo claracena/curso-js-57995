@@ -266,7 +266,7 @@ selectionBoxProcessors.onchange = function (e) {
             dataSelectedProcessor[selectedProcessor - 1]["clock_speed"] +
             " Ghz" +
             " " +
-            '<a href="dataSelectedProcessor[selectedProcessor - 1]["link"]" target="_blank"><i class="bi bi-box-arrow-up-right"></i></a>' +
+            '<a href="dataSelectedProcessor[selectedProcessor - 1]["link"]" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
             "</div>" +
             '<div class="p-2 flex-fill text-end">$' +
             dataSelectedProcessor[selectedProcessor - 1]["price"].toFixed(2) +
@@ -413,7 +413,7 @@ selectionBoxMotherboards.onchange = function (e) {
             " " +
             dataFilteredMotherboards[selectedMotherboard - 1]["chipset"] +
             " " +
-            '<a href="dataFilteredMotherboards[selectedMotherboard - 1]["link"]" target="_blank"><i class="bi bi-box-arrow-up-right"></i></a>' +
+            '<a href="dataFilteredMotherboards[selectedMotherboard - 1]["link"]" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
             "</div>" +
             '<div class="p-2 flex-fill text-end">$' +
             dataFilteredMotherboards[selectedMotherboard - 1]["price"].toFixed(2) +
@@ -529,8 +529,8 @@ selectionBoxRam.onchange = function (e) {
             dataFilteredRam[selectedRam - 1]["sticks"] +
             "x" +
             dataFilteredRam[selectedRam - 1]["capacity_per_stick"] +
-            " GB)" +
-            '<a href="dataFilteredRam[selectedRam - 1]["link"]" target="_blank"><i class="bi bi-box-arrow-up-right"></i></a>' +
+            " GB) " +
+            '<a href="dataFilteredRam[selectedRam - 1]["link"]" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
             "</div>" +
             '<div class="p-2 flex-fill text-end">$' +
             dataFilteredRam[selectedRam - 1]["price"].toFixed(2) +
@@ -553,7 +553,7 @@ selectionBoxRam.onchange = function (e) {
                 ramInfoBox =
                     '<div class="d-flex">' +
                     '<div class="p-2 flex-fill">' +
-                    "RAM: " + totalRamKits + " x " +
+                    "RAM: " + selectedRamQty + " x " +
                     dataFilteredRam[selectedRam - 1]["commercial_name"] +
                     " " +
                     dataFilteredRam[selectedRam - 1]["total_capacity"] +
@@ -561,8 +561,8 @@ selectionBoxRam.onchange = function (e) {
                     dataFilteredRam[selectedRam - 1]["sticks"] +
                     "x" +
                     dataFilteredRam[selectedRam - 1]["capacity_per_stick"] +
-                    " GB)" +
-                    '<a href="dataFilteredRam[selectedRam - 1]["link"]" target="_blank"><i class="bi bi-box-arrow-up-right"></i></a>' +
+                    " GB) " +
+                    '<a href="dataFilteredRam[selectedRam - 1]["link"]" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
                     "</div>" +
                     '<div class="p-2 flex-fill text-end">$' +
                     ramPrice.toFixed(2) +
