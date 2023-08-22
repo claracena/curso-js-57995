@@ -331,9 +331,10 @@ selectionBoxMotherboards.onchange = function (e) {
         updateInfoBox();
         updateTotalPrice();
     } else {
-        infoBoxMotherboards.style.display = "flex";
-        infoBoxMotherboards.style.visibility = "visible";
-        motherboardWattage = 0;
+        infoBoxRam.style.visibility = "hidden";
+        infoBoxRam.style.display = "none";
+        ramInfoBox = "";
+        ramPrice = 0;
 
         fetchData(apiEndpointRam)
             .then((data) => {
@@ -346,11 +347,11 @@ selectionBoxMotherboards.onchange = function (e) {
                 dataFilteredRam = [];
                 for (let i = 0; i < dataSelectedRam.length; i += 1) {
                     if (
-                        (dataSelectedMotherboard[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr3"] == true &&
+                        (dataSelectedMotherboard[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr3_capable"] == true &&
                             dataSelectedRam[i]["compatibility"]["memory_type"]["ddr3"] == true) ||
-                        (dataSelectedMotherboard[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr4"] == true &&
+                        (dataSelectedMotherboard[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr4_capable"] == true &&
                             dataSelectedRam[i]["compatibility"]["memory_type"]["ddr4"] == true) ||
-                        (dataSelectedMotherboard[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr5"] == true &&
+                        (dataSelectedMotherboard[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr5_capable"] == true &&
                             dataSelectedRam[i]["compatibility"]["memory_type"]["ddr5"] == true)
                     ) {
                         dataFilteredRam.push(dataSelectedMotherboard[i]);
@@ -374,6 +375,9 @@ selectionBoxMotherboards.onchange = function (e) {
                 }
             })
             .catch((reason) => console.log("Msg: " + reason));
+
+        infoBoxMotherboards.style.display = "flex";
+        infoBoxMotherboards.style.visibility = "visible";
 
         motherboardInfoBox =
             '<div class="d-flex">' +
