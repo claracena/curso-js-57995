@@ -402,7 +402,7 @@ selectionBoxCountry.onchange = function (e) {
                 taxPct = 1.1;
                 break;
             default:
-                taxPct = 1.21;
+                taxPct = 1.15;
         }
     } else {
         taxPct = 1;
