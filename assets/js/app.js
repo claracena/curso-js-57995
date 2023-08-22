@@ -60,7 +60,7 @@ function showWattage() {
         "Consumo total (m&aacute;ximo)" +
         "</div>" +
         '<div class="p-2 flex-fill text-end">' +
-        totalWattage +
+        totalWattage + " W" +
         "</div>" +
         "</div>"
     );
