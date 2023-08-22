@@ -138,7 +138,7 @@ async function fetchData(endpoint) {
 function resetAll() {
     infoBox.innerHTML = "";
     selectionBoxProcessors.value = 0;
-    let event = new Event('change');
+    let event = new Event("change");
     selectionBoxProcessors.dispatchEvent(event);
     selectionBoxMotherboards.dispatchEvent(event);
     selectionBoxRam.dispatchEvent(event);
@@ -199,10 +199,22 @@ selectionBoxProcessors.onchange = function (e) {
             selectionBoxMotherboards.setAttribute("disabled", "");
             selectionBoxMotherboards.value = 0;
             motherboardPrice = 0;
+        }
+
+        if (!selectionBoxRam.disabled) {
             // RAM
             selectionBoxRam.setAttribute("disabled", "");
             selectionBoxRam.value = 0;
+
+            selectionBoxRamQty.setAttribute("disabled", "");
+            selectionBoxRamQty.innerHTML = '<option value="0" selected>Cantidad</option>';
+            selectionBoxRamQty.value = 0;
+
+            ramInfoBox = "";
             ramPrice = 0;
+            ramWattage = 0;
+            totalRam = 0;
+            totalRamKits = 0;
         }
 
         // Actualizamos el DOM con las propiedades en blanco y
@@ -337,7 +349,7 @@ selectionBoxMotherboards.onchange = function (e) {
         totalRam = 0;
         totalRamKits = 0;
 
-        if (selectedMotherboard == 0 || (!selectionBoxMotherboards.disabled && selectedProcessor == 0)) {
+        if (selectedMotherboard == 0 || (selectionBoxMotherboards.disabled && selectedProcessor == 0)) {
             // selectionBoxMotherboards.setAttribute("disabled", "");
             // selectionBoxMotherboards.value = 0;
             // motherboardPrice = 0;
@@ -480,15 +492,10 @@ selectionBoxRam.onchange = function (e) {
     if (selectedRam == 0 || selectedMotherboard == 0 || selectedProcessor == 0) {
         infoBoxRam.style.visibility = "hidden";
         infoBoxRam.style.display = "none";
-        ramInfoBox = "";
-        ramPrice = 0;
-        ramWattage = 0;
-        totalRam = 0;
-        totalRamKits = 0;
-
         selectionBoxRamQty.setAttribute("disabled", "");
         selectionBoxRamQty.innerHTML = '<option value="0" selected>Cantidad</option>';
         selectionBoxRamQty.value = 0;
+        ramInfoBox = "";
         ramPrice = 0;
         ramWattage = 0;
         totalRam = 0;
@@ -521,7 +528,9 @@ selectionBoxRam.onchange = function (e) {
         ramInfoBox =
             '<div class="d-flex">' +
             '<div class="p-2 flex-fill">' +
-            "RAM: " + totalRamKits + " x " +
+            "RAM: " +
+            totalRamKits +
+            " x " +
             dataFilteredRam[selectedRam - 1]["commercial_name"] +
             " " +
             dataFilteredRam[selectedRam - 1]["total_capacity"] +
@@ -553,7 +562,9 @@ selectionBoxRam.onchange = function (e) {
                 ramInfoBox =
                     '<div class="d-flex">' +
                     '<div class="p-2 flex-fill">' +
-                    "RAM: " + selectedRamQty + " x " +
+                    "RAM: " +
+                    selectedRamQty +
+                    " x " +
                     dataFilteredRam[selectedRam - 1]["commercial_name"] +
                     " " +
                     dataFilteredRam[selectedRam - 1]["total_capacity"] +
@@ -572,25 +583,20 @@ selectionBoxRam.onchange = function (e) {
                 updateInfoBox();
                 updateTotalPrice();
             }
-
         };
 
         infoBoxRam.innerHTML =
-        '<div class="col-xs-12 col-md-6" id="motherboard_select_socket">Velocidad: ' +
-        dataFilteredRam[selectedRam - 1]["speed"] +
-        " Mhz</div>" +
-        '<div class="col-xs-12 col-md-6" id="motherboard_platform">Modelo: ' +
-        dataFilteredRam[selectedRam - 1]["model"] +
-        "</div>";
+            '<div class="col-xs-12 col-md-6" id="motherboard_select_socket">Velocidad: ' +
+            dataFilteredRam[selectedRam - 1]["speed"] +
+            " Mhz</div>" +
+            '<div class="col-xs-12 col-md-6" id="motherboard_platform">Modelo: ' +
+            dataFilteredRam[selectedRam - 1]["model"] +
+            "</div>";
 
         updateInfoBox();
         updateTotalPrice();
     }
 };
-
-// selectedRamQty.onchange = function (e) {
-//     selectedRamQty = this.selectedIndex;
-// };
 
 // Escuchamos el cambio de seleccion de pais para ajustar el IVA
 selectionBoxCountry.onchange = function (e) {
