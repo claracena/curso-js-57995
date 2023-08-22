@@ -51,6 +51,7 @@ window.onload = function () {
 
 // Funcion para formatear el HTML para mostrar el total de consumo
 function showWattage() {
+    totalWattage = 0;
     totalWattage = cpuWattage + motherboardWattage;
     return (
         "<hr>" +
@@ -153,11 +154,13 @@ selectionBoxProcessors.onchange = function (e) {
         infoBoxProcessors.style.display = "none";
         processorInfoBox = "";
         processorPrice = 0;
+        cpuWattage = 0;
 
         infoBoxMotherboards.style.visibility = "hidden";
         infoBoxMotherboards.style.display = "none";
         motherboardInfoBox = "";
         motherboardPrice = 0;
+        motherboardWattage = 0;
 
         // Al volver a la opcion de procesador 0, reseteamos el dropdown
         // de los otros componentes tambien. El usuario debe
@@ -291,6 +294,7 @@ selectionBoxMotherboards.onchange = function (e) {
         infoBoxMotherboards.style.display = "none";
         motherboardInfoBox = "";
         motherboardPrice = 0;
+        motherboardWattage - 0;
 
         if (!selectionBoxMotherboards.disabled && selectedProcessor == 0) {
             selectionBoxMotherboards.setAttribute("disabled", "");
@@ -303,6 +307,7 @@ selectionBoxMotherboards.onchange = function (e) {
     } else {
         infoBoxMotherboards.style.display = "flex";
         infoBoxMotherboards.style.visibility = "visible";
+        motherboardWattage = 0;
         motherboardInfoBox =
             '<div class="d-flex">' +
             '<div class="p-2 flex-fill">' +
@@ -322,7 +327,7 @@ selectionBoxMotherboards.onchange = function (e) {
         motherboardPrice = dataFilteredMotherboards[selectedMotherboard - 1]["price"];
 
         // Agregamos el consumo de potencia maximo al total de consumo
-        motherboardWattage = totalWattage + dataFilteredMotherboards[selectedMotherboard - 1]["power_consumption"]["max_power"];
+        motherboardWattage = dataFilteredMotherboards[selectedMotherboard - 1]["power_consumption"]["max_power"];
 
         // Armamos la frase con los tipos de memoria
         memoryAllowed = [];
