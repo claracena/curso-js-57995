@@ -227,5 +227,139 @@
         },
         "windows_11_compatible": false,
         "link": "https://www.msi.com/Motherboard/MAG-B460M-MORTAR-WIFI"
+    },
+    {
+        "motherboard_id": 4,
+        "manufacturer": "GIGABYTE",
+        "platform": "AMD",
+        "manufacturer_category": "AORUS",
+        "commercial_name": "X670 AORUS ELITE AX",
+        "socket_standard": "AM5",
+        "chipset": "AMD X670",
+        "form_factor": "ATX",
+        "price": 799.00,
+        "processor_generations": [
+            7000
+        ],
+        "video_and_pcie": {
+            "display_port_qty": 0,
+            "hdmi_port_qty": 1,
+            "pcie_5_x16_slot": 1,
+            "pcie_3_x16_slot": 1,
+            "pcie_3_x4_slot": 0,
+            "pcie_3_x1_slot": 1
+        },
+        "storage": {
+            "m2_slots": 2,
+            "sata_6gbs_ports": 4
+        },
+        "network": {
+            "ports": 1,
+            "speed": "2.5 Gb/s",
+            "wireless": true,
+            "bluetooth": true
+        },
+        "audio": {
+            "has_audio": true,
+            "channels": "7.1-Channel HD"
+        },
+        "power_consumption": {
+            "base_power": "62 W",
+            "max_power": "230 W"
+        },
+        "compatibility": {
+            "socket": "AM5",
+            "memory_type": {
+                "ddr3_capable": false,
+                "ddr4_capable": false,
+                "ddr5_capable": true
+            },
+            "memory_max": {
+                "ddr3_max_memory": 0,
+                "ddr4_max_memory": 0,
+                "ddr5_max_memory": 128
+            },
+            "memory_speeds": {
+                "ddr3_speeds": [],
+                "ddr4_speeds": [],
+                "ddr5_speeds": [
+                    6666
+                ]
+            },
+            "memory_class": {
+                "ddr3_class": "",
+                "ddr4_class": "",
+                "ddr5_class": "ECC, Buffered Memory"
+            }
+        },
+        "windows_11_compatible": true,
+        "link": "https://www.gigabyte.com/ar/Motherboard/X670-AORUS-ELITE-AX-rev-10/sp#sp"
+    },
+    {
+        "motherboard_id": 4,
+        "manufacturer": "Asus",
+        "platform": "AMD",
+        "manufacturer_category": "ROG",
+        "commercial_name": "STRIX X670E-E GAMING WIFI",
+        "socket_standard": "AM5",
+        "chipset": "AMD X670",
+        "form_factor": "ATX",
+        "price": 590.00,
+        "processor_generations": [
+            7000
+        ],
+        "video_and_pcie": {
+            "display_port_qty": 1,
+            "hdmi_port_qty": 1,
+            "pcie_5_x16_slot": 2,
+            "pcie_3_x16_slot": 1,
+            "pcie_3_x4_slot": 0,
+            "pcie_3_x1_slot": 0
+        },
+        "storage": {
+            "m2_slots": 4,
+            "sata_6gbs_ports": 4
+        },
+        "network": {
+            "ports": 1,
+            "speed": "2.5 Gb/s",
+            "wireless": true,
+            "bluetooth": true
+        },
+        "audio": {
+            "has_audio": true,
+            "channels": "7.1 Surround"
+        },
+        "power_consumption": {
+            "base_power": "62 W",
+            "max_power": "230 W"
+        },
+        "compatibility": {
+            "socket": "AM5",
+            "memory_type": {
+                "ddr3_capable": false,
+                "ddr4_capable": false,
+                "ddr5_capable": true
+            },
+            "memory_max": {
+                "ddr3_max_memory": 0,
+                "ddr4_max_memory": 0,
+                "ddr5_max_memory": 128
+            },
+            "memory_speeds": {
+                "ddr3_speeds": [],
+                "ddr4_speeds": [],
+                "ddr5_speeds": [
+                    6666
+                ]
+            },
+            "memory_class": {
+                "ddr3_class": "",
+                "ddr4_class": "",
+                "ddr5_class": "ECC, Buffered Memory"
+            }
+        },
+        "windows_11_compatible": true,
+        "link": "https://www.gigabyte.com/ar/Motherboard/X670-AORUS-ELITE-AX-rev-10/sp#sp"
     }
 ]
