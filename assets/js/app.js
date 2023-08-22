@@ -1,13 +1,17 @@
 // Constantes para almacenar los endpoints de los JSONs
 const apiEndpointProcessors = "https://javascript.cesararacena.com/json/processors.json";
 const apiEndpointMotherboards = "https://javascript.cesararacena.com/json/motherboards.json";
+const apiEndpointRam = "https://javascript.cesararacena.com/json/ram.json";
 
 // Constantes que almacenan las direcciones del DOM a actualizar
 const selectionBoxProcessors = document.getElementById("processor_select");
 const selectionBoxMotherboards = document.getElementById("motherboard_select");
+const selectionBoxRam = document.getElementById("ram_select");
+const selectionBoxRamQty = document.getElementById("ram_select_qty");
 const selectionBoxCountry = document.getElementById("select_pais");
 const infoBoxProcessors = document.getElementById("processor_select_info");
 const infoBoxMotherboards = document.getElementById("motherboard_select_info");
+const infoBoxRam = document.getElementById("ram_select_info");
 const infoBoxPrice = document.getElementById("total_price");
 const infoBox = document.getElementById("information_box");
 
@@ -15,15 +19,21 @@ const infoBox = document.getElementById("information_box");
 let dataSelectedProcessor = {};
 let dataSelectedMotherboard = {};
 let dataFilteredMotherboards = [];
+let dataSelectedRam = {};
+let dataFilteredRam = [];
 let memoryAllowed = [];
 
 // Variables para almacenar valores que cambian con cada cambio de seleccion
 let selectedProcessor = 0;
 let selectedMotherboard = 0;
+let selectedRam = 0;
+let selectedRamQty = 0;
 let processorInfoBox = "";
 let motherboardInfoBox = "";
+let ramInfoBox = "";
 let processorPrice = 0;
 let motherboardPrice = 0;
+let ramPrice = 0;
 let totalPrice = 0;
 let selectedCountry = "";
 let taxPct = 1;
@@ -31,12 +41,14 @@ let taxAlone = 0;
 let total = 0;
 let cpuWattage = 0;
 let motherboardWattage = 0;
+let ramWattage = 0;
 let totalWattage = 0;
 
 // Reset de visualizaciones al cargar la pagina por primera vez
 window.onload = function () {
     infoBoxProcessors.style.display = "none";
     infoBoxMotherboards.style.display = "none";
+    infoBoxRam.style.display = "none";
     infoBoxPrice.innerHTML =
         '<div class="d-flex">' +
         '<div class="p-2 flex-fill">' +
@@ -52,7 +64,7 @@ window.onload = function () {
 // Funcion para formatear el HTML para mostrar el total de consumo
 function showWattage() {
     totalWattage = 0;
-    totalWattage = cpuWattage + motherboardWattage;
+    totalWattage = cpuWattage + motherboardWattage + ramWattage;
     return (
         "<hr>" +
         '<div class="d-flex">' +
@@ -60,7 +72,8 @@ function showWattage() {
         "Consumo total (m&aacute;ximo)" +
         "</div>" +
         '<div class="p-2 flex-fill text-end">' +
-        totalWattage + " W" +
+        totalWattage +
+        " W" +
         "</div>" +
         "</div>"
     );
@@ -80,7 +93,7 @@ function updateTotalPrice() {
         taxAlone = 0;
         total = totalPrice;
     } else {
-        taxAlone = (totalPrice * taxPct) - totalPrice;
+        taxAlone = totalPrice * taxPct - totalPrice;
         total = totalPrice * taxPct;
     }
 
@@ -102,7 +115,9 @@ function updateTotalPrice() {
         "</div>" +
         "</div>" +
         '<div class="d-flex">' +
-        '<div class="p-2 flex-fill">TOTAL (estimado en U$D' + (taxAlone > 0 ? " en su pa&iacute;s" : "") + ')</div>' +
+        '<div class="p-2 flex-fill">TOTAL (estimado en U$D' +
+        (taxAlone > 0 ? " en su pa&iacute;s" : "") +
+        ")</div>" +
         '<div class="p-2 flex-fill text-end">' +
         "$" +
         total.toFixed(2) +
@@ -297,10 +312,20 @@ selectionBoxMotherboards.onchange = function (e) {
         motherboardPrice = 0;
         motherboardWattage - 0;
 
+        ramInfoBox.style.visibility = "hidden";
+        ramInfoBox.style.display = "none";
+        ramInfoBox = "";
+        ramPrice = 0;
+        ramWattage = 0;
+
         if (!selectionBoxMotherboards.disabled && selectedProcessor == 0) {
             selectionBoxMotherboards.setAttribute("disabled", "");
             selectionBoxMotherboards.value = 0;
             motherboardPrice = 0;
+
+            selectionBoxRam.setAttribute("disabled", "");
+            selectionBoxRam.value = 0;
+            ramPrice = 0;
         }
 
         updateInfoBox();
@@ -309,6 +334,47 @@ selectionBoxMotherboards.onchange = function (e) {
         infoBoxMotherboards.style.display = "flex";
         infoBoxMotherboards.style.visibility = "visible";
         motherboardWattage = 0;
+
+        fetchData(apiEndpointRam)
+            .then((data) => {
+                dataSelectedRam = data;
+                selectionBoxRam.innerHTML = '<option value="0" selected>Realice una selecci&oacute;n</option>';
+
+                if (selectionBoxRam.disabled) {
+                    selectionBoxRam.removeAttribute("disabled");
+                }
+                dataFilteredRam = [];
+                for (let i = 0; i < dataSelectedRam.length; i += 1) {
+                    if (
+                        (dataSelectedMotherboard[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr3"] == true &&
+                            dataSelectedRam[i]["compatibility"]["memory_type"]["ddr3"] == true) ||
+                        (dataSelectedMotherboard[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr4"] == true &&
+                            dataSelectedRam[i]["compatibility"]["memory_type"]["ddr4"] == true) ||
+                        (dataSelectedMotherboard[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr5"] == true &&
+                            dataSelectedRam[i]["compatibility"]["memory_type"]["ddr5"] == true)
+                    ) {
+                        dataFilteredRam.push(dataSelectedMotherboard[i]);
+                        selectionBoxRam.innerHTML =
+                            selectionBoxRam.innerHTML +
+                            '<option value="' +
+                            dataSelectedRam[i]["memory_id"] +
+                            '">' +
+                            dataSelectedRam[i]["manufacturer"] +
+                            " " +
+                            dataSelectedRam[i]["commercial_name"] +
+                            " " +
+                            dataSelectedRam[i]["total_capacity"] +
+                            " GB (" +
+                            dataSelectedRam[i]["sticks"] +
+                            "x" +
+                            dataSelectedRam[i]["capacity_per_stick"] +
+                            " GB)" +
+                            "</option>";
+                    }
+                }
+            })
+            .catch((reason) => console.log("Msg: " + reason));
+
         motherboardInfoBox =
             '<div class="d-flex">' +
             '<div class="p-2 flex-fill">' +
@@ -385,7 +451,7 @@ selectionBoxMotherboards.onchange = function (e) {
 selectionBoxCountry.onchange = function (e) {
     selectedCountry = this.value;
 
-    if (selectedCountry != '') {
+    if (selectedCountry != "") {
         switch (selectedCountry) {
             case "Argentina":
                 taxPct = 1.21;
