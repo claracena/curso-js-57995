@@ -319,7 +319,7 @@ selectionBoxMotherboards.onchange = function (e) {
         motherboardPrice = dataFilteredMotherboards[selectedMotherboard - 1]["price"];
 
         // Agregamos el consumo de potencia maximo al total de consumo
-        totalWattage = dataFilteredMotherboards[selectedMotherboard - 1]["power_consumption"]["max_power"];
+        totalWattage = totalWattage + dataFilteredMotherboards[selectedMotherboard - 1]["power_consumption"]["max_power"];
 
         // Armamos la frase con los tipos de memoria
         memoryAllowed = [];
