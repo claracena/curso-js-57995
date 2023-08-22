@@ -25,11 +25,13 @@ let motherboardInfoBox = "";
 let processorPrice = 0;
 let motherboardPrice = 0;
 let totalPrice = 0;
-let totalWattage = 0;
 let selectedCountry = "";
 let taxPct = 1;
 let taxAlone = 0;
 let total = 0;
+let cpuWattage = 0;
+let motherboardWattage = 0;
+let totalWattage = 0;
 
 // Reset de visualizaciones al cargar la pagina por primera vez
 window.onload = function () {
@@ -48,7 +50,8 @@ window.onload = function () {
 };
 
 // Funcion para formatear el HTML para mostrar el total de consumo
-function showWattage(wattage) {
+function showWattage() {
+    totalWattage = cpuWattage + motherboardWattage;
     return (
         "<hr>" +
         '<div class="d-flex">' +
@@ -56,7 +59,7 @@ function showWattage(wattage) {
         "Consumo total (m&aacute;ximo)" +
         "</div>" +
         '<div class="p-2 flex-fill text-end">' +
-        wattage +
+        totalWattage +
         "</div>" +
         "</div>"
     );
@@ -65,7 +68,7 @@ function showWattage(wattage) {
 // Funcion para actualizar el detalle de los productos seleccionados
 function updateInfoBox() {
     infoBox.innerHTML = "";
-    infoBox.innerHTML = processorInfoBox + motherboardInfoBox + showWattage(totalWattage);
+    infoBox.innerHTML = processorInfoBox + motherboardInfoBox + showWattage();
 }
 
 // Funcion para actualizar el precio total en el detalle
@@ -239,7 +242,7 @@ selectionBoxProcessors.onchange = function (e) {
         processorPrice = dataSelectedProcessor[selectedProcessor - 1]["price"];
 
         // Agregamos el consumo de potencia maximo al total de consumo
-        totalWattage = dataSelectedProcessor[selectedProcessor - 1]["power_consumption"]["max_power"];
+        cpuWattage = dataSelectedProcessor[selectedProcessor - 1]["power_consumption"]["max_power"];
 
         // Mostramos info basica sobre el procesador seleccionado
         // debajo del dropdown
@@ -319,7 +322,7 @@ selectionBoxMotherboards.onchange = function (e) {
         motherboardPrice = dataFilteredMotherboards[selectedMotherboard - 1]["price"];
 
         // Agregamos el consumo de potencia maximo al total de consumo
-        totalWattage = totalWattage + dataFilteredMotherboards[selectedMotherboard - 1]["power_consumption"]["max_power"];
+        motherboardWattage = totalWattage + dataFilteredMotherboards[selectedMotherboard - 1]["power_consumption"]["max_power"];
 
         // Armamos la frase con los tipos de memoria
         memoryAllowed = [];
