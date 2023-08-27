@@ -144,6 +144,10 @@ function resetAll() {
     selectionBoxRam.dispatchEvent(event);
     selectionBoxRamQty.dispatchEvent(event);
     selectionBoxCountry.dispatchEvent(event);
+
+    processorInfoBox = '';
+    motherboardInfoBox = '';
+    ramInfoBox = '';
 }
 
 // Usamos la funcion fetchData() para cargar la lista de procesadores
@@ -181,13 +185,13 @@ selectionBoxProcessors.onchange = function (e) {
     if (selectedProcessor == 0) {
         infoBoxProcessors.style.visibility = "hidden";
         infoBoxProcessors.style.display = "none";
-        processorInfoBox = "";
+        // processorInfoBox = "";
         processorPrice = 0;
         cpuWattage = 0;
 
         infoBoxMotherboards.style.visibility = "hidden";
         infoBoxMotherboards.style.display = "none";
-        motherboardInfoBox = "";
+        // motherboardInfoBox = "";
         motherboardPrice = 0;
         motherboardWattage = 0;
 
@@ -197,25 +201,32 @@ selectionBoxProcessors.onchange = function (e) {
         if (!selectionBoxMotherboards.disabled) {
             // Motherboards
             selectionBoxMotherboards.setAttribute("disabled", "");
-            selectionBoxMotherboards.value = 0;
-            motherboardPrice = 0;
         }
 
         if (!selectionBoxRam.disabled) {
             // RAM
             selectionBoxRam.setAttribute("disabled", "");
-            selectionBoxRam.value = 0;
-
-            selectionBoxRamQty.setAttribute("disabled", "");
-            selectionBoxRamQty.innerHTML = '<option value="0" selected>Cantidad</option>';
-            selectionBoxRamQty.value = 0;
-
-            ramInfoBox = "";
-            ramPrice = 0;
-            ramWattage = 0;
-            totalRam = 0;
-            totalRamKits = 0;
         }
+
+        if (!selectionBoxRamQty.disabled) {
+            // RAM QTY
+            selectionBoxRamQty.setAttribute("disabled", "");
+        }
+        
+        selectionBoxRam.value = 0;
+        selectionBoxRamQty.innerHTML = '<option value="0" selected>Cantidad</option>';
+        selectionBoxRamQty.value = 0;
+        selectionBoxMotherboards.value = 0;
+
+        motherboardPrice = 0;
+        ramPrice = 0;
+        ramWattage = 0;
+        totalRam = 0;
+        totalRamKits = 0;
+        
+        processorInfoBox = '';
+        motherboardInfoBox = '';
+        ramInfoBox = '';
 
         // Actualizamos el DOM con las propiedades en blanco y
         // el precio en $0.00
