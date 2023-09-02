@@ -1,0 +1,62 @@
+[
+    {
+        "disc_id": 1,
+        "manufacturer": "Samsung",
+        "commercial_name": "970 Evo Plus NVMe PCIe M.2 250GB",
+        "type": "m2",
+        "platform": "NVMe PCIe",
+        "capacity": 250,
+        "price": 31.00,
+        "link": "https://www.samsung.com/us/computing/memory-storage/solid-state-drives/ssd-970-evo-plus-nvme-m-2-250gb-mz-v7s250b-am/"
+    },
+    {
+        "disc_id": 2,
+        "manufacturer": "ADATA",
+        "commercial_name": "XPG SX8200 Pro NVMe PCIe M.2 512GB",
+        "type": "m2",
+        "platform": "NVMe PCIe",
+        "capacity": 512,
+        "price": 27.00,
+        "link": "https://www.xpg.com/us/xpg/583"
+    },
+    {
+        "disc_id": 3,
+        "manufacturer": "Samsung",
+        "commercial_name": "970 Evo Plus NVMe PCIe M.2 500GB",
+        "type": "m2",
+        "platform": "NVMe PCIe",
+        "capacity": 500,
+        "price": 35.00,
+        "link": "https://www.samsung.com/us/computing/memory-storage/solid-state-drives/ssd-970-evo-plus-nvme-m-2-500gb-mz-v7s500b-am/"
+    },
+    {
+        "disc_id": 4,
+        "manufacturer": "Samsung",
+        "commercial_name": "980 Pro NVMe PCIe M.2 1TB",
+        "type": "m2",
+        "platform": "NVMe PCIe",
+        "capacity": 1000,
+        "price": 80.00,
+        "link": "https://www.samsung.com/es/memory-storage/nvme-ssd/980-pro-pcle-4-0-nvme-m-2-ssd-1tb-mz-v8p1t0bw/"
+    },
+    {
+        "disc_id": 5,
+        "manufacturer": "Crucial",
+        "commercial_name": "MX500 1TB",
+        "type": "ssd",
+        "platform": "SATA",
+        "capacity": 1000,
+        "price": 48.00,
+        "link": "https://www.crucial.com/ssd/mx500/ct1000mx500ssd1"
+    },
+    {
+        "disc_id": 6,
+        "manufacturer": "Samsung",
+        "commercial_name": "860 Evo 2TB",
+        "type": "ssd",
+        "platform": "SATA",
+        "capacity": 2000,
+        "price": 225.00,
+        "link": "https://www.samsung.com/us/computing/memory-storage/solid-state-drives/ssd-860-evo-2-5--sata-iii-2tb-mz-76e2t0b-am/"
+    }
+]
