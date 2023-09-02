@@ -24,25 +24,21 @@ let dataFilteredRam = [];
 let memoryAllowed = [];
 
 // Variables para almacenar valores que cambian con cada cambio de seleccion
-// Seleccion de cada opcion
 let selectedProcessor = 0;
 let selectedMotherboard = 0;
 let selectedRam = 0;
 let selectedRamQty = 0;
-let selectedCountry = "";
-// Informacion a mostrar de cada elemento
 let processorInfoBox = "";
 let motherboardInfoBox = "";
 let ramInfoBox = "";
-// Precio de cada componente seleccionado y precios/impuestos
 let processorPrice = 0;
 let motherboardPrice = 0;
 let ramPrice = 0;
 let totalPrice = 0;
+let selectedCountry = "";
 let taxPct = 1;
 let taxAlone = 0;
 let total = 0;
-// Potencia y calculos de RAM
 let cpuWattage = 0;
 let motherboardWattage = 0;
 let ramWattage = 0;
@@ -50,126 +46,45 @@ let totalWattage = 0;
 let totalRam = 0;
 let totalRamKits = 0;
 
-// Funcion para resetear/limpiar todo
-function reset_all(parte = null) {
-    if (parte == null) {
-        infoBoxProcessors.style.display = "none";
-        infoBoxProcessors.style.visibility = "hidden";
-        selectionBoxProcessors.value = 0;
-        selectedProcessor = 0;
-        processorInfoBox = "";
-        processorPrice = 0;
-        cpuWattage = 0;
-        infoBoxPrice.style.display = "none";
-        infoBoxPrice.style.visibility = "hidden";
-        totalPrice = 0;
-        taxPct = 1;
-        taxAlone = 0;
-        total = 0;
-        totalWattage = 0;
-
-        
-
-        
-    }
-
-    if (parte == null || parte == "motherboards") {
-        infoBoxMotherboards.style.display = "none";
-        infoBoxMotherboards.style.visibility = "hidden";
-        selectionBoxMotherboards.value = 0;
-        // dataSelectedMotherboard = [];
-        // dataFilteredMotherboards = [];
-        selectedMotherboard = 0;
-        motherboardInfoBox = "";
-        motherboardPrice = 0;
-        motherboardWattage = 0;
-
-        // Al volver a la opcion de procesador 0, reseteamos el dropdown
-        // de los otros componentes tambien. El usuario debe
-        // voler a comenzar desde el paso 1
-        if (!selectionBoxMotherboards.disabled) {
-            // Motherboards
-            selectionBoxMotherboards.setAttribute("disabled", "");
-        }
-    }
-
-    if (parte == null || parte == "ram") {
-        infoBoxRam.style.display = "none";
-        infoBoxRam.style.visibility = "hidden";
-        selectionBoxRam.value = 0;
-        // dataSelectedRam = [];
-        // dataFilteredRam = [];
-        memoryAllowed = [];
-        selectedRam = 0;
-        selectedRamQty = 0;
-        ramPrice = 0;
-        ramWattage = 0;
-        totalRam = 0;
-        totalRamKits = 0;
-
-        if (!selectionBoxRam.disabled) {
-            // RAM
-            selectionBoxRam.setAttribute("disabled", "");
-        }
-
-        if (!selectionBoxRamQty.disabled) {
-            // RAM QTY
-            selectionBoxRamQty.setAttribute("disabled", "");
-        }
-
-        selectionBoxRamQty.innerHTML = '<option value="0" selected>Cantidad</option>';
-    }
-
-    // let event = new Event("change");
-    // selectionBoxProcessors.dispatchEvent(event);
-    // selectionBoxMotherboards.dispatchEvent(event);
-    // selectionBoxRam.dispatchEvent(event);
-    // selectionBoxRamQty.dispatchEvent(event);
-    // selectionBoxCountry.dispatchEvent(event);
-
-    selectionBoxRamQty.value = 0;
-
-    selectedCountry = "";
-
-    ramInfoBox = "";
-
-    updateInfoBox();
-}
-
-// Funcion general para traer datos de un endpoint
-async function fetch_data(endpoint) {
-    let response = await fetch(endpoint);
-    let data = await response.json();
-    return data;
-}
+// Reset de visualizaciones al cargar la pagina por primera vez
+window.onload = function () {
+    infoBoxProcessors.style.display = "none";
+    infoBoxMotherboards.style.display = "none";
+    infoBoxRam.style.display = "none";
+    infoBoxPrice.innerHTML =
+        '<div class="d-flex">' +
+        '<div class="p-2 flex-fill">' +
+        "Sub-Total" +
+        "</div>" +
+        '<div class="p-2 flex-fill text-end">' +
+        "$" +
+        (0.0).toFixed(2) +
+        "</div>" +
+        "</div>";
+};
 
 // Funcion para formatear el HTML para mostrar el total de consumo
-function show_wattage() {
+function showWattage() {
     totalWattage = 0;
     totalWattage = cpuWattage + motherboardWattage + ramWattage;
-
-    if (totalWattage > 0) {
-        return (
-            "<hr>" +
-            '<div class="d-flex">' +
-            '<div class="p-2 flex-fill">' +
-            "Consumo total (m&aacute;ximo)" +
-            "</div>" +
-            '<div class="p-2 flex-fill text-end">' +
-            totalWattage +
-            " W" +
-            "</div>" +
-            "</div>"
-        );
-    } else {
-        return "";
-    }
+    return (
+        "<hr>" +
+        '<div class="d-flex">' +
+        '<div class="p-2 flex-fill">' +
+        "Consumo total (m&aacute;ximo)" +
+        "</div>" +
+        '<div class="p-2 flex-fill text-end">' +
+        totalWattage +
+        " W" +
+        "</div>" +
+        "</div>"
+    );
 }
 
 // Funcion para actualizar el detalle de los productos seleccionados
 function updateInfoBox() {
     infoBox.innerHTML = "";
-    infoBox.innerHTML = processorInfoBox + motherboardInfoBox + ramInfoBox + show_wattage();
+    infoBox.innerHTML = processorInfoBox + motherboardInfoBox + ramInfoBox + showWattage();
 }
 
 // Funcion para actualizar los valores en el detalle
@@ -182,9 +97,6 @@ function updateTotalPrice() {
     } else {
         taxAlone = totalPrice * taxPct - totalPrice;
         total = totalPrice * taxPct;
-
-        infoBoxPrice.style.display = "block";
-        infoBoxPrice.style.visibility = "visible";
     }
 
     infoBoxPrice.innerHTML =
@@ -197,6 +109,7 @@ function updateTotalPrice() {
         "</div>" +
         "</div>" +
         '<div class="d-flex">' +
+        // '<div class="p-2 flex-fill">IVA (' + parseFloat((taxPct * 100) - 100).toFixed(2) + '%)</div>' +
         '<div class="p-2 flex-fill">IVA</div>' +
         '<div class="p-2 flex-fill text-end">' +
         "$" +
@@ -215,9 +128,31 @@ function updateTotalPrice() {
         "<hr>";
 }
 
+// Funcion general para traer datos de un endpoint
+async function fetchData(endpoint) {
+    let response = await fetch(endpoint);
+    let data = await response.json();
+    return data;
+}
+
+function resetAll() {
+    infoBox.innerHTML = "";
+    selectionBoxProcessors.value = 0;
+    let event = new Event("change");
+    selectionBoxProcessors.dispatchEvent(event);
+    selectionBoxMotherboards.dispatchEvent(event);
+    selectionBoxRam.dispatchEvent(event);
+    selectionBoxRamQty.dispatchEvent(event);
+    selectionBoxCountry.dispatchEvent(event);
+
+    processorInfoBox = '';
+    motherboardInfoBox = '';
+    ramInfoBox = '';
+}
+
 // Usamos la funcion fetchData() para cargar la lista de procesadores
 // cuando se carga la pagina
-fetch_data(apiEndpointProcessors)
+fetchData(apiEndpointProcessors)
     .then((data) => {
         dataSelectedProcessor = data;
         // Habilitamos el dropdown de los procesadores una vez que
@@ -241,101 +176,108 @@ fetch_data(apiEndpointProcessors)
     })
     .catch((reason) => console.log("Msg: " + reason));
 
-// Preparamo la funcion para alimentar el dropdown de los motherboards
-function fetch_data_motherboards() {
-    fetch_data(apiEndpointMotherboards)
-        .then((data) => {
-            dataSelectedMotherboard = data;
-            selectionBoxMotherboards.innerHTML = '<option value="0" selected>Realice una selecci&oacute;n</option>';
-
-            // Habilitamos el selector del dropdown del proximo componente
-            if (selectionBoxMotherboards.disabled) {
-                selectionBoxMotherboards.removeAttribute("disabled");
-            }
-
-            dataFilteredMotherboards = [];
-            for (let i = 0; i < dataSelectedMotherboard.length; i += 1) {
-                // Solo ponemos en el dropdown los motherboards que son compatibles
-                // con el procesador seleccionado
-                if (dataSelectedProcessor[selectedProcessor - 1]["socket_standard"] == dataSelectedMotherboard[i]["socket_standard"]) {
-                    dataFilteredMotherboards.push(dataSelectedMotherboard[i]);
-                    selectionBoxMotherboards.innerHTML =
-                        selectionBoxMotherboards.innerHTML +
-                        '<option value="' +
-                        dataSelectedMotherboard[i]["motherboard_id"] +
-                        '">' +
-                        dataSelectedMotherboard[i]["manufacturer"] +
-                        " " +
-                        dataSelectedMotherboard[i]["commercial_name"] +
-                        " " +
-                        dataSelectedMotherboard[i]["chipset"] +
-                        " " +
-                        dataSelectedMotherboard[i]["socket_standard"] +
-                        "</option>";
-                }
-            }
-        })
-        .catch((reason) => console.log("Msg: " + reason));
-}
-
-// Preparamo la funcion para alimentar el dropdown de los memorias
-function fetch_data_ram() {
-    fetch_data(apiEndpointRam)
-        .then((data) => {
-            dataSelectedRam = data;
-            selectionBoxRam.innerHTML = '<option value="0" selected>Realice una selecci&oacute;n</option>';
-
-            // Habilitamos el selector del dropdown del proximo componente
-            if (selectionBoxRam.disabled) {
-                selectionBoxRam.removeAttribute("disabled");
-            }
-
-            dataFilteredRam = [];
-            for (let i = 0; i < dataSelectedRam.length; i += 1) {
-                // Solo ponemos en el dropdown las memorias que son compatibles
-                // con el mother seleccionado
-                if (
-                    (dataSelectedMotherboard[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr3_capable"] == true &&
-                        dataSelectedRam[i]["compatibility"]["memory_type"]["ddr3"] == true) ||
-                    (dataSelectedMotherboard[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr4_capable"] == true &&
-                        dataSelectedRam[i]["compatibility"]["memory_type"]["ddr4"] == true) ||
-                    (dataSelectedMotherboard[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr5_capable"] == true &&
-                        dataSelectedRam[i]["compatibility"]["memory_type"]["ddr5"] == true)
-                ) {
-                    dataFilteredRam.push(dataSelectedRam[i]);
-                    selectionBoxRam.innerHTML =
-                        selectionBoxRam.innerHTML +
-                        '<option value="' +
-                        dataSelectedRam[i]["memory_id"] +
-                        '">' +
-                        dataSelectedRam[i]["manufacturer"] +
-                        " " +
-                        dataSelectedRam[i]["commercial_name"] +
-                        " " +
-                        dataSelectedRam[i]["total_capacity"] +
-                        " GB (" +
-                        dataSelectedRam[i]["sticks"] +
-                        "x" +
-                        dataSelectedRam[i]["capacity_per_stick"] +
-                        " GB)" +
-                        "</option>";
-                }
-            }
-        })
-        .catch((reason) => console.log("Msg: " + reason));
-}
-
 // Escuchamos el evento de cambio de seleccion del dropdown de procesadores
 selectionBoxProcessors.onchange = function (e) {
     selectedProcessor = this.selectedIndex;
 
-    // Si el usuario vuelve a la opcion 0, procedemos a limpiar
+    // Si no el usuario vuelve a la opcion 0, procedemos a limpiar
     // toda la info insertada en el DOM anteriormente
     if (selectedProcessor == 0) {
-        reset_all();
+        infoBoxProcessors.style.visibility = "hidden";
+        infoBoxProcessors.style.display = "none";
+        // processorInfoBox = "";
+        processorPrice = 0;
+        cpuWattage = 0;
+
+        infoBoxMotherboards.style.visibility = "hidden";
+        infoBoxMotherboards.style.display = "none";
+        // motherboardInfoBox = "";
+        motherboardPrice = 0;
+        motherboardWattage = 0;
+
+        // Al volver a la opcion de procesador 0, reseteamos el dropdown
+        // de los otros componentes tambien. El usuario debe
+        // voler a comenzar desde el paso 1
+        if (!selectionBoxMotherboards.disabled) {
+            // Motherboards
+            selectionBoxMotherboards.setAttribute("disabled", "");
+        }
+
+        if (!selectionBoxRam.disabled) {
+            // RAM
+            selectionBoxRam.setAttribute("disabled", "");
+        }
+
+        if (!selectionBoxRamQty.disabled) {
+            // RAM QTY
+            selectionBoxRamQty.setAttribute("disabled", "");
+        }
+        
+        selectionBoxRam.value = 0;
+        selectionBoxRamQty.innerHTML = '<option value="0" selected>Cantidad</option>';
+        selectionBoxRamQty.value = 0;
+        selectionBoxMotherboards.value = 0;
+
+        motherboardPrice = 0;
+        ramPrice = 0;
+        ramWattage = 0;
+        totalRam = 0;
+        totalRamKits = 0;
+        
+        processorInfoBox = '';
+        motherboardInfoBox = '';
+        ramInfoBox = '';
+
+        // Actualizamos el DOM con las propiedades en blanco y
+        // el precio en $0.00
+        updateInfoBox();
+        updateTotalPrice();
     } else {
-        reset_all("motherboards");
-        // Preparamos la info que se mostrara del procesador seleccionado en la parte de "detalle"
+        infoBoxMotherboards.style.visibility = "hidden";
+        infoBoxMotherboards.style.display = "none";
+        motherboardInfoBox = "";
+        motherboardPrice = 0;
+
+        // Si por el contrario el usuario selecciono un procesador,
+        // traemos la info de los otros componentes
+        fetchData(apiEndpointMotherboards)
+            .then((data) => {
+                dataSelectedMotherboard = data;
+                selectionBoxMotherboards.innerHTML = '<option value="0" selected>Realice una selecci&oacute;n</option>';
+
+                // Habilitamos el selector del dropdown del proximo componente
+                if (selectionBoxMotherboards.disabled) {
+                    selectionBoxMotherboards.removeAttribute("disabled");
+                }
+                dataFilteredMotherboards = [];
+                for (let i = 0; i < dataSelectedMotherboard.length; i += 1) {
+                    // Solo ponemos en el dropdown los motherboards que son compatibles
+                    // con el procesador seleccionado
+                    if (dataSelectedProcessor[selectedProcessor - 1]["socket_standard"] == dataSelectedMotherboard[i]["socket_standard"]) {
+                        dataFilteredMotherboards.push(dataSelectedMotherboard[i]);
+                        selectionBoxMotherboards.innerHTML =
+                            selectionBoxMotherboards.innerHTML +
+                            '<option value="' +
+                            dataSelectedMotherboard[i]["motherboard_id"] +
+                            '">' +
+                            dataSelectedMotherboard[i]["manufacturer"] +
+                            " " +
+                            dataSelectedMotherboard[i]["commercial_name"] +
+                            " " +
+                            dataSelectedMotherboard[i]["chipset"] +
+                            " " +
+                            dataSelectedMotherboard[i]["socket_standard"] +
+                            "</option>";
+                    }
+                }
+            })
+            .catch((reason) => console.log("Msg: " + reason));
+
+        // Y habilitamos las partes del DOM que muestran info sobre el procesador seleccionado
+        infoBoxProcessors.style.display = "flex";
+        infoBoxProcessors.style.visibility = "visible";
+        // Preparamos la info que se mostrara del procesador seleccionado en
+        // la parte de "detalle"
         processorInfoBox =
             '<div class="d-flex">' +
             '<div class="p-2 flex-fill">' +
@@ -354,18 +296,16 @@ selectionBoxProcessors.onchange = function (e) {
             "</div>" +
             "</div>";
 
-        // Pasamos el precio del procesador seleccionado para la suma del total en la parte del "detalle"
+        // Pasamos el precio del procesador seleccionado para la suma del
+        // total en la parte del "detalle"
         processorPrice = dataSelectedProcessor[selectedProcessor - 1]["price"];
 
         // Agregamos el consumo de potencia maximo al total de consumo
         cpuWattage = dataSelectedProcessor[selectedProcessor - 1]["power_consumption"]["max_power"];
 
-        // Habilitamos las partes del DOM que muestran info sobre el procesador seleccionado
-        infoBoxProcessors.style.display = "flex";
-        infoBoxProcessors.style.visibility = "visible";
-
-        // Mostramos info basica sobre el procesador seleccionado debajo del dropdown
-        infoBoxProcessors.innerHTML =
+        // Mostramos info basica sobre el procesador seleccionado
+        // debajo del dropdown
+        document.getElementById("processor_select_info").innerHTML =
             '<div class="col-xs-12 col-md-6" id="processor_select_socket">Socket: ' +
             dataSelectedProcessor[selectedProcessor - 1]["socket_standard"] +
             "</div>" +
@@ -395,25 +335,97 @@ selectionBoxProcessors.onchange = function (e) {
             dataSelectedProcessor[selectedProcessor - 1]["price"].toFixed(2) +
             "</div>";
 
-        // Habilitamos la seleccion del proximo componente
-        fetch_data_motherboards();
+        // Llamamos las funciones para actualizar la info en detalle
+        // (precio y descripcion)
+        updateInfoBox();
+        updateTotalPrice();
     }
-
-    updateInfoBox();
-    updateTotalPrice();
 };
 
-// Escuchamos el evento de cambio de seleccion del dropdown de procesadores
+// Escuchamos el evento de cambio de seleccion del dropdown de motherboards
 selectionBoxMotherboards.onchange = function (e) {
     selectedMotherboard = this.selectedIndex;
+    if (selectedMotherboard == 0 || selectedProcessor == 0) {
+        infoBoxMotherboards.style.visibility = "hidden";
+        infoBoxMotherboards.style.display = "none";
+        motherboardInfoBox = "";
+        motherboardPrice = 0;
+        motherboardWattage - 0;
 
-    // Si el usuario vuelve a la opcion 0, procedemos a limpiar
-    // toda la info insertada en el DOM anteriormente
-    if (selectedMotherboard == 0) {
-        reset_all("motherboards");
-        reset_all("ram");
+        infoBoxRam.style.visibility = "hidden";
+        infoBoxRam.style.display = "none";
+        ramInfoBox = "";
+        ramPrice = 0;
+        ramWattage = 0;
+        totalRam = 0;
+        totalRamKits = 0;
+
+        if (selectedMotherboard == 0 || (selectionBoxMotherboards.disabled && selectedProcessor == 0)) {
+            // selectionBoxMotherboards.setAttribute("disabled", "");
+            // selectionBoxMotherboards.value = 0;
+            // motherboardPrice = 0;
+
+            selectionBoxRam.setAttribute("disabled", "");
+            selectionBoxRam.value = 0;
+            ramPrice = 0;
+            ramWattage = 0;
+
+            selectionBoxRamQty.setAttribute("disabled", "");
+            selectionBoxRamQty.innerHTML = '<option value="0" selected>Cantidad</option>';
+            selectionBoxRamQty.value = 0;
+        }
+
+        updateInfoBox();
+        updateTotalPrice();
     } else {
-        reset_all("ram");
+        // infoBoxRam.style.visibility = "hidden";
+        // infoBoxRam.style.display = "none";
+        // ramInfoBox = "";
+        // ramPrice = 0;
+
+        fetchData(apiEndpointRam)
+            .then((data) => {
+                dataSelectedRam = data;
+                selectionBoxRam.innerHTML = '<option value="0" selected>Realice una selecci&oacute;n</option>';
+
+                if (selectionBoxRam.disabled) {
+                    selectionBoxRam.removeAttribute("disabled");
+                }
+                dataFilteredRam = [];
+                for (let i = 0; i < dataSelectedRam.length; i += 1) {
+                    if (
+                        (dataSelectedMotherboard[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr3_capable"] == true &&
+                            dataSelectedRam[i]["compatibility"]["memory_type"]["ddr3"] == true) ||
+                        (dataSelectedMotherboard[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr4_capable"] == true &&
+                            dataSelectedRam[i]["compatibility"]["memory_type"]["ddr4"] == true) ||
+                        (dataSelectedMotherboard[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr5_capable"] == true &&
+                            dataSelectedRam[i]["compatibility"]["memory_type"]["ddr5"] == true)
+                    ) {
+                        dataFilteredRam.push(dataSelectedRam[i]);
+                        selectionBoxRam.innerHTML =
+                            selectionBoxRam.innerHTML +
+                            '<option value="' +
+                            dataSelectedRam[i]["memory_id"] +
+                            '">' +
+                            dataSelectedRam[i]["manufacturer"] +
+                            " " +
+                            dataSelectedRam[i]["commercial_name"] +
+                            " " +
+                            dataSelectedRam[i]["total_capacity"] +
+                            " GB (" +
+                            dataSelectedRam[i]["sticks"] +
+                            "x" +
+                            dataSelectedRam[i]["capacity_per_stick"] +
+                            " GB)" +
+                            "</option>";
+                    }
+                }
+            })
+            .catch((reason) => console.log("Msg: " + reason));
+
+        infoBoxMotherboards.style.display = "flex";
+        infoBoxMotherboards.style.visibility = "visible";
+
         motherboardInfoBox =
             '<div class="d-flex">' +
             '<div class="p-2 flex-fill">' +
@@ -430,14 +442,10 @@ selectionBoxMotherboards.onchange = function (e) {
             dataFilteredMotherboards[selectedMotherboard - 1]["price"].toFixed(2) +
             "</div>" +
             "</div>";
-
         motherboardPrice = dataFilteredMotherboards[selectedMotherboard - 1]["price"];
 
         // Agregamos el consumo de potencia maximo al total de consumo
         motherboardWattage = dataFilteredMotherboards[selectedMotherboard - 1]["power_consumption"]["max_power"];
-
-        infoBoxMotherboards.style.display = "flex";
-        infoBoxMotherboards.style.visibility = "visible";
 
         // Armamos la frase con los tipos de memoria
         memoryAllowed = [];
@@ -485,20 +493,39 @@ selectionBoxMotherboards.onchange = function (e) {
                 : "No") +
             "</div>";
 
-        // Habilitamos la seleccion del proximo componente
-        fetch_data_ram();
+        updateInfoBox();
+        updateTotalPrice();
     }
-
-    updateInfoBox();
-    updateTotalPrice();
 };
 
 selectionBoxRam.onchange = function (e) {
     selectedRam = this.selectedIndex;
+    if (selectedRam == 0 || selectedMotherboard == 0 || selectedProcessor == 0) {
+        infoBoxRam.style.visibility = "hidden";
+        infoBoxRam.style.display = "none";
+        selectionBoxRamQty.setAttribute("disabled", "");
+        selectionBoxRamQty.innerHTML = '<option value="0" selected>Cantidad</option>';
+        selectionBoxRamQty.value = 0;
+        ramInfoBox = "";
+        ramPrice = 0;
+        ramWattage = 0;
+        totalRam = 0;
+        totalRamKits = 0;
 
-    if (selectedRam == 0) {
-        reset_all("ram");
+        if (!selectionBoxRam.disabled && selectedMotherboard == 0 && selectedProcessor == 0) {
+            selectionBoxRam.setAttribute("disabled", "");
+            selectionBoxRam.value = 0;
+            ramPrice = 0;
+        }
+
+        updateInfoBox();
+        updateTotalPrice();
     } else {
+        infoBoxRam.style.display = "flex";
+        infoBoxRam.style.visibility = "visible";
+
+        selectionBoxRamQty.innerHTML = '<option value="0" selected>Cantidad</option>';
+
         if (dataFilteredRam[selectedRam - 1]["sticks"] == 1) {
             selectionBoxRamQty.innerHTML = '<option value="2" selected>2</option>' + '<option value="4">4</option>';
             totalRam = dataFilteredRam[selectedRam - 1]["total_capacity"] * 2;
@@ -508,6 +535,7 @@ selectionBoxRam.onchange = function (e) {
             totalRam = dataFilteredRam[selectedRam - 1]["total_capacity"];
             totalRamKits = 1;
         }
+
         ramInfoBox =
             '<div class="d-flex">' +
             '<div class="p-2 flex-fill">' +
@@ -568,9 +596,6 @@ selectionBoxRam.onchange = function (e) {
             }
         };
 
-        infoBoxRam.style.display = "flex";
-        infoBoxRam.style.visibility = "visible";
-
         infoBoxRam.innerHTML =
             '<div class="col-xs-12 col-md-6" id="motherboard_select_socket">Velocidad: ' +
             dataFilteredRam[selectedRam - 1]["speed"] +
@@ -578,10 +603,10 @@ selectionBoxRam.onchange = function (e) {
             '<div class="col-xs-12 col-md-6" id="motherboard_platform">Modelo: ' +
             dataFilteredRam[selectedRam - 1]["model"] +
             "</div>";
-    }
 
-    updateInfoBox();
-    updateTotalPrice();
+        updateInfoBox();
+        updateTotalPrice();
+    }
 };
 
 // Escuchamos el cambio de seleccion de pais para ajustar el IVA
