@@ -1,0 +1,106 @@
+[
+    {
+        "gpu_id": 1,
+        "manufacturer": "MSI",
+        "platform": "Intel",
+        "manufacturer_category": "VENTUS",
+        "commercial_name": "GeForce RTX 3080 Ti VENTUS 3X 12G OC",
+        "series": "3080",
+        "memory": 12,
+        "bus": "PCI Express Gen 4",
+        "outlets": {
+            "display_port_qty": 3,
+            "hdmi_port_qty": 1
+        },
+        "power_consumption": 350,
+        "monitors": 4,
+        "max_res": "7680 x 4320",
+        "power_pins": {
+            "4-pin": 0,
+            "8-pin": 2,
+            "16-pin": 0,
+            "20-pin": 0,
+            "24-pin": 0
+        },
+        "price": 400,
+        "link": "https://latam.msi.com/Graphics-Card/GeForce-RTX-3080-Ti-VENTUS-3X-12G-OC"
+    },
+    {
+        "gpu_id": 2,
+        "manufacturer": "MSI",
+        "platform": "Intel",
+        "manufacturer_category": "VENTUS",
+        "commercial_name": "GeForce RTX 4070 Ti VENTUS 3X 12G OC",
+        "series": "4070",
+        "memory": 12,
+        "bus": "PCI Express Gen 4",
+        "outlets": {
+            "display_port_qty": 3,
+            "hdmi_port_qty": 1
+        },
+        "power_consumption": 285,
+        "monitors": 4,
+        "max_res": "7680 x 4320",
+        "power_pins": {
+            "4-pin": 0,
+            "8-pin": 0,
+            "16-pin": 1,
+            "20-pin": 0,
+            "24-pin": 0
+        },
+        "price": 990,
+        "link": "https://latam.msi.com/Graphics-Card/GeForce-RTX-4070-Ti-VENTUS-3X-12G-OC"
+    },
+    {
+        "gpu_id": 3,
+        "manufacturer": "MSI",
+        "platform": "AMD",
+        "manufacturer_category": "MECH",
+        "commercial_name": "Radeon RX 6650 XT MECH 2X 8G OC",
+        "series": "6000",
+        "memory": 8,
+        "bus": "PCI Express Gen 4 x8",
+        "outlets": {
+            "display_port_qty": 3,
+            "hdmi_port_qty": 1
+        },
+        "power_consumption": 175,
+        "monitors": 4,
+        "max_res": "7680 x 4320",
+        "power_pins": {
+            "4-pin": 0,
+            "8-pin": 1,
+            "16-pin": 0,
+            "20-pin": 0,
+            "24-pin": 0
+        },
+        "price": 375,
+        "link": "https://latam.msi.com/Graphics-Card/Radeon-RX-6650-XT-MECH-2X-8G-OC"
+    },
+    {
+        "gpu_id": 4,
+        "manufacturer": "MSI",
+        "platform": "AMD",
+        "manufacturer_category": "GAMING",
+        "commercial_name": "Radeon™ RX 7900 XTX GAMING TRIO CLASSIC 24G",
+        "series": "7000",
+        "memory": 24,
+        "bus": "PCI Express Gen 4",
+        "outlets": {
+            "display_port_qty": 3,
+            "hdmi_port_qty": 1
+        },
+        "power_consumption": 355,
+        "monitors": 4,
+        "max_res": "7680 x 4320",
+        "power_pins": {
+            "4-pin": 0,
+            "8-pin": 3,
+            "16-pin": 0,
+            "20-pin": 0,
+            "24-pin": 0
+        },
+        "price": 825,
+        "link": "https://latam.msi.com/Graphics-Card/Radeon-RX-7900-XTX-GAMING-TRIO-CLASSIC-24G"
+    }
+]

@@ -14,11 +14,14 @@ const selectionBoxM2Qty = document.getElementById("m2_select_qty");
 const selectionBoxSsd = document.getElementById("ssd_select");
 const selectionBoxSsdQty = document.getElementById("ssd_select_qty");
 const selectionBoxCountry = document.getElementById("select_pais");
+const selectionBoxVideo = document.getElementById("video_select");
+
 const infoBoxProcessors = document.getElementById("processor_select_info");
 const infoBoxMotherboards = document.getElementById("motherboard_select_info");
 const infoBoxRam = document.getElementById("ram_select_info");
 const infoBoxDiscsM2 = document.getElementById("discs_m2_select_info");
 const infoBoxDiscsSsd = document.getElementById("discs_ssd_select_info");
+const infoBoxVideo = document.getElementById("video_select_info");
 const infoBoxPrice = document.getElementById("total_price");
 const infoBox = document.getElementById("information_box");
 
@@ -32,6 +35,8 @@ let dataSelectedM2 = [];
 let dataFilteredM2 = [];
 let dataSelectedSsd = [];
 let dataFilteredSsd = [];
+let dataSelectedVideo = [];
+let dataFilteredVideo = [];
 let memoryAllowed = [];
 
 // Variables para almacenar valores que cambian con cada cambio de seleccion
@@ -44,6 +49,7 @@ let selectedM2 = 0;
 let selectedM2Qty = 0;
 let selectedSsd = 0;
 let selectedSsdQty = 0;
+let selectedVideo = 0;
 let selectedCountry = "";
 // Informacion a mostrar de cada elemento
 let processorInfoBox = "";
@@ -53,12 +59,14 @@ let discsM2InfoBox = "";
 let discsSsdInfoBox = "";
 let cant_discos_m2;
 let cant_discos_ssd;
+let videoInfoBox = "";
 // Precio de cada componente seleccionado y precios/impuestos
 let processorPrice = 0;
 let motherboardPrice = 0;
 let ramPrice = 0;
 let discsM2Price = 0;
 let discsSsdPrice = 0;
+let VideoPrice = 0;
 let totalPrice = 0;
 let taxPct = 1;
 let taxAlone = 0;
@@ -67,6 +75,7 @@ let total = 0;
 let cpuWattage = 0;
 let motherboardWattage = 0;
 let ramWattage = 0;
+let videoWattage = 0;
 let totalWattage = 0;
 let totalRam = 0;
 let totalRamKits = 0;
@@ -198,6 +207,28 @@ function reset_all(parte = null) {
         selectionBoxSsdQty.setAttribute("disabled", "")
         discsSsdInfoBox = "";
         discsSsdPrice = 0;
+        updateInfoBox();
+    };
+
+    if (parte == null || parte == "video") {
+        infoBoxVideo.style.display = "none";
+        infoBoxVideo.style.visibility = "hidden";
+        selectionBoxVideo.value = 0;
+        // dataSelectedMotherboard = [];
+        // dataFilteredVideo = [];
+        selectedVideo = 0;
+        videoInfoBox = "";
+        videoPrice = 0;
+        videoWattage = 0;
+
+        // Al volver a la opcion de procesador 0, reseteamos el dropdown
+        // de los otros componentes tambien. El usuario debe
+        // voler a comenzar desde el paso 1
+        if (!selectionBoxVideo.disabled) {
+            // Video
+            selectionBoxVideo.setAttribute("disabled", "");
+        };
+
         updateInfoBox();
     };
 
@@ -478,6 +509,53 @@ function fetch_data_discs() {
             if (selectionBoxSsd.disabled && dataFilteredSsd.length > 0) {
                 selectionBoxSsd.removeAttribute("disabled");
             };
+        })
+        .catch((reason) => console.log("Msg: " + reason));
+};
+
+// Preparamo la funcion para alimentar el dropdown de los memorias
+function fetch_data_ram() {
+    fetch_data(apiEndpointRam)
+        .then((data) => {
+            dataSelectedRam = data;
+            selectionBoxRam.innerHTML = '<option value="0" selected>Realice una selecci&oacute;n</option>';
+
+            // Habilitamos el selector del dropdown del proximo componente
+            if (selectionBoxRam.disabled) {
+                selectionBoxRam.removeAttribute("disabled");
+            }
+
+            dataFilteredRam = [];
+            for (let i = 0; i < dataSelectedRam.length; i += 1) {
+                // Solo ponemos en el dropdown las memorias que son compatibles
+                // con el mother seleccionado
+                if (
+                    (dataSelectedMotherboard[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr3_capable"] == true &&
+                        dataSelectedRam[i]["compatibility"]["memory_type"]["ddr3"] == true) ||
+                    (dataSelectedMotherboard[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr4_capable"] == true &&
+                        dataSelectedRam[i]["compatibility"]["memory_type"]["ddr4"] == true) ||
+                    (dataSelectedMotherboard[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr5_capable"] == true &&
+                        dataSelectedRam[i]["compatibility"]["memory_type"]["ddr5"] == true)
+                ) {
+                    dataFilteredRam.push(dataSelectedRam[i]);
+                    selectionBoxRam.innerHTML =
+                        selectionBoxRam.innerHTML +
+                        '<option value="' +
+                        dataSelectedRam[i]["memory_id"] +
+                        '">' +
+                        dataSelectedRam[i]["manufacturer"] +
+                        " " +
+                        dataSelectedRam[i]["commercial_name"] +
+                        " " +
+                        dataSelectedRam[i]["total_capacity"] +
+                        " GB (" +
+                        dataSelectedRam[i]["sticks"] +
+                        "x" +
+                        dataSelectedRam[i]["capacity_per_stick"] +
+                        " GB)" +
+                        "</option>";
+                }
+            }
         })
         .catch((reason) => console.log("Msg: " + reason));
 };
