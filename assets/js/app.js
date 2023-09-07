@@ -3,6 +3,7 @@ const apiEndpointProcessors = "https://javascript.cesararacena.com/json/processo
 const apiEndpointMotherboards = "https://javascript.cesararacena.com/json/motherboards.json";
 const apiEndpointRam = "https://javascript.cesararacena.com/json/ram.json";
 const apiEndpointDiscs = "https://javascript.cesararacena.com/json/discs.json";
+const apiEndpointVideo = "https://javascript.cesararacena.com/json/gpu.json";
 
 // Constantes que almacenan las direcciones del DOM a actualizar
 const selectionBoxProcessors = document.getElementById("processor_select");
@@ -66,7 +67,7 @@ let motherboardPrice = 0;
 let ramPrice = 0;
 let discsM2Price = 0;
 let discsSsdPrice = 0;
-let VideoPrice = 0;
+let videoPrice = 0;
 let totalPrice = 0;
 let taxPct = 1;
 let taxAlone = 0;
@@ -99,7 +100,7 @@ function reset_all(parte = null) {
         totalWattage = 0;
 
         updateInfoBox();
-    };
+    }
 
     if (parte == null || parte == "motherboards") {
         infoBoxMotherboards.style.display = "none";
@@ -118,10 +119,10 @@ function reset_all(parte = null) {
         if (!selectionBoxMotherboards.disabled) {
             // Motherboards
             selectionBoxMotherboards.setAttribute("disabled", "");
-        };
+        }
 
         updateInfoBox();
-    };
+    }
 
     if (parte == null || parte == "ram") {
         infoBoxRam.style.display = "none";
@@ -136,22 +137,22 @@ function reset_all(parte = null) {
         ramWattage = 0;
         totalRam = 0;
         totalRamKits = 0;
-        ramInfoBox = '';
+        ramInfoBox = "";
 
         if (!selectionBoxRam.disabled) {
             // RAM
             selectionBoxRam.setAttribute("disabled", "");
-        };
+        }
 
         if (!selectionBoxRamQty.disabled) {
             // RAM QTY
             selectionBoxRamQty.setAttribute("disabled", "");
-        };
+        }
 
         selectionBoxRamQty.innerHTML = '<option value="0" selected>Cantidad</option>';
 
         updateInfoBox();
-    };
+    }
 
     if (parte == null || parte == "discs") {
         infoBoxDiscsM2.style.display = "none";
@@ -172,43 +173,43 @@ function reset_all(parte = null) {
         if (!selectionBoxM2.disabled) {
             // RAM
             selectionBoxM2.setAttribute("disabled", "");
-        };
+        }
 
         if (!selectionBoxSsd.disabled) {
             // RAM
             selectionBoxSsd.setAttribute("disabled", "");
-        };
+        }
 
         if (!selectionBoxM2Qty.disabled) {
             // RAM
             selectionBoxM2Qty.setAttribute("disabled", "");
-        };
+        }
 
         if (!selectionBoxSsdQty.disabled) {
             // RAM
             selectionBoxSsdQty.setAttribute("disabled", "");
-        };
+        }
 
         updateInfoBox();
-    };
+    }
 
     if (parte == null || parte == "discs_m2") {
         selectionBoxM2Qty.innerHTML = '<option value="0" selected>Cantidad de unidades M.2</option>';
         selectionBoxM2Qty.value = 0;
-        selectionBoxM2Qty.setAttribute("disabled", "")
+        selectionBoxM2Qty.setAttribute("disabled", "");
         discsM2InfoBox = "";
         discsM2Price = 0;
         updateInfoBox();
-    };
+    }
 
     if (parte == null || parte == "discs_ssd") {
         selectionBoxSsdQty.innerHTML = '<option value="0" selected>Cantidad de unidades SSD</option>';
         selectionBoxSsdQty.value = 0;
-        selectionBoxSsdQty.setAttribute("disabled", "")
+        selectionBoxSsdQty.setAttribute("disabled", "");
         discsSsdInfoBox = "";
         discsSsdPrice = 0;
         updateInfoBox();
-    };
+    }
 
     if (parte == null || parte == "video") {
         infoBoxVideo.style.display = "none";
@@ -224,13 +225,13 @@ function reset_all(parte = null) {
         // Al volver a la opcion de procesador 0, reseteamos el dropdown
         // de los otros componentes tambien. El usuario debe
         // voler a comenzar desde el paso 1
-        if (!selectionBoxVideo.disabled) {
-            // Video
-            selectionBoxVideo.setAttribute("disabled", "");
-        };
+        // if (!selectionBoxVideo.disabled) {
+        //     // Video
+        //     selectionBoxVideo.setAttribute("disabled", "");
+        // }
 
         updateInfoBox();
-    };
+    }
 
     // selectionBoxRamQty.value = 0;
 
@@ -249,7 +250,7 @@ async function fetch_data(endpoint) {
 // Funcion para formatear el HTML para mostrar el total de consumo
 function show_wattage() {
     totalWattage = 0;
-    totalWattage = cpuWattage + motherboardWattage + ramWattage;
+    totalWattage = cpuWattage + motherboardWattage + ramWattage + videoWattage;
 
     if (totalWattage > 0) {
         return (
@@ -272,23 +273,12 @@ function show_wattage() {
 // Funcion para actualizar el detalle de los productos seleccionados
 function updateInfoBox() {
     infoBox.innerHTML = "";
-    infoBox.innerHTML =
-        processorInfoBox +
-        motherboardInfoBox +
-        ramInfoBox +
-        discsM2InfoBox +
-        discsSsdInfoBox +
-        show_wattage();
+    infoBox.innerHTML = processorInfoBox + motherboardInfoBox + ramInfoBox + discsM2InfoBox + discsSsdInfoBox + videoInfoBox + show_wattage();
 }
 
 // Funcion para actualizar los valores en el detalle
 function updateTotalPrice() {
-    totalPrice =
-        processorPrice +
-        motherboardPrice +
-        ramPrice +
-        discsM2Price +
-        discsSsdPrice;
+    totalPrice = processorPrice + motherboardPrice + ramPrice + discsM2Price + discsSsdPrice + videoPrice;
 
     if (totalPrice <= 0) {
         taxAlone = 0;
@@ -331,13 +321,13 @@ function updateTotalPrice() {
 
 function capacidad_m2_total(seleccion, cantidad) {
     let capacidad_m2 = seleccion * cantidad;
-    return (capacidad_m2 >= 1000 ? capacidad_m2 / 1000 + " TB" : capacidad_m2 + " GB");
-};
+    return capacidad_m2 >= 1000 ? capacidad_m2 / 1000 + " TB" : capacidad_m2 + " GB";
+}
 
 function capacidad_ssd_total(seleccion, cantidad) {
     let capacidad_ssd = seleccion * cantidad;
-    return (capacidad_ssd >= 1000 ? capacidad_ssd / 1000 + " TB" : capacidad_ssd + " GB");
-};
+    return capacidad_ssd >= 1000 ? capacidad_ssd / 1000 + " TB" : capacidad_ssd + " GB";
+}
 
 // Usamos la funcion fetchData() para cargar la lista de procesadores
 // cuando se carga la pagina
@@ -400,7 +390,7 @@ function fetch_data_motherboards() {
             }
         })
         .catch((reason) => console.log("Msg: " + reason));
-};
+}
 
 // Preparamo la funcion para alimentar el dropdown de los memorias
 function fetch_data_ram() {
@@ -447,18 +437,17 @@ function fetch_data_ram() {
             }
         })
         .catch((reason) => console.log("Msg: " + reason));
-};
+}
 
 // Preparamo la funcion para alimentar el dropdown de los memorias
 function fetch_data_discs() {
     fetch_data(apiEndpointDiscs)
         .then((data) => {
-
             dataSelectedM2 = [];
             dataSelectedSsd = [];
-            
-            Object.keys(data).forEach(key => {
-                if (data[key]['type'] == 'm2') {
+
+            Object.keys(data).forEach((key) => {
+                if (data[key]["type"] == "m2") {
                     dataSelectedM2.push(data[key]);
                 } else {
                     dataSelectedSsd.push(data[key]);
@@ -473,92 +462,78 @@ function fetch_data_discs() {
             for (let i = 0; i < dataSelectedM2.length; i += 1) {
                 if (dataSelectedMotherboard[selectedMotherboard - 1]["storage"]["m2_slots"] > 0) {
                     dataFilteredM2.push(dataSelectedM2[i]);
-                    selectionBoxM2.innerHTML = 
+                    selectionBoxM2.innerHTML =
                         selectionBoxM2.innerHTML +
                         '<option value="' +
-                            dataSelectedM2[i]["disc_id"] +
-                            '">' +
-                            dataSelectedM2[i]["manufacturer"] +
-                            " " +
-                            dataSelectedM2[i]["commercial_name"] +
-                            "</option>";
+                        dataSelectedM2[i]["disc_id"] +
+                        '">' +
+                        dataSelectedM2[i]["manufacturer"] +
+                        " " +
+                        dataSelectedM2[i]["commercial_name"] +
+                        "</option>";
                 }
-            };
+            }
 
             if (selectionBoxM2.disabled && dataFilteredM2.length > 0) {
                 selectionBoxM2.removeAttribute("disabled");
-            };
+            }
 
             dataFilteredSsd = [];
 
             for (let i = 0; i < dataSelectedSsd.length; i += 1) {
                 if (dataSelectedMotherboard[selectedMotherboard - 1]["storage"]["sata_6gbs_ports"] > 0) {
                     dataFilteredSsd.push(dataSelectedSsd[i]);
-                    selectionBoxSsd.innerHTML = 
+                    selectionBoxSsd.innerHTML =
                         selectionBoxSsd.innerHTML +
                         '<option value="' +
-                            dataSelectedSsd[i]["disc_id"] +
-                            '">' +
-                            dataSelectedSsd[i]["manufacturer"] +
-                            " " +
-                            dataSelectedSsd[i]["commercial_name"] +
-                            "</option>";
+                        dataSelectedSsd[i]["disc_id"] +
+                        '">' +
+                        dataSelectedSsd[i]["manufacturer"] +
+                        " " +
+                        dataSelectedSsd[i]["commercial_name"] +
+                        "</option>";
                 }
-            };
+            }
 
             if (selectionBoxSsd.disabled && dataFilteredSsd.length > 0) {
                 selectionBoxSsd.removeAttribute("disabled");
-            };
+            }
         })
         .catch((reason) => console.log("Msg: " + reason));
-};
+}
 
 // Preparamo la funcion para alimentar el dropdown de los memorias
-function fetch_data_ram() {
-    fetch_data(apiEndpointRam)
+function fetch_data_video() {
+    fetch_data(apiEndpointVideo)
         .then((data) => {
-            dataSelectedRam = data;
-            selectionBoxRam.innerHTML = '<option value="0" selected>Realice una selecci&oacute;n</option>';
+            dataSelectedVideo = data;
+            selectionBoxVideo.innerHTML = '<option value="0" selected>Realice una selecci&oacute;n</option>';
 
             // Habilitamos el selector del dropdown del proximo componente
-            if (selectionBoxRam.disabled) {
-                selectionBoxRam.removeAttribute("disabled");
+            if (selectionBoxVideo.disabled) {
+                selectionBoxVideo.removeAttribute("disabled");
             }
 
-            dataFilteredRam = [];
-            for (let i = 0; i < dataSelectedRam.length; i += 1) {
+            dataFilteredVideo = [];
+            for (let i = 0; i < dataSelectedVideo.length; i += 1) {
                 // Solo ponemos en el dropdown las memorias que son compatibles
                 // con el mother seleccionado
-                if (
-                    (dataSelectedMotherboard[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr3_capable"] == true &&
-                        dataSelectedRam[i]["compatibility"]["memory_type"]["ddr3"] == true) ||
-                    (dataSelectedMotherboard[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr4_capable"] == true &&
-                        dataSelectedRam[i]["compatibility"]["memory_type"]["ddr4"] == true) ||
-                    (dataSelectedMotherboard[selectedMotherboard - 1]["compatibility"]["memory_type"]["ddr5_capable"] == true &&
-                        dataSelectedRam[i]["compatibility"]["memory_type"]["ddr5"] == true)
-                ) {
-                    dataFilteredRam.push(dataSelectedRam[i]);
-                    selectionBoxRam.innerHTML =
-                        selectionBoxRam.innerHTML +
+                if (dataFilteredMotherboards[selectedMotherboard - 1]["platform"] == dataSelectedVideo[i]["platform"]) {
+                    dataFilteredVideo.push(dataSelectedVideo[i]);
+                    selectionBoxVideo.innerHTML =
+                        selectionBoxVideo.innerHTML +
                         '<option value="' +
-                        dataSelectedRam[i]["memory_id"] +
+                        dataSelectedVideo[i]["gpu_id"] +
                         '">' +
-                        dataSelectedRam[i]["manufacturer"] +
+                        dataSelectedVideo[i]["manufacturer"] +
                         " " +
-                        dataSelectedRam[i]["commercial_name"] +
-                        " " +
-                        dataSelectedRam[i]["total_capacity"] +
-                        " GB (" +
-                        dataSelectedRam[i]["sticks"] +
-                        "x" +
-                        dataSelectedRam[i]["capacity_per_stick"] +
-                        " GB)" +
+                        dataSelectedVideo[i]["commercial_name"] +
                         "</option>";
                 }
             }
         })
         .catch((reason) => console.log("Msg: " + reason));
-};
+}
 
 // Escuchamos el evento de cambio de seleccion del dropdown de procesadores
 selectionBoxProcessors.onchange = function (e) {
@@ -590,7 +565,6 @@ selectionBoxProcessors.onchange = function (e) {
             dataSelectedProcessor[selectedProcessor - 1]["price"].toFixed(2) +
             "</div>" +
             "</div>";
-            
 
         // Pasamos el precio del procesador seleccionado para la suma del total en la parte del "detalle"
         processorPrice = dataSelectedProcessor[selectedProcessor - 1]["price"];
@@ -650,9 +624,9 @@ selectionBoxMotherboards.onchange = function (e) {
     if (selectedMotherboard == 0) {
         reset_all("ram");
         reset_all("discs");
+        reset_all("video");
     } else {
-        reset_all("ram");
-        reset_all("discs");
+        
         motherboardInfoBox =
             '<div class="d-flex">' +
             '<div class="p-2 flex-fill">' +
@@ -810,12 +784,12 @@ selectionBoxRam.onchange = function (e) {
                     "</div>";
 
                 infoBoxRam.innerHTML =
-                '<div class="col-xs-12 col-md-6" id="motherboard_platform">Modelo: ' +
-                dataFilteredRam[selectedRam - 1]["model"] +
-                '</div>' +
-                '<div class="col-xs-12 col-md-6" id="motherboard_platform">Total: ' +
-                totalRam +
-                ' GB</div>';
+                    '<div class="col-xs-12 col-md-6" id="motherboard_platform">Modelo: ' +
+                    dataFilteredRam[selectedRam - 1]["model"] +
+                    "</div>" +
+                    '<div class="col-xs-12 col-md-6" id="motherboard_platform">Total: ' +
+                    totalRam +
+                    " GB</div>";
 
                 updateInfoBox();
                 updateTotalPrice();
@@ -828,13 +802,14 @@ selectionBoxRam.onchange = function (e) {
         infoBoxRam.innerHTML =
             '<div class="col-xs-12 col-md-6" id="motherboard_platform">Modelo: ' +
             dataFilteredRam[selectedRam - 1]["model"] +
-            '</div>' +
+            "</div>" +
             '<div class="col-xs-12 col-md-6" id="motherboard_platform">Total: ' +
             totalRam +
-            ' GB'
-            "</div>";
+            " GB";
+        ("</div>");
 
         fetch_data_discs();
+        fetch_data_video();
     }
 
     updateInfoBox();
@@ -845,30 +820,40 @@ selectionBoxM2.onchange = function (e) {
     selectedM2 = this.selectedIndex;
 
     if (selectedM2 == 0) {
-        reset_all('discs_m2');
+        reset_all("discs_m2");
+
+        if (selectedSsd == 0) {
+            reset_all("video");
+        }
     } else {
+        if (selectionBoxVideo.disabled) {
+            selectionBoxVideo.removeAttribute("disabled");
+        }
+
         // selectionBoxM2Qty.innerHTML = '<option value="0" selected>Cantidad de unidades M.2</option>';
         selectionBoxM2Qty.removeAttribute("disabled");
 
+        selectionBoxVideo.removeAttribute("disabled");
+
         cant_discos_m2 = [...Array(dataFilteredMotherboards[selectedMotherboard - 1]["storage"]["m2_slots"] + 1).keys()];
 
-        selectionBoxM2Qty.innerHTML = '';
+        selectionBoxM2Qty.innerHTML = "";
 
         for (let i of cant_discos_m2) {
             if (i > 0) {
                 selectionBoxM2Qty.innerHTML =
-                    selectionBoxM2Qty.innerHTML +
-                    '<option value="' + i + '"' + (i == 1 ? " selected" : "") + '>' + i + '</option>';
-            };
+                    selectionBoxM2Qty.innerHTML + '<option value="' + i + '"' + (i == 1 ? " selected" : "") + ">" + i + "</option>";
+            }
         }
 
-        discsM2InfoBox = '';
+        discsM2InfoBox = "";
 
         discsM2InfoBox =
             '<div class="d-flex">' +
             '<div class="p-2 flex-fill">' +
             "Dico M.2: " +
-            selectionBoxM2Qty.value + " x " +
+            selectionBoxM2Qty.value +
+            " x " +
             dataFilteredM2[selectedM2 - 1]["manufacturer"] +
             " " +
             dataFilteredM2[selectedM2 - 1]["commercial_name"] +
@@ -887,7 +872,8 @@ selectionBoxM2.onchange = function (e) {
                 '<div class="d-flex">' +
                 '<div class="p-2 flex-fill">' +
                 "Dico M.2: " +
-                selectionBoxM2Qty.value + " x " +
+                selectionBoxM2Qty.value +
+                " x " +
                 dataFilteredM2[selectedM2 - 1]["manufacturer"] +
                 " " +
                 dataFilteredM2[selectedM2 - 1]["commercial_name"] +
@@ -901,9 +887,9 @@ selectionBoxM2.onchange = function (e) {
 
             discsM2Price = dataFilteredM2[selectedM2 - 1]["price"] * selectionBoxM2Qty.value;
 
-            infoBoxDiscsM2.innerHTML = '';
+            infoBoxDiscsM2.innerHTML = "";
 
-            infoBoxDiscsM2.innerHTML = 
+            infoBoxDiscsM2.innerHTML =
                 '<div class="col-xs-12 col-md-6" id="memory_m2_platform">M.2 Plataforma: ' +
                 dataFilteredM2[selectedM2 - 1]["platform"] +
                 "</div>" +
@@ -918,16 +904,15 @@ selectionBoxM2.onchange = function (e) {
         infoBoxDiscsM2.style.display = "flex";
         infoBoxDiscsM2.style.visibility = "visible";
 
-        infoBoxDiscsM2.innerHTML = '';
+        infoBoxDiscsM2.innerHTML = "";
 
-        infoBoxDiscsM2.innerHTML = 
+        infoBoxDiscsM2.innerHTML =
             '<div class="col-xs-12 col-md-6" id="memory_m2_platform">M.2 Plataforma: ' +
             dataFilteredM2[selectedM2 - 1]["platform"] +
             "</div>" +
             '<div class="col-xs-12 col-md-6" id="memory_m2_capacity">Capacidad: ' +
             capacidad_m2_total(dataFilteredM2[selectedM2 - 1]["capacity"], selectionBoxM2Qty.value) +
             "</div>";
-
     }
 
     updateInfoBox();
@@ -938,30 +923,38 @@ selectionBoxSsd.onchange = function (e) {
     selectedSsd = this.selectedIndex;
 
     if (selectedSsd == 0) {
-        reset_all('discs_ssd');
+        reset_all("discs_ssd");
+
+        if (selectedM2 == 0) {
+            reset_all("video");
+        }
     } else {
+        if (selectionBoxVideo.disabled) {
+            selectionBoxVideo.removeAttribute("disabled");
+        }
+
         // selectionBoxSsdQty.innerHTML = '<option value="0" selected>Cantidad de unidades SSD</option>';
         selectionBoxSsdQty.removeAttribute("disabled");
 
         cant_discos_ssd = [...Array(dataFilteredMotherboards[selectedMotherboard - 1]["storage"]["sata_6gbs_ports"] + 1).keys()];
-        
-        selectionBoxSsdQty.innerHTML = '';
+
+        selectionBoxSsdQty.innerHTML = "";
 
         for (let i of cant_discos_ssd) {
             if (i > 0) {
                 selectionBoxSsdQty.innerHTML =
-                    selectionBoxSsdQty.innerHTML +
-                    '<option value="' + i + '"' + (i == 1 ? " selected" : "") + '>' + i + '</option>';
-            };
+                    selectionBoxSsdQty.innerHTML + '<option value="' + i + '"' + (i == 1 ? " selected" : "") + ">" + i + "</option>";
+            }
         }
 
-        discsSsdInfoBox = '';
+        discsSsdInfoBox = "";
 
         discsSsdInfoBox =
             '<div class="d-flex">' +
             '<div class="p-2 flex-fill">' +
             "Dico SSD: " +
-            selectionBoxSsdQty.value + " x " +
+            selectionBoxSsdQty.value +
+            " x " +
             dataFilteredSsd[selectedSsd - 1]["manufacturer"] +
             " " +
             dataFilteredSsd[selectedSsd - 1]["commercial_name"] +
@@ -980,7 +973,8 @@ selectionBoxSsd.onchange = function (e) {
                 '<div class="d-flex">' +
                 '<div class="p-2 flex-fill">' +
                 "Dico SSD: " +
-                selectionBoxSsdQty.value + " x " +
+                selectionBoxSsdQty.value +
+                " x " +
                 dataFilteredSsd[selectedSsd - 1]["manufacturer"] +
                 " " +
                 dataFilteredSsd[selectedSsd - 1]["commercial_name"] +
@@ -994,9 +988,9 @@ selectionBoxSsd.onchange = function (e) {
 
             discsSsdPrice = dataFilteredSsd[selectedSsd - 1]["price"] * selectionBoxSsdQty.value;
 
-            infoBoxDiscsSsd.innerHTML = '';
+            infoBoxDiscsSsd.innerHTML = "";
 
-            infoBoxDiscsSsd.innerHTML = 
+            infoBoxDiscsSsd.innerHTML =
                 infoBoxDiscsSsd.innerHTML +
                 '<div class="col-xs-12 col-md-6" id="memory_ssd_platform">SSD Plataforma: ' +
                 dataFilteredSsd[selectedSsd - 1]["platform"] +
@@ -1012,9 +1006,9 @@ selectionBoxSsd.onchange = function (e) {
         infoBoxDiscsSsd.style.display = "flex";
         infoBoxDiscsSsd.style.visibility = "visible";
 
-        infoBoxDiscsSsd.innerHTML = '';
+        infoBoxDiscsSsd.innerHTML = "";
 
-        infoBoxDiscsSsd.innerHTML = 
+        infoBoxDiscsSsd.innerHTML =
             infoBoxDiscsSsd.innerHTML +
             '<div class="col-xs-12 col-md-6" id="memory_ssd_platform">SSD Plataforma: ' +
             dataFilteredSsd[selectedSsd - 1]["platform"] +
@@ -1022,7 +1016,70 @@ selectionBoxSsd.onchange = function (e) {
             '<div class="col-xs-12 col-md-6" id="memory_ssd_capacity">Capacidad: ' +
             capacidad_ssd_total(dataFilteredSsd[selectedSsd - 1]["capacity"], selectionBoxSsdQty.value) +
             "</div>";
+    }
 
+    updateInfoBox();
+    updateTotalPrice();
+};
+
+// Escuchamos el evento de cambio de seleccion del dropdown de procesadores
+selectionBoxVideo.onchange = function (e) {
+    selectedVideo = this.selectedIndex;
+
+    // reset_all('video');
+
+    // Si el usuario vuelve a la opcion 0, procedemos a limpiar
+    // toda la info insertada en el DOM anteriormente
+    if (selectedVideo == 0) {
+        reset_all("video");
+    } else {
+        videoInfoBox =
+            '<div class="d-flex">' +
+            '<div class="p-2 flex-fill">' +
+            "Video: " +
+            dataFilteredVideo[selectedVideo - 1]["manufacturer"] +
+            " " +
+            dataFilteredVideo[selectedVideo - 1]["commercial_name"] +
+            " " +
+            '<a href="dataFilteredVideo[selectedVideo - 1]["link"]" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
+            "</div>" +
+            '<div class="p-2 flex-fill text-end">$' +
+            dataFilteredVideo[selectedVideo - 1]["price"].toFixed(2) +
+            "</div>" +
+            "</div>";
+
+        videoPrice = dataFilteredVideo[selectedVideo - 1]["price"];
+
+        // Agregamos el consumo de potencia maximo al total de consumo
+        videoWattage = dataFilteredVideo[selectedVideo - 1]["power_consumption"];
+
+        infoBoxVideo.style.display = "flex";
+        infoBoxVideo.style.visibility = "visible";
+
+        infoBoxVideo.innerHTML =
+            '<div class="col-xs-12 col-md-6" id="motherboard_select_socket">Fabricante: ' +
+            dataFilteredVideo[selectedVideo - 1]["manufacturer"] +
+            "</div>" +
+            '<div class="col-xs-12 col-md-6" id="Video_platform">Plataforma: ' +
+            dataFilteredVideo[selectedVideo - 1]["platform"] +
+            "</div>" +
+            '<div class="col-xs-12 col-md-6" id="Video_form_factor">Series: ' +
+            dataFilteredVideo[selectedVideo - 1]["series"] +
+            "</div>" +
+            '<div class="col-xs-12 col-md-6" id="Video_storage_m2">Memoria: ' +
+            dataFilteredVideo[selectedVideo - 1]["memory"] +
+            " GB" +
+            "</div>" +
+            '<div class="col-xs-12 col-md-6" id="Video_storage_m2">Consumo: ' +
+            dataFilteredVideo[selectedVideo - 1]["power_consumption"] +
+            " W" +
+            "</div>" +
+            '<div class="col-xs-12 col-md-6" id="Video_storage_m2">Res. Max.: ' +
+            dataFilteredVideo[selectedVideo - 1]["max_res"] +
+            "</div>";
+
+        // Habilitamos la seleccion del proximo componente
+        // fetch_data_video();
     }
 
     updateInfoBox();
