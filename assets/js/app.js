@@ -284,7 +284,8 @@ function show_wattage() {
 // Funcion para actualizar el detalle de los productos seleccionados
 function updateInfoBox() {
     infoBox.innerHTML = "";
-    infoBox.innerHTML = processorInfoBox + motherboardInfoBox + ramInfoBox + discsM2InfoBox + discsSsdInfoBox + videoInfoBox + psuInfoBox + show_wattage();
+    infoBox.innerHTML =
+        processorInfoBox + motherboardInfoBox + ramInfoBox + discsM2InfoBox + discsSsdInfoBox + videoInfoBox + psuInfoBox + show_wattage();
 }
 
 // Funcion para actualizar los valores en el detalle
@@ -545,6 +546,49 @@ function fetch_data_video() {
         })
         .catch((reason) => console.log("Msg: " + reason));
 }
+fetch_data_psu();
+// Preparamo la funcion para alimentar el dropdown de los memorias
+function fetch_data_psu() {
+    fetch_data(apiEndpointPsu)
+        .then((data) => {
+            dataSelectedPsu = data;
+            selectionBoxPsu.innerHTML = '<option value="0" selected>Realice una selecci&oacute;n</option>';
+
+            // Habilitamos el selector del dropdown del proximo componente
+            if (selectionBoxPsu.disabled) {
+                selectionBoxPsu.removeAttribute("disabled");
+            }
+
+            let key = "wattage";
+            let val = 1200;
+            let result = Object.values(data).reduce((acc, curr) => {
+                if (curr[key] === val) {
+                    acc.push(curr);
+                }
+                return acc;
+            }, []);
+
+            console.log(result);
+
+            // for (let i = 0; i < dataSelectedPsu.length; i += 1) {
+            //     // Solo ponemos en el dropdown las memorias que son compatibles
+            //     // con el mother seleccionado
+            //     if (dataFilteredMotherboards[selectedMotherboard - 1]["platform"] == dataSelectedPsu[i]["platform"]) {
+            //         dataFilteredPsu.push(dataSelectedPsu[i]);
+            //         selectionBoxPsu.innerHTML =
+            //             selectionBoxPsu.innerHTML +
+            //             '<option value="' +
+            //             dataSelectedPsu[i]["gpu_id"] +
+            //             '">' +
+            //             dataSelectedPsu[i]["manufacturer"] +
+            //             " " +
+            //             dataSelectedPsu[i]["commercial_name"] +
+            //             "</option>";
+            //     }
+            // }
+        })
+        .catch((reason) => console.log("Msg: " + reason));
+}
 
 // Escuchamos el evento de cambio de seleccion del dropdown de procesadores
 selectionBoxProcessors.onchange = function (e) {
@@ -637,7 +681,6 @@ selectionBoxMotherboards.onchange = function (e) {
         reset_all("discs");
         reset_all("video");
     } else {
-        
         motherboardInfoBox =
             '<div class="d-flex">' +
             '<div class="p-2 flex-fill">' +
