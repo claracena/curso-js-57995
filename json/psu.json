@@ -1,0 +1,74 @@
+[
+    {
+        "psu_id": 1,
+        "manufacturer": "Corsair",
+        "series": "RMe",
+        "model": "RM750e Fully Modular Low-Noise ATX Power Supply",
+        "wattage": 750,
+        "price": 90.00,
+        "form_factor": "ATX",
+        "modular": true,
+        "80_plus_efficiency": "gold",
+        "link": "https://www.corsair.com/us/en/p/psu/cp-9020248-na/rme-series-rm750e-fully-modular-low-noise-atx-power-supply-cp-9020248-na"
+    },
+    {
+        "psu_id": 2,
+        "manufacturer": "Corsair",
+        "series": "RMe",
+        "model": "RM850e Fully Modular Low-Noise ATX Power Supply",
+        "wattage": 850,
+        "price": 120.00,
+        "form_factor": "ATX",
+        "modular": true,
+        "80_plus_efficiency": "gold",
+        "link": "https://www.corsair.com/us/en/p/psu/cp-9020249-na/rme-series-rm850e-fully-modular-low-noise-atx-power-supply-cp-9020249-na"
+    },
+    {
+        "psu_id": 3,
+        "manufacturer": "Corsair",
+        "series": "RMe",
+        "model": "RM1000e Fully Modular Low-Noise ATX Power Supply",
+        "wattage": 1000,
+        "price": 210.00,
+        "form_factor": "ATX",
+        "modular": true,
+        "80_plus_efficiency": "gold",
+        "link": "https://www.corsair.com/us/en/p/psu/cp-9020250-na/rme-series-rm1000e-fully-modular-low-noise-atx-power-supply-cp-9020250-na"
+    },
+    {
+        "psu_id": 4,
+        "manufacturer": "Thermaltake",
+        "series": "TOUGHPOWER",
+        "model": "TOUGHPOWER GF A3 Gold 650W - TT Premium Edition",
+        "wattage": 650,
+        "price": 79.99,
+        "form_factor": "ATX",
+        "modular": true,
+        "80_plus_efficiency": "gold",
+        "link": "https://thermaltakeusa.com/collections/power-supply/products/toughpower-gf-a3-gold-650w-tt-premium-edition-ps-tpd-0650fnfagu-l"
+    },
+    {
+        "psu_id": 5,
+        "manufacturer": "Thermaltake",
+        "series": "TOUGHPOWER",
+        "model": "Toughpower GF3 Snow 1200W - TT Premium Edition",
+        "wattage": 1200,
+        "price": 229.99,
+        "form_factor": "ATX",
+        "modular": true,
+        "80_plus_efficiency": "gold",
+        "link": "https://thermaltakeusa.com/collections/power-supply/products/toughpower-gf3-snow-1200w-tt-premium-edition-ps-tpd-1200fnfagu-n"
+    },
+    {
+        "psu_id": 6,
+        "manufacturer": "Thermaltake",
+        "series": "TOUGHPOWER",
+        "model": "Toughpower GF3 1650W Gold - TT Premium Edition",
+        "wattage": 1200,
+        "price": 349.99,
+        "form_factor": "ATX",
+        "modular": true,
+        "80_plus_efficiency": "gold",
+        "link": "https://thermaltakeusa.com/collections/power-supply/products/toughpower-gf3-1650w-gold-tt-premium-edition-ps-tpd-1650fnfagu-4"
+    }
+]

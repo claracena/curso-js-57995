@@ -4,6 +4,7 @@ const apiEndpointMotherboards = "https://javascript.cesararacena.com/json/mother
 const apiEndpointRam = "https://javascript.cesararacena.com/json/ram.json";
 const apiEndpointDiscs = "https://javascript.cesararacena.com/json/discs.json";
 const apiEndpointVideo = "https://javascript.cesararacena.com/json/gpu.json";
+const apiEndpointPsu = "https://javascript.cesararacena.com/json/psu.json";
 
 // Constantes que almacenan las direcciones del DOM a actualizar
 const selectionBoxProcessors = document.getElementById("processor_select");
@@ -16,6 +17,7 @@ const selectionBoxSsd = document.getElementById("ssd_select");
 const selectionBoxSsdQty = document.getElementById("ssd_select_qty");
 const selectionBoxCountry = document.getElementById("select_pais");
 const selectionBoxVideo = document.getElementById("video_select");
+const selectionBoxPsu = document.getElementById("psu_select");
 
 const infoBoxProcessors = document.getElementById("processor_select_info");
 const infoBoxMotherboards = document.getElementById("motherboard_select_info");
@@ -23,6 +25,7 @@ const infoBoxRam = document.getElementById("ram_select_info");
 const infoBoxDiscsM2 = document.getElementById("discs_m2_select_info");
 const infoBoxDiscsSsd = document.getElementById("discs_ssd_select_info");
 const infoBoxVideo = document.getElementById("video_select_info");
+const infoBoxPsu = document.getElementById("psu_select_info");
 const infoBoxPrice = document.getElementById("total_price");
 const infoBox = document.getElementById("information_box");
 
@@ -38,6 +41,7 @@ let dataSelectedSsd = [];
 let dataFilteredSsd = [];
 let dataSelectedVideo = [];
 let dataFilteredVideo = [];
+let dataSelectedPsu = [];
 let memoryAllowed = [];
 
 // Variables para almacenar valores que cambian con cada cambio de seleccion
@@ -51,6 +55,7 @@ let selectedM2Qty = 0;
 let selectedSsd = 0;
 let selectedSsdQty = 0;
 let selectedVideo = 0;
+let selectedPsu = 0;
 let selectedCountry = "";
 // Informacion a mostrar de cada elemento
 let processorInfoBox = "";
@@ -61,6 +66,7 @@ let discsSsdInfoBox = "";
 let cant_discos_m2;
 let cant_discos_ssd;
 let videoInfoBox = "";
+let psuInfoBox = "";
 // Precio de cada componente seleccionado y precios/impuestos
 let processorPrice = 0;
 let motherboardPrice = 0;
@@ -68,6 +74,7 @@ let ramPrice = 0;
 let discsM2Price = 0;
 let discsSsdPrice = 0;
 let videoPrice = 0;
+let psuPrice = 0;
 let totalPrice = 0;
 let taxPct = 1;
 let taxAlone = 0;
@@ -199,6 +206,7 @@ function reset_all(parte = null) {
         selectionBoxM2Qty.setAttribute("disabled", "");
         discsM2InfoBox = "";
         discsM2Price = 0;
+
         updateInfoBox();
     }
 
@@ -208,6 +216,7 @@ function reset_all(parte = null) {
         selectionBoxSsdQty.setAttribute("disabled", "");
         discsSsdInfoBox = "";
         discsSsdPrice = 0;
+
         updateInfoBox();
     }
 
@@ -222,18 +231,20 @@ function reset_all(parte = null) {
         videoPrice = 0;
         videoWattage = 0;
 
-        // Al volver a la opcion de procesador 0, reseteamos el dropdown
-        // de los otros componentes tambien. El usuario debe
-        // voler a comenzar desde el paso 1
-        // if (!selectionBoxVideo.disabled) {
-        //     // Video
-        //     selectionBoxVideo.setAttribute("disabled", "");
-        // }
-
         updateInfoBox();
     }
 
-    // selectionBoxRamQty.value = 0;
+    if (parte == null || parte == "video") {
+        infoBoxPsu.style.display = "none";
+        infoBoxPsu.style.visibility = "hidden";
+        selectionBoxPsu.value = 0;
+        selectedPsu = 0;
+        psuInfoBox = "";
+        psuPrice = 0;
+        psuWattage = 0;
+
+        updateInfoBox();
+    }
 
     selectedCountry = "";
 
@@ -273,12 +284,12 @@ function show_wattage() {
 // Funcion para actualizar el detalle de los productos seleccionados
 function updateInfoBox() {
     infoBox.innerHTML = "";
-    infoBox.innerHTML = processorInfoBox + motherboardInfoBox + ramInfoBox + discsM2InfoBox + discsSsdInfoBox + videoInfoBox + show_wattage();
+    infoBox.innerHTML = processorInfoBox + motherboardInfoBox + ramInfoBox + discsM2InfoBox + discsSsdInfoBox + videoInfoBox + psuInfoBox + show_wattage();
 }
 
 // Funcion para actualizar los valores en el detalle
 function updateTotalPrice() {
-    totalPrice = processorPrice + motherboardPrice + ramPrice + discsM2Price + discsSsdPrice + videoPrice;
+    totalPrice = processorPrice + motherboardPrice + ramPrice + discsM2Price + discsSsdPrice + videoPrice + psuPrice;
 
     if (totalPrice <= 0) {
         taxAlone = 0;
