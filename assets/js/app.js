@@ -42,6 +42,7 @@ let dataFilteredSsd = [];
 let dataSelectedVideo = [];
 let dataFilteredVideo = [];
 let dataSelectedPsu = [];
+let dataFilteredPsu = [];
 let memoryAllowed = [];
 
 // Variables para almacenar valores que cambian con cada cambio de seleccion
@@ -234,7 +235,7 @@ function reset_all(parte = null) {
         updateInfoBox();
     }
 
-    if (parte == null || parte == "video") {
+    if (parte == null || parte == "psu") {
         infoBoxPsu.style.display = "none";
         infoBoxPsu.style.visibility = "hidden";
         selectionBoxPsu.value = 0;
@@ -339,6 +340,18 @@ function capacidad_m2_total(seleccion, cantidad) {
 function capacidad_ssd_total(seleccion, cantidad) {
     let capacidad_ssd = seleccion * cantidad;
     return capacidad_ssd >= 1000 ? capacidad_ssd / 1000 + " TB" : capacidad_ssd + " GB";
+};
+
+function filter_psu(dataObject, wattage = totalWattage) {
+    let key = "wattage";
+    let correctedWattage = wattage * 1.15;
+    let filteredPsu = Object.values(dataObject).reduce((acc, curr) => {
+        if (curr[key] >= correctedWattage) {
+            acc.push(curr);
+        }
+        return acc;
+    }, []);
+    return filteredPsu;
 }
 
 // Usamos la funcion fetchData() para cargar la lista de procesadores
@@ -546,7 +559,7 @@ function fetch_data_video() {
         })
         .catch((reason) => console.log("Msg: " + reason));
 }
-fetch_data_psu();
+
 // Preparamo la funcion para alimentar el dropdown de los memorias
 function fetch_data_psu() {
     fetch_data(apiEndpointPsu)
@@ -555,37 +568,26 @@ function fetch_data_psu() {
             selectionBoxPsu.innerHTML = '<option value="0" selected>Realice una selecci&oacute;n</option>';
 
             // Habilitamos el selector del dropdown del proximo componente
-            if (selectionBoxPsu.disabled) {
+            if (selectionBoxPsu.disabled && !selectionBoxRam.disabled && !selectedM2.disabled && !selectedVideo.disabled) {
                 selectionBoxPsu.removeAttribute("disabled");
-            }
+            };
 
-            let key = "wattage";
-            let val = 1200;
-            let result = Object.values(data).reduce((acc, curr) => {
-                if (curr[key] === val) {
-                    acc.push(curr);
-                }
-                return acc;
-            }, []);
+            dataFilteredPsu = [];
+            dataFilteredPsu = filter_psu(data);
+            // console.log(dataFilteredPsu);
 
-            console.log(result);
-
-            // for (let i = 0; i < dataSelectedPsu.length; i += 1) {
-            //     // Solo ponemos en el dropdown las memorias que son compatibles
-            //     // con el mother seleccionado
-            //     if (dataFilteredMotherboards[selectedMotherboard - 1]["platform"] == dataSelectedPsu[i]["platform"]) {
-            //         dataFilteredPsu.push(dataSelectedPsu[i]);
-            //         selectionBoxPsu.innerHTML =
-            //             selectionBoxPsu.innerHTML +
-            //             '<option value="' +
-            //             dataSelectedPsu[i]["gpu_id"] +
-            //             '">' +
-            //             dataSelectedPsu[i]["manufacturer"] +
-            //             " " +
-            //             dataSelectedPsu[i]["commercial_name"] +
-            //             "</option>";
-            //     }
-            // }
+            for (let i = 0; i < dataFilteredPsu.length; i += 1) {
+                // console.log(i);
+                selectionBoxPsu.innerHTML =
+                    selectionBoxPsu.innerHTML +
+                    '<option value="' +
+                    dataFilteredPsu[i]["psu_id"] +
+                    '">' +
+                    dataFilteredPsu[i]["manufacturer"] +
+                    " " +
+                    dataFilteredPsu[i]["model"] +
+                    "</option>";
+            };
         })
         .catch((reason) => console.log("Msg: " + reason));
 }
@@ -1134,6 +1136,71 @@ selectionBoxVideo.onchange = function (e) {
 
         // Habilitamos la seleccion del proximo componente
         // fetch_data_video();
+        fetch_data_psu();
+    }
+
+    updateInfoBox();
+    updateTotalPrice();
+};
+
+// Escuchamos el evento de cambio de seleccion del dropdown de procesadores
+selectionBoxPsu.onchange = function (e) {
+    selectedPsu = this.selectedIndex;
+
+    // reset_all('video');
+
+    // Si el usuario vuelve a la opcion 0, procedemos a limpiar
+    // toda la info insertada en el DOM anteriormente
+    if (selectedVideo == 0) {
+        reset_all("psu");
+    } else {
+        videoInfoBox =
+            '<div class="d-flex">' +
+            '<div class="p-2 flex-fill">' +
+            "Fuente: " +
+            dataFilteredPsu[selectedPsu - 1]["manufacturer"] +
+            " " +
+            dataFilteredPsu[selectedPsu - 1]["model"] +
+            " " +
+            '<a href="dataFilteredPsu[selectedPsu - 1]["link"]" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
+            "</div>" +
+            '<div class="p-2 flex-fill text-end">$' +
+            dataFilteredPsu[selectedPsu - 1]["price"].toFixed(2) +
+            "</div>" +
+            "</div>";
+
+        psuPrice = dataFilteredPsu[selectedPsu - 1]["price"];
+
+        // Agregamos el consumo de potencia maximo al total de consumo
+        psuWattage = dataFilteredPsu[selectedPsu - 1]["power_consumption"];
+
+        infoBoxPsu.style.display = "flex";
+        infoBoxPsu.style.visibility = "visible";
+
+        infoBoxPsu.innerHTML =
+            '<div class="col-xs-12 col-md-6" id="psu_manufacturer">Fabricante: ' +
+            dataFilteredPsu[selectedPsu - 1]["manufacturer"] +
+            "</div>" +
+            '<div class="col-xs-12 col-md-6" id="psu_series">Series: ' +
+            dataFilteredPsu[selectedPsu - 1]["series"] +
+            "</div>" +
+            '<div class="col-xs-12 col-md-6" id="psu_form_factor">Formato: ' +
+            dataFilteredPsu[selectedPsu - 1]["form_factor"] +
+            "</div>" +
+            '<div class="col-xs-12 col-md-6" id="psu_modular">Modular: ' +
+            (dataFilteredPsu[selectedPsu - 1]["modular"] ? "Si" : "No") +
+            "</div>" +
+            '<div class="col-xs-12 col-md-6" id="psu_wattage">Potencia: ' +
+            dataFilteredPsu[selectedPsu - 1]["wattage"] +
+            " W" +
+            "</div>" +
+            '<div class="col-xs-12 col-md-6" id="psu_80_plus">80 Plus: ' +
+            dataFilteredPsu[selectedPsu - 1]["cat_80_plus_efficiency"] +
+            "</div>";
+
+        // Habilitamos la seleccion del proximo componente
+        // fetch_data_video();
+        fetch_data_psu();
     }
 
     updateInfoBox();

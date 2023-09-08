@@ -8,7 +8,7 @@
         "price": 90.00,
         "form_factor": "ATX",
         "modular": true,
-        "80_plus_efficiency": "gold",
+        "cat_80_plus_efficiency": "gold",
         "link": "https://www.corsair.com/us/en/p/psu/cp-9020248-na/rme-series-rm750e-fully-modular-low-noise-atx-power-supply-cp-9020248-na"
     },
     {
@@ -20,7 +20,7 @@
         "price": 120.00,
         "form_factor": "ATX",
         "modular": true,
-        "80_plus_efficiency": "gold",
+        "cat_80_plus_efficiency": "gold",
         "link": "https://www.corsair.com/us/en/p/psu/cp-9020249-na/rme-series-rm850e-fully-modular-low-noise-atx-power-supply-cp-9020249-na"
     },
     {
@@ -32,7 +32,7 @@
         "price": 210.00,
         "form_factor": "ATX",
         "modular": true,
-        "80_plus_efficiency": "gold",
+        "cat_80_plus_efficiency": "gold",
         "link": "https://www.corsair.com/us/en/p/psu/cp-9020250-na/rme-series-rm1000e-fully-modular-low-noise-atx-power-supply-cp-9020250-na"
     },
     {
@@ -44,7 +44,7 @@
         "price": 79.99,
         "form_factor": "ATX",
         "modular": true,
-        "80_plus_efficiency": "gold",
+        "cat_80_plus_efficiency": "gold",
         "link": "https://thermaltakeusa.com/collections/power-supply/products/toughpower-gf-a3-gold-650w-tt-premium-edition-ps-tpd-0650fnfagu-l"
     },
     {
@@ -56,7 +56,7 @@
         "price": 229.99,
         "form_factor": "ATX",
         "modular": true,
-        "80_plus_efficiency": "gold",
+        "cat_80_plus_efficiency": "gold",
         "link": "https://thermaltakeusa.com/collections/power-supply/products/toughpower-gf3-snow-1200w-tt-premium-edition-ps-tpd-1200fnfagu-n"
     },
     {
@@ -68,7 +68,7 @@
         "price": 349.99,
         "form_factor": "ATX",
         "modular": true,
-        "80_plus_efficiency": "gold",
+        "cat_80_plus_efficiency": "gold",
         "link": "https://thermaltakeusa.com/collections/power-supply/products/toughpower-gf3-1650w-gold-tt-premium-edition-ps-tpd-1650fnfagu-4"
     }
 ]
