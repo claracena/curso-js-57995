@@ -568,7 +568,11 @@ function fetch_data_psu() {
             selectionBoxPsu.innerHTML = '<option value="0" selected>Realice una selecci&oacute;n</option>';
 
             // Habilitamos el selector del dropdown del proximo componente
-            if (selectionBoxPsu.disabled && !selectionBoxRam.disabled && !selectedM2.disabled && !selectedVideo.disabled) {
+            if (selectionBoxPsu.disabled &&
+                !selectionBoxMotherboards.disabled &&
+                !selectionBoxRam.disabled &&
+                !selectedM2.disabled &&
+                !selectedVideo.disabled) {
                 selectionBoxPsu.removeAttribute("disabled");
             };
 
@@ -1154,7 +1158,7 @@ selectionBoxPsu.onchange = function (e) {
     if (selectedVideo == 0) {
         reset_all("psu");
     } else {
-        videoInfoBox =
+        psuInfoBox =
             '<div class="d-flex">' +
             '<div class="p-2 flex-fill">' +
             "Fuente: " +
@@ -1170,9 +1174,6 @@ selectionBoxPsu.onchange = function (e) {
             "</div>";
 
         psuPrice = dataFilteredPsu[selectedPsu - 1]["price"];
-
-        // Agregamos el consumo de potencia maximo al total de consumo
-        psuWattage = dataFilteredPsu[selectedPsu - 1]["power_consumption"];
 
         infoBoxPsu.style.display = "flex";
         infoBoxPsu.style.visibility = "visible";
@@ -1200,7 +1201,6 @@ selectionBoxPsu.onchange = function (e) {
 
         // Habilitamos la seleccion del proximo componente
         // fetch_data_video();
-        fetch_data_psu();
     }
 
     updateInfoBox();
