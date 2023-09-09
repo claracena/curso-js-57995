@@ -620,7 +620,7 @@ selectionBoxProcessors.onchange = function (e) {
             dataSelectedProcessor[selectedProcessor - 1]["clock_speed"] +
             " Ghz" +
             " " +
-            '<a href="dataSelectedProcessor[selectedProcessor - 1]["link"]" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
+            '<a href="' + dataSelectedProcessor[selectedProcessor - 1]["link"] + '" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
             "</div>" +
             '<div class="p-2 flex-fill text-end">$' +
             dataSelectedProcessor[selectedProcessor - 1]["price"].toFixed(2) +
@@ -697,7 +697,7 @@ selectionBoxMotherboards.onchange = function (e) {
             " " +
             dataFilteredMotherboards[selectedMotherboard - 1]["chipset"] +
             " " +
-            '<a href="dataFilteredMotherboards[selectedMotherboard - 1]["link"]" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
+            '<a href="' + dataFilteredMotherboards[selectedMotherboard - 1]["link"] + '" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
             "</div>" +
             '<div class="p-2 flex-fill text-end">$' +
             dataFilteredMotherboards[selectedMotherboard - 1]["price"].toFixed(2) +
@@ -802,7 +802,7 @@ selectionBoxRam.onchange = function (e) {
             "x" +
             dataFilteredRam[selectedRam - 1]["capacity_per_stick"] +
             " GB) " +
-            '<a href="dataFilteredRam[selectedRam - 1]["link"]" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
+            '<a href="' + dataFilteredRam[selectedRam - 1]["link"] + '" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
             "</div>" +
             '<div class="p-2 flex-fill text-end">$' +
             dataFilteredRam[selectedRam - 1]["price"].toFixed(2) +
@@ -836,7 +836,7 @@ selectionBoxRam.onchange = function (e) {
                     "x" +
                     dataFilteredRam[selectedRam - 1]["capacity_per_stick"] +
                     " GB) " +
-                    '<a href="dataFilteredRam[selectedRam - 1]["link"]" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
+                    '<a href="' + dataFilteredRam[selectedRam - 1]["link"] + '" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
                     "</div>" +
                     '<div class="p-2 flex-fill text-end">$' +
                     ramPrice.toFixed(2) +
@@ -918,7 +918,7 @@ selectionBoxM2.onchange = function (e) {
             " " +
             dataFilteredM2[selectedM2 - 1]["commercial_name"] +
             " " +
-            '<a href="dataFilteredM2[selectedM2 - 1]["link"]" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
+            '<a href="' + dataFilteredM2[selectedM2 - 1]["link"] + '" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
             "</div>" +
             '<div class="p-2 flex-fill text-end">$' +
             dataFilteredM2[selectedM2 - 1]["price"].toFixed(2) * selectionBoxM2Qty.value +
@@ -938,7 +938,7 @@ selectionBoxM2.onchange = function (e) {
                 " " +
                 dataFilteredM2[selectedM2 - 1]["commercial_name"] +
                 " " +
-                '<a href="dataFilteredM2[selectedM2 - 1]["link"]" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
+                '<a href="' + dataFilteredM2[selectedM2 - 1]["link"] + '" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
                 "</div>" +
                 '<div class="p-2 flex-fill text-end">$' +
                 dataFilteredM2[selectedM2 - 1]["price"].toFixed(2) * selectionBoxM2Qty.value +
@@ -1019,7 +1019,7 @@ selectionBoxSsd.onchange = function (e) {
             " " +
             dataFilteredSsd[selectedSsd - 1]["commercial_name"] +
             " " +
-            '<a href="dataFilteredSsd[selectedSsd - 1]["link"]" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
+            '<a href="' + dataFilteredSsd[selectedSsd - 1]["link"] + '" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
             "</div>" +
             '<div class="p-2 flex-fill text-end">$' +
             dataFilteredSsd[selectedSsd - 1]["price"].toFixed(2) * selectionBoxSsdQty.value +
@@ -1039,7 +1039,7 @@ selectionBoxSsd.onchange = function (e) {
                 " " +
                 dataFilteredSsd[selectedSsd - 1]["commercial_name"] +
                 " " +
-                '<a href="dataFilteredSsd[selectedSsd - 1]["link"]" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
+                '<a href="' + dataFilteredSsd[selectedSsd - 1]["link"] + '" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
                 "</div>" +
                 '<div class="p-2 flex-fill text-end">$' +
                 dataFilteredSsd[selectedSsd - 1]["price"].toFixed(2) * selectionBoxSsdQty.value +
@@ -1101,7 +1101,7 @@ selectionBoxVideo.onchange = function (e) {
             " " +
             dataFilteredVideo[selectedVideo - 1]["commercial_name"] +
             " " +
-            '<a href="dataFilteredVideo[selectedVideo - 1]["link"]" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
+            '<a href="' + dataFilteredVideo[selectedVideo - 1]["link"] + '" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
             "</div>" +
             '<div class="p-2 flex-fill text-end">$' +
             dataFilteredVideo[selectedVideo - 1]["price"].toFixed(2) +
@@ -1166,7 +1166,7 @@ selectionBoxPsu.onchange = function (e) {
             " " +
             dataFilteredPsu[selectedPsu - 1]["model"] +
             " " +
-            '<a href="dataFilteredPsu[selectedPsu - 1]["link"]" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
+            '<a href="' + dataFilteredPsu[selectedPsu - 1]["link"] + '" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
             "</div>" +
             '<div class="p-2 flex-fill text-end">$' +
             dataFilteredPsu[selectedPsu - 1]["price"].toFixed(2) +
