@@ -1,0 +1,66 @@
+const endpoints = [
+    // "https://javascript.cesararacena.com/json/processors.json",
+    // "https://javascript.cesararacena.com/json/motherboards.json",
+    // "https://javascript.cesararacena.com/json/ram.json",
+    // "https://javascript.cesararacena.com/json/discs.json",
+    // "https://javascript.cesararacena.com/json/gpu.json",
+    // "https://javascript.cesararacena.com/json/psu.json",
+    "./json/processors.json",
+    "./json/motherboards.json",
+    "./json/ram.json",
+    "./json/discs.json",
+    "./json/gpu.json",
+    "./json/psu.json",
+];
+
+let cpu_raw_data = [];
+let motherboard_raw_data = [];
+let ram_raw_data = [];
+let discs_raw_data = [];
+let gpu_raw_data = [];
+let psu_raw_data = [];
+
+const selection_processors = document.getElementById("processor_select");
+const selection_motherboard = document.getElementById("motherboard_select");
+const selection_ram = document.getElementById("ram_select");
+const selection_ram_qty = document.getElementById("ram_select_qty");
+const selection_m2 = document.getElementById("m2_select");
+const selection_m2_qty = document.getElementById("m2_select_qty");
+const selection_ssd = document.getElementById("ssd_select");
+const selection_ssd_qty = document.getElementById("ssd_select_qty");
+const selection_video = document.getElementById("video_select");
+const selection_psu = document.getElementById("psu_select");
+const selection_country = document.getElementById("select_pais");
+
+const info_processors = document.getElementById("processor_select_info");
+const info_motherboard = document.getElementById("motherboard_select_info");
+const info_ram = document.getElementById("ram_select_info");
+const info_discs_m2 = document.getElementById("discs_m2_select_info");
+const info_discs_ssd = document.getElementById("discs_ssd_select_info");
+const info_video = document.getElementById("video_select_info");
+const info_psu = document.getElementById("psu_select_info");
+const info_price = document.getElementById("total_price");
+const info_box = document.getElementById("information_box");
+
+let selected_processor = [];
+let selected_motherboard = [];
+let selected_ram = [];
+let selected_ram_qty = [];
+let selected_m2 = [];
+let selected_m2_qty = [];
+let selected_ssd = [];
+let selected_ssd_qty = [];
+let selected_video = [];
+let selected_psu = [];
+let selected_country = "";
+
+let filtered_processor = [];
+let filtered_motherboard = [];
+let filtered_ram = [];
+let filtered_ram_qty = [];
+let filtered_m2 = [];
+let filtered_m2_qty = [];
+let filtered_ssd = [];
+let filtered_ssd_qty = [];
+let filtered_video = [];
+let filtered_psu = [];

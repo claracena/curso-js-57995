@@ -1,6 +1,7 @@
 [
     {
-        "processor_id": 1,
+        "id": 1,
+        "type": "processor",
         "manufacturer": "Intel",
         "number": "i9-13900K",
         "commercial_name": "Core i9 13900K",
@@ -42,7 +43,8 @@
         "link": "https://www.intel.la/content/www/xl/es/products/sku/230496/intel-core-i913900k-processor-36m-cache-up-to-5-80-ghz/specifications.html"
     },
     {
-        "processor_id": 2,
+        "id": 2,
+        "type": "processor",
         "manufacturer": "Intel",
         "number": "i3-10105",
         "commercial_name": "Core i3 10105",
@@ -84,7 +86,8 @@
         "link": "https://www.intel.com/content/www/us/en/products/sku/201894/intel-core-i310105-processor-6m-cache-up-to-4-40-ghz/specifications.html"
     },
     {
-        "processor_id": 3,
+        "id": 3,
+        "type": "processor",
         "manufacturer": "AMD",
         "number": "9 7900X",
         "commercial_name": "Amd Ryzen 9 7900X",

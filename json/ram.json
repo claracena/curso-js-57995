@@ -1,6 +1,7 @@
 [
     {
-        "memory_id": 1,
+        "id": 1,
+        "type": "ram",
         "manufacturer": "Corsair",
         "manufacturer_category": "Vengeance",
         "commercial_name": "Vengeance LPX DDR4",
@@ -11,17 +12,14 @@
         "speed": 3200,
         "rgb": false,
         "compatibility": {
-            "memory_type": {
-                "ddr3": false,
-                "ddr4": true,
-                "ddr5": false
-            }
+            "memory_type": "ddr4"
         },
         "price": 25.00,
         "link": "https://www.corsair.com/fr/es/p/memory/cmk8gx4m1z3200c16/vengeancea-lpx-8gb-1-x-8gb-ddr4-dram-3200mhz-c16-memory-kit-black-cmk8gx4m1z3200c16"
     },
     {
-        "memory_id": 2,
+        "id": 2,
+        "type": "ram",
         "manufacturer": "Corsair",
         "manufacturer_category": "Vengeance",
         "commercial_name": "Vengeance RGB Pro Gamer DDR4",
@@ -32,17 +30,14 @@
         "speed": 3600,
         "rgb": true,
         "compatibility": {
-            "memory_type": {
-                "ddr3": false,
-                "ddr4": true,
-                "ddr5": false
-            }
+            "memory_type": "ddr4"
         },
         "price": 54.00,
         "link": "https://www.corsair.com/lm/es/p/memory/cmw16gx4m2c3600c18/vengeancea-rgb-pro-16gb-2-x-8gb-ddr4-dram-3600mhz-c18-memory-kit-a-black-cmw16gx4m2c3600c18"
     },
     {
-        "memory_id": 3,
+        "id": 3,
+        "type": "ram",
         "manufacturer": "Corsair",
         "manufacturer_category": "Vengeance",
         "commercial_name": "Vengeance RGB RS Gamer DDR4",
@@ -53,17 +48,14 @@
         "speed": 3200,
         "rgb": true,
         "compatibility": {
-            "memory_type": {
-                "ddr3": false,
-                "ddr4": true,
-                "ddr5": false
-            }
+            "memory_type": "ddr4"
         },
         "price": 29.00,
         "link": "https://www.corsair.com/ww/es/p/memory/cmg8gx4m1e3200c16/vengeancea-rgb-rs-8gb-1-x-8gb-ddr4-dram-3200mhz-c16-memory-kit-cmg8gx4m1e3200c16"
     },
     {
-        "memory_id": 4,
+        "id": 4,
+        "type": "ram",
         "manufacturer": "Kingston",
         "manufacturer_category": "Fury",
         "commercial_name": "Fury Beast RGB DDR4",
@@ -74,17 +66,14 @@
         "speed": 3200,
         "rgb": true,
         "compatibility": {
-            "memory_type": {
-                "ddr3": false,
-                "ddr4": true,
-                "ddr5": false
-            }
+            "memory_type": "ddr4"
         },
         "price": 52.00,
         "link": "https://www.kingston.com/en/memory/search?partid=KF432C16BBA/16"
     },
     {
-        "memory_id": 5,
+        "id": 5,
+        "type": "ram",
         "manufacturer": "Kingston",
         "manufacturer_category": "Fury",
         "commercial_name": "Fury Renegade RGB DDR5",
@@ -95,17 +84,14 @@
         "speed": 6000,
         "rgb": true,
         "compatibility": {
-            "memory_type": {
-                "ddr3": false,
-                "ddr4": false,
-                "ddr5": true
-            }
+            "memory_type": "ddr5"
         },
         "price": 195.00,
         "link": "https://www.kingston.com/en/memory/gaming/fury-renegade-ddr5-rgb"
     },
     {
-        "memory_id": 6,
+        "id": 6,
+        "type": "ram",
         "manufacturer": "Corsair",
         "manufacturer_category": "DOMINATOR",
         "commercial_name": "DOMINATOR PLATINUM RGB DDR5",
@@ -116,17 +102,14 @@
         "speed": 5200,
         "rgb": true,
         "compatibility": {
-            "memory_type": {
-                "ddr3": false,
-                "ddr4": false,
-                "ddr5": true
-            }
+            "memory_type": "ddr5"
         },
         "price": 199.00,
         "link": "https://www.corsair.com/us/en/p/memory/cmt32gx5m2b5200c40/dominatora-platinum-rgb-32gb-2x16gb-ddr5-dram-5200mhz-c40-memory-kit-a-black-cmt32gx5m2b5200c40"
     },
     {
-        "memory_id": 7,
+        "id": 7,
+        "type": "ram",
         "manufacturer": "G.skill",
         "manufacturer_category": "Trident",
         "commercial_name": "Trident Z DDR5",
@@ -137,11 +120,7 @@
         "speed": 7200,
         "rgb": true,
         "compatibility": {
-            "memory_type": {
-                "ddr3": false,
-                "ddr4": false,
-                "ddr5": true
-            }
+            "memory_type": "ddr5"
         },
         "price": 245.00,
         "link": "https://www.gskill.com/product/165/374/1665644656/F5-7200J3445G16GX2-TZ5RK"

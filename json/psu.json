@@ -1,6 +1,7 @@
 [
     {
-        "psu_id": 1,
+        "id": 1,
+        "type": "psu",
         "manufacturer": "Corsair",
         "series": "RMe",
         "model": "RM750e Fully Modular Low-Noise",
@@ -12,7 +13,8 @@
         "link": "https://www.corsair.com/us/en/p/psu/cp-9020248-na/rme-series-rm750e-fully-modular-low-noise-atx-power-supply-cp-9020248-na"
     },
     {
-        "psu_id": 2,
+        "id": 2,
+        "type": "psu",
         "manufacturer": "Corsair",
         "series": "RMe",
         "model": "RM850e Fully Modular Low-Noise",
@@ -24,7 +26,8 @@
         "link": "https://www.corsair.com/us/en/p/psu/cp-9020249-na/rme-series-rm850e-fully-modular-low-noise-atx-power-supply-cp-9020249-na"
     },
     {
-        "psu_id": 3,
+        "id": 3,
+        "type": "psu",
         "manufacturer": "Corsair",
         "series": "RMe",
         "model": "RM1000e Fully Modular Low-Noise",
@@ -36,7 +39,8 @@
         "link": "https://www.corsair.com/us/en/p/psu/cp-9020250-na/rme-series-rm1000e-fully-modular-low-noise-atx-power-supply-cp-9020250-na"
     },
     {
-        "psu_id": 4,
+        "id": 4,
+        "type": "psu",
         "manufacturer": "Thermaltake",
         "series": "TOUGHPOWER",
         "model": "GF A3 Gold 650W - TT Premium Edition",
@@ -48,7 +52,8 @@
         "link": "https://thermaltakeusa.com/collections/power-supply/products/toughpower-gf-a3-gold-650w-tt-premium-edition-ps-tpd-0650fnfagu-l"
     },
     {
-        "psu_id": 5,
+        "id": 5,
+        "type": "psu",
         "manufacturer": "Thermaltake",
         "series": "TOUGHPOWER",
         "model": "GF3 Snow 1200W - TT Premium Edition",
@@ -60,7 +65,8 @@
         "link": "https://thermaltakeusa.com/collections/power-supply/products/toughpower-gf3-snow-1200w-tt-premium-edition-ps-tpd-1200fnfagu-n"
     },
     {
-        "psu_id": 6,
+        "id": 6,
+        "type": "psu",
         "manufacturer": "Thermaltake",
         "series": "TOUGHPOWER",
         "model": "GF3 1650W Gold - TT Premium Edition",

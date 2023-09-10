@@ -1,6 +1,7 @@
 [
     {
-        "motherboard_id": 1,
+        "id": 1,
+        "type": "motherboard",
         "manufacturer": "Asus",
         "platform": "Intel",
         "manufacturer_category": "TUF",
@@ -41,11 +42,7 @@
         },
         "compatibility": {
             "socket": 1700,
-            "memory_type": {
-                "ddr3_capable": false,
-                "ddr4_capable": false,
-                "ddr5_capable": true
-            },
+            "memory_type": "ddr5",
             "memory_max": {
                 "ddr3_max_memory": 0,
                 "ddr4_max_memory": 0,
@@ -74,7 +71,8 @@
         "link": "https://www.asus.com/motherboards-components/motherboards/tuf-gaming/tuf-gaming-z690-plus/"
     },
     {
-        "motherboard_id": 2,
+        "id": 2,
+        "type": "motherboard",
         "manufacturer": "MSI",
         "platform": "Intel",
         "manufacturer_category": "MAG",
@@ -115,11 +113,7 @@
         },
         "compatibility": {
             "socket": 1700,
-            "memory_type": {
-                "ddr3_capable": false,
-                "ddr4_capable": true,
-                "ddr5_capable": false
-            },
+            "memory_type": "ddr4",
             "memory_max": {
                 "ddr3_max_memory": 0,
                 "ddr4_max_memory": 128,
@@ -162,7 +156,8 @@
         "link": "https://www.msi.com/Motherboard/MAG-B760M-MORTAR-WIFI-DDR4"
     },
     {
-        "motherboard_id": 3,
+        "id": 3,
+        "type": "motherboard",
         "manufacturer": "MSI",
         "platform": "Intel",
         "manufacturer_category": "MAG",
@@ -202,11 +197,7 @@
         },
         "compatibility": {
             "socket": 1200,
-            "memory_type": {
-                "ddr3_capable": false,
-                "ddr4_capable": true,
-                "ddr5_capable": false
-            },
+            "memory_type": "ddr4",
             "memory_max": {
                 "ddr3_max_memory": 0,
                 "ddr4_max_memory": 128,
@@ -229,7 +220,8 @@
         "link": "https://www.msi.com/Motherboard/MAG-B460M-MORTAR-WIFI"
     },
     {
-        "motherboard_id": 4,
+        "id": 4,
+        "type": "motherboard",
         "manufacturer": "GIGABYTE",
         "platform": "AMD",
         "manufacturer_category": "AORUS",
@@ -269,11 +261,7 @@
         },
         "compatibility": {
             "socket": "AM5",
-            "memory_type": {
-                "ddr3_capable": false,
-                "ddr4_capable": false,
-                "ddr5_capable": true
-            },
+            "memory_type": "ddr5",
             "memory_max": {
                 "ddr3_max_memory": 0,
                 "ddr4_max_memory": 0,
@@ -296,7 +284,8 @@
         "link": "https://www.gigabyte.com/ar/Motherboard/X670-AORUS-ELITE-AX-rev-10/sp#sp"
     },
     {
-        "motherboard_id": 4,
+        "id": 5,
+        "type": "motherboard",
         "manufacturer": "Asus",
         "platform": "AMD",
         "manufacturer_category": "ROG",
@@ -336,11 +325,7 @@
         },
         "compatibility": {
             "socket": "AM5",
-            "memory_type": {
-                "ddr3_capable": false,
-                "ddr4_capable": false,
-                "ddr5_capable": true
-            },
+            "memory_type": "ddr5",
             "memory_max": {
                 "ddr3_max_memory": 0,
                 "ddr4_max_memory": 0,

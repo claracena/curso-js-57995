@@ -1,6 +1,7 @@
 [
     {
-        "gpu_id": 1,
+        "id": 1,
+        "type": "gpu",
         "manufacturer": "MSI",
         "platform": "Intel",
         "manufacturer_category": "VENTUS",
@@ -26,7 +27,8 @@
         "link": "https://latam.msi.com/Graphics-Card/GeForce-RTX-3080-Ti-VENTUS-3X-12G-OC"
     },
     {
-        "gpu_id": 2,
+        "id": 2,
+        "type": "gpu",
         "manufacturer": "MSI",
         "platform": "Intel",
         "manufacturer_category": "VENTUS",
@@ -52,7 +54,8 @@
         "link": "https://latam.msi.com/Graphics-Card/GeForce-RTX-4070-Ti-VENTUS-3X-12G-OC"
     },
     {
-        "gpu_id": 3,
+        "id": 3,
+        "type": "gpu",
         "manufacturer": "MSI",
         "platform": "AMD",
         "manufacturer_category": "MECH",
@@ -78,7 +81,8 @@
         "link": "https://latam.msi.com/Graphics-Card/Radeon-RX-6650-XT-MECH-2X-8G-OC"
     },
     {
-        "gpu_id": 4,
+        "id": 4,
+        "type": "gpu",
         "manufacturer": "MSI",
         "platform": "AMD",
         "manufacturer_category": "GAMING",
