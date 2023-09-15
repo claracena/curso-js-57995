@@ -119,13 +119,13 @@
                                     <option value="0" selected>Unidades de Disco M.2</option>
                                 </select>
                                 <select class="form-select mt-2" name="m2_qty" id="m2_select_qty" aria-label="m2 quantity selection" disabled>
-                                    <option value="0" selected>Cantidad de unidades M.2</option>
+                                    <option value="0" selected>Cantidad</option>
                                 </select>
                                 <select class="form-select mt-2" name="ssd" id="ssd_select" aria-label="ssd selection" disabled>
                                     <option value="0" selected>Unidades de Disco SSD</option>
                                 </select>
                                 <select class="form-select mt-2" name="ssd_qty" id="ssd_select_qty" aria-label="ssd quantity selection" disabled>
-                                    <option value="0" selected>Cantidad de unidades SSD</option>
+                                    <option value="0" selected>Cantidad</option>
                                 </select>
                                 <div class="row mt-3" id="discs_m2_select_info"></div>
                                 <div class="row mt-3" id="discs_ssd_select_info"></div>
@@ -198,6 +198,41 @@
             </div>
         </footer>
 
+        <div class="modal" id="modal-bienvenido" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Gu&iacute;a para armar su PC</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Esta p&aacute;gina ha sido creada como desarrollo del trabajo pr&aacute;ctico en el curso de JavaScript de Coderhouse,
+                            comisi&oacute;n n&uacute;mero 57995 a cargo del profesor Adrian Gonzalez y fue desarrollado por C&eacute;sar Aracena bajo
+                            la tutor&iacute;a a cargo de Yoelis Figueredo Padr&oacute;n.
+                        </p>
+                        <p>
+                            El simulador est&aacute; dise&ntilde;ado para funcionar como un "wizzard" o asistente y ayudar a los usuarios en la
+                            selecci&oacute;n de los componentes de una PC de escritorio, dependiendo de la compatibilidad de sus distintas piezas.
+                            Para comenzar de nuevo, el usuario podr&aacute; simplemente hacer click en el bot&oacute;n "Reiniciar" ubicado en la parte
+                            superior.
+                        </p>
+                        <div class="alert alert-warning" role="alert">
+                            Advertencia: Esta p&aacute;gina no est&aacute; dise&ntilde;ada para contener informaci&oacute;n actualizada, incluyendo
+                            las partes utilizadas como ejemplo, sus precios o los impuestos calculados por pa&iacute;s. Toda la informaci&oacute;n ha
+                            sido o fabricada o extra&iacute;da de distintos sitiosweb no oficiales.
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="javascript:void(0);" class="btn btn-danger" onclick="uir();return false;">No acepto</a>
+                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No acepto</button> -->
+                        <a href="javascript:void(0);" class="btn btn-primary" onclick="cerrar_modal();return false;">Acepto</a>
+                        <!-- <button type="button" class="btn btn-primary">Acepto</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- <div id="myScript"></div> -->
         <!-- <script src="./assets/js/version.js"></script> -->
         <!-- <script src="./assets/js/app.js"></script> -->
@@ -209,6 +244,7 @@
             crossorigin="anonymous"></script>
         <script type="text/javascript">
             reset_all();
+            // abrir_modal();
         </script>
     </body>
 </html>
