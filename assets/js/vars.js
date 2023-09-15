@@ -64,6 +64,10 @@ let filtered_psu = [];
 
 let info_content;
 let opcion = 0;
+let min_wattage = 0;
+let max_wattage = 0;
+let total_wattage = [];
+let total_price = 0;
 
 let motherboard_section_enabled = 0;
 let ram_section_enabled = 0;
