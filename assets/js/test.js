@@ -612,5 +612,8 @@ selection_gpu.onchange = function (e) {
     if (this.value != 0) {
         selected_gpu = filtered_gpu.filter((item) => item.id == this.value);
         show_info_box();
+    } else {
+        reset_all('gpu');
+        show_info_box();
     }
 };
