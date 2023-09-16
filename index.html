@@ -227,6 +227,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <form>
+                            <input type="checkbox" name="no-mostrar" id="no-mostrar-en-sesion" checked>
+                            <label for="no-mostrar-en-sesion">No volver a mostrar en esta sesi&oacute;n</label>
+                        </form>
                         <a href="javascript:void(0);" class="btn btn-danger" onclick="uir();return false;">No acepto</a>
                         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No acepto</button> -->
                         <a href="javascript:void(0);" class="btn btn-primary" onclick="cerrar_modal();return false;">Acepto</a>
@@ -247,7 +251,9 @@
             crossorigin="anonymous"></script>
         <script type="text/javascript">
             reset_all();
-            abrir_modal();
+            if (sessionStorage.getItem('no_mostrar') === null) {
+                abrir_modal();
+            }
         </script>
     </body>
 </html>

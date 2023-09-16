@@ -15,6 +15,12 @@ function abrir_modal() {
 function cerrar_modal() {
     let mi_modal = document.getElementById('modal-bienvenido');
     let modal = bootstrap.Modal.getInstance(mi_modal);
+    let check = document.getElementById('no-mostrar-en-sesion');
+
+    if (check.checked == true) {
+        sessionStorage.setItem('no_mostrar', true);
+    }
+
     modal.hide();
 }
 
