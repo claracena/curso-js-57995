@@ -176,6 +176,14 @@ function reset_all(parte = null) {
             }
         }
     }
+
+    if (parte == 'psu' || parte == null) {
+        selection_psu.value = 0;
+        selected_psu = [];
+        if (!selection_psu.disabled) {
+            selection_psu.setAttribute('disabled', '');
+        }
+    }
 }
 
 function enable_next_step(...component) {
@@ -379,6 +387,26 @@ function show_info_box() {
         total_price = total_price + selected_gpu[0].price;
     }
 
+    if (selected_psu.length > 0) {
+        info_box.innerHTML =
+            info_box.innerHTML +
+            '<div class="d-flex">' +
+            '<div class="p-2 flex-fill">' +
+            'Fuente: ' +
+            selected_psu[0].manufacturer +
+            ' ' +
+            selected_psu[0].commercial_name +
+            ' <a href="' +
+            selected_psu[0].link +
+            '" target="_blank"><i class="bi bi-box-arrow-up-right" style="font-size: 12px;"></i></a>' +
+            '</div>' +
+            '<div class="p-2 flex-fill text-end">$' +
+            selected_psu[0].price.toFixed(2) +
+            '</div>' +
+            '</div>';
+        total_price = total_price + selected_psu[0].price;
+    }
+
     if (wattage()[0] > 0) {
         info_box.innerHTML =
             info_box.innerHTML +
@@ -443,6 +471,7 @@ selection_motherboard.onchange = function (e) {
         reset_all('ssd');
         reset_all('ssd_qty');
         reset_all('gpu');
+        reset_all('psu');
 
         enable_next_step('ram');
     } else {
@@ -454,6 +483,7 @@ selection_motherboard.onchange = function (e) {
         reset_all('ssd');
         reset_all('ssd_qty');
         reset_all('gpu');
+        reset_all('psu');
         show_info_box();
     }
 };
@@ -493,6 +523,7 @@ selection_ram.onchange = function (e) {
         reset_all('ssd');
         reset_all('ssd_qty');
         reset_all('gpu');
+        reset_all('psu');
 
         enable_next_step('m2');
         enable_next_step('ssd');
@@ -503,6 +534,7 @@ selection_ram.onchange = function (e) {
         reset_all('ssd');
         reset_all('ssd_qty');
         reset_all('gpu');
+        reset_all('psu');
         show_info_box();
     }
 
@@ -553,6 +585,7 @@ selection_m2.onchange = function (e) {
         reset_all('gpu');
         reset_all('m2');
         reset_all('m2_qty');
+        reset_all('psu');
 
         show_info_box();
 
@@ -593,6 +626,7 @@ selection_ssd.onchange = function (e) {
         reset_all('gpu');
         reset_all('ssd');
         reset_all('ssd_qty');
+        reset_all('psu');
 
         show_info_box();
 
@@ -617,9 +651,23 @@ selection_ssd_qty.onchange = function (e) {
 selection_gpu.onchange = function (e) {
     if (this.value != 0) {
         selected_gpu = filtered_gpu.filter((item) => item.id == this.value);
+        reset_all('psu');
         show_info_box();
+        filtered_psu = psu_raw_data.filter((item) => item.wattage >= Math.ceil(wattage()[1] * 1.05))
+        enable_next_step('psu');
     } else {
         reset_all('gpu');
+        reset_all('psu');
         show_info_box();
     }
 };
+
+selection_psu.onchange = function (e) {
+    if (this.value != 0) {
+        selected_psu = filtered_psu.filter((item) => item.id == this.value);
+        show_info_box();
+    } else {
+        reset_all('psu');
+        show_info_box();
+    }
+}
