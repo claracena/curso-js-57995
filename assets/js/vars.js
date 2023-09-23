@@ -1,16 +1,16 @@
 const endpoints = [
-    // "https://javascript.cesararacena.com/json/processors.json",
-    // "https://javascript.cesararacena.com/json/motherboards.json",
-    // "https://javascript.cesararacena.com/json/ram.json",
-    // "https://javascript.cesararacena.com/json/discs.json",
-    // "https://javascript.cesararacena.com/json/gpu.json",
-    // "https://javascript.cesararacena.com/json/psu.json",
-    "./json/processors.json",
-    "./json/motherboards.json",
-    "./json/ram.json",
-    "./json/discs.json",
-    "./json/gpu.json",
-    "./json/psu.json",
+    "https://javascript.cesararacena.com/json/processors.json",
+    "https://javascript.cesararacena.com/json/motherboards.json",
+    "https://javascript.cesararacena.com/json/ram.json",
+    "https://javascript.cesararacena.com/json/discs.json",
+    "https://javascript.cesararacena.com/json/gpu.json",
+    "https://javascript.cesararacena.com/json/psu.json",
+    // "./json/processors.json",
+    // "./json/motherboards.json",
+    // "./json/ram.json",
+    // "./json/discs.json",
+    // "./json/gpu.json",
+    // "./json/psu.json",
 ];
 
 let cpu_raw_data = [];
