@@ -1,17 +1,32 @@
+// Origen de los datos. Pueden ser leidos local o remotamente desde archivos
+// JSON o bien desde una API online
 const endpoints = [
-    "https://javascript.cesararacena.com/json/processors.json",
-    "https://javascript.cesararacena.com/json/motherboards.json",
-    "https://javascript.cesararacena.com/json/ram.json",
-    "https://javascript.cesararacena.com/json/discs.json",
-    "https://javascript.cesararacena.com/json/gpu.json",
-    "https://javascript.cesararacena.com/json/psu.json",
+    // Bloque de archivos JSON locales
     // "./json/processors.json",
     // "./json/motherboards.json",
     // "./json/ram.json",
     // "./json/discs.json",
     // "./json/gpu.json",
-    // "./json/psu.json",
+    // "./json/psu.json"
+
+    // Bloque de archivos JSON remotos
+    // "https://javascript.cesararacena.com/json/processors.json",
+    // "https://javascript.cesararacena.com/json/motherboards.json",
+    // "https://javascript.cesararacena.com/json/ram.json",
+    // "https://javascript.cesararacena.com/json/discs.json",
+    // "https://javascript.cesararacena.com/json/gpu.json",
+    // "https://javascript.cesararacena.com/json/psu.json"
+
+    // Bloque de APIs
+    "https://coderapis.joseorozco.com.ar/processors",
+    "https://coderapis.joseorozco.com.ar/motherboards",
+    "https://coderapis.joseorozco.com.ar/ram",
+    "https://coderapis.joseorozco.com.ar/discs",
+    "https://coderapis.joseorozco.com.ar/gpu",
+    "https://coderapis.joseorozco.com.ar/psu"
 ];
+
+// Listado de todas las variables y constantes a utilizar
 
 let cpu_raw_data = [];
 let motherboard_raw_data = [];

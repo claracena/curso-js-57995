@@ -91,7 +91,14 @@ const inicializacion = setInterval(() => {
 
     filtered_gpu = gpu_raw_data;
 
-    if (Object.keys(cpu_raw_data).length > 0) {
+    if (
+        Object.keys(cpu_raw_data).length > 0 &&
+        Object.keys(motherboard_raw_data).length > 0 &&
+        Object.keys(ram_raw_data).length > 0 &&
+        Object.keys(discs_raw_data).length > 0 &&
+        Object.keys(gpu_raw_data).length > 0 &&
+        Object.keys(psu_raw_data).length > 0
+    ) {
         clearInterval(inicializacion);
         selection_processors.removeAttribute('disabled');
     }
@@ -170,8 +177,7 @@ function reset_all(parte = null) {
         selected_gpu = [];
         gpu_section_enabled = 0;
         if (!selection_gpu.disabled) {
-            if (selection_m2.value == 0 && selection_ssd.value == 0)
-            {
+            if (selection_m2.value == 0 && selection_ssd.value == 0) {
                 selection_gpu.setAttribute('disabled', '');
             }
         }
@@ -432,7 +438,8 @@ function show_info_box() {
         'Precio Total: ' +
         '</div>' +
         '<div class="p-2 flex-fill text-end">' +
-        '$ ' + total_price.toFixed(2) +
+        '$ ' +
+        total_price.toFixed(2) +
         '</div>' +
         '</div>';
 }
@@ -653,7 +660,7 @@ selection_gpu.onchange = function (e) {
         selected_gpu = filtered_gpu.filter((item) => item.id == this.value);
         reset_all('psu');
         show_info_box();
-        filtered_psu = psu_raw_data.filter((item) => item.wattage >= Math.ceil(wattage()[1] * 1.05))
+        filtered_psu = psu_raw_data.filter((item) => item.wattage >= Math.ceil(wattage()[1] * 1.05));
         enable_next_step('psu');
     } else {
         reset_all('gpu');
@@ -670,4 +677,4 @@ selection_psu.onchange = function (e) {
         reset_all('psu');
         show_info_box();
     }
-}
+};

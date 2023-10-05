@@ -24,14 +24,12 @@
         <meta name="theme-color" content="#ffffff" />
         <meta name="theme-color" content="#712cf9" />
     </head>
-    <!-- <a href="" target="_blank"></a> -->
     <body class="d-flex flex-column h-100">
-        <!-- TODO LIMPIAR TODO -->
         <header>
-            <!-- Fixed navbar -->
+            <!-- Barra de navegacion -->
             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Armado de PC</a>
+                    <a class="navbar-brand" href="https://javascript.cesararacena.com">Armado de PC</a>
                     <button
                         class="navbar-toggler"
                         type="button"
@@ -45,7 +43,7 @@
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <ul class="navbar-nav me-auto mb-2 mb-md-0">
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">Inicio</a>
+                                <a class="nav-link active" href="https://javascript.cesararacena.com">Inicio</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="javascript:void(0);" onclick="return reset_all();">Reiniciar</a>
@@ -56,7 +54,7 @@
             </nav>
         </header>
 
-        <!-- Begin page content -->
+        <!-- Inicio del contenido de la pagina -->
         <main class="flex-shrink-0 mb-3">
             <div class="container">
                 <h1 class="mt-5">Gu&iacute;a para armar su PC</h1>
@@ -145,7 +143,6 @@
                                 <div class="row mt-3" id="video_select_info"></div>
                             </div>
                         </div>
-                        <!-- TODO agregar la funcionalidad de FUENTE!!!! -->
                         <div class="card col-12">
                             <div class="card-body">
                                 <h5 class="card-title">
@@ -164,27 +161,9 @@
                         <div class="card sticky">
                             <div class="card-body">
                                 <h5 class="card-title">Detalle</h5>
-                                <!-- <p class="card-text">Ac&aacute; ver&aacute; un resumen de su selecci&oacute;n</p> -->
                                 <hr />
                                 <div id="information_box"></div>
                                 <h5 class="card-title" id="total_price"></h5>
-                                <!-- TODO Agregar la funcionalidad de paises -->
-                                <!-- <div class="d-flex">
-                                    <div class="p-2 flex-fill">Seleccione su pa&iacute;s de residencia</div>
-                                    <div class="p-2 flex-fill text-end">
-                                        <select name="pais" id="select_pais">
-                                            <option value="">---</option>
-                                            <option value="Argentina">Argentina</option>
-                                            <option value="Bolivia">Bolivia</option>
-                                            <option value="Chile">Chile</option>
-                                            <option value="Colombia">Colombia</option>
-                                            <option value="Ecuador">Ecuador</option>
-                                            <option value="Mexico">Mexico</option>
-                                            <option value="Paraguay">Paraguay</option>
-                                            <option value="Uruguay">Uruguay</option>
-                                        </select>
-                                    </div>
-                                </div> -->
                                 <div class="">
                                     <p class="card-text text-center fs-6 text-small">NOTA: LOS PRECIOS E IMPUESTOS SON MERAMENTE ILUSTRATIVOS!</p>
                                 </div>
@@ -195,12 +174,14 @@
             </div>
         </main>
 
+        <!-- Footer -->
         <footer class="footer mt-auto py-3 bg-body-tertiary">
             <div class="container">
                 <span class="text-body-secondary">Copyright &copy; 2023 C&eacute;sar Aracena - Todos los Derechos Reservados</span>
             </div>
         </footer>
 
+        <!-- Modal de advertencia/bienvenida -->
         <div class="modal" id="modal-bienvenido" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
@@ -222,33 +203,33 @@
                         </p>
                         <div class="alert alert-warning" role="alert">
                             Advertencia: Esta p&aacute;gina no est&aacute; dise&ntilde;ada para contener informaci&oacute;n actualizada, incluyendo
-                            las partes utilizadas como ejemplo sus precios. Toda la informaci&oacute;n ha
-                            sido fabricada, extra&iacute;da de distintos sitios web no oficiales u otros.
+                            las partes utilizadas como ejemplo sus precios. Toda la informaci&oacute;n ha sido fabricada, extra&iacute;da de distintos
+                            sitios web no oficiales u otros.
                         </div>
                     </div>
                     <div class="modal-footer">
                         <form>
-                            <input type="checkbox" name="no-mostrar" id="no-mostrar-en-sesion" checked>
+                            <input type="checkbox" name="no-mostrar" id="no-mostrar-en-sesion" checked />
                             <label for="no-mostrar-en-sesion">No volver a mostrar en esta sesi&oacute;n</label>
                         </form>
                         <a href="javascript:void(0);" class="btn btn-danger" onclick="uir();return false;">No acepto</a>
-                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No acepto</button> -->
                         <a href="javascript:void(0);" class="btn btn-primary" onclick="cerrar_modal();return false;">Acepto</a>
-                        <!-- <button type="button" class="btn btn-primary">Acepto</button> -->
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- <div id="myScript"></div> -->
-        <!-- <script src="./assets/js/version.js"></script> -->
-        <!-- <script src="./assets/js/app.js"></script> -->
-        <script src="./assets/js/vars.js?v=3.0.0"></script>
-        <script src="./assets/js/test.js?v=3.0.0"></script>
+        <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!-- Los scripts locales tienen versionado para evitar el cache -->
+        <script src="./assets/js/vars.js?v=4.0.2"></script>
+        <script src="./assets/js/main.js?v=4.0.2"></script>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
             crossorigin="anonymous"></script>
+        <!-- Se reinician todos los componentes y se
+            ejecuta un modal apenas se ingresa -->
         <script type="text/javascript">
             reset_all();
             if (sessionStorage.getItem('no_mostrar') === null) {
