@@ -18,12 +18,12 @@ const endpoints = [
     // "https://javascript.cesararacena.com/json/psu.json"
 
     // Bloque de APIs
-    "https://coderapis.joseorozco.com.ar/processors",
-    "https://coderapis.joseorozco.com.ar/motherboards",
-    "https://coderapis.joseorozco.com.ar/ram",
-    "https://coderapis.joseorozco.com.ar/discs",
-    "https://coderapis.joseorozco.com.ar/gpu",
-    "https://coderapis.joseorozco.com.ar/psu"
+    "https://api.cesararacena.com/processors",
+    "https://api.cesararacena.com/motherboards",
+    "https://api.cesararacena.com/ram",
+    "https://api.cesararacena.com/discs",
+    "https://api.cesararacena.com/gpu",
+    "https://api.cesararacena.com/psu"
 ];
 
 // Listado de todas las variables y constantes a utilizar
